@@ -1,0 +1,198 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+.container {
+  background-color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1976D2;
+  padding: 5px 10px;
+  color: white;
+  font-weight: bold;
+}
+.header img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+.header h2 {
+  margin: 0;
+}
+.content {
+  margin-top: 10px;
+  border-top: 1px solid black;
+  padding-top: 5px;
+}
+.section { 
+  display: flex;
+  margin: 10px 0;
+}
+.section img {
+  width: 50px;  
+  height: 50px;
+}
+.section .details {
+  flex: 1;
+  padding: 5px;
+}
+.section h3 {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+.section .value {
+  background-color: #ffb33a;
+  color: black;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+.range {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.button {
+  background-color: #1976D2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  width: 300px; /* Adjust the width as needed */
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-container {
+  text-align: center;
+}
+
+.circle-mask {
+  width: 150px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 2px solid black;
+  position: relative;
+}
+
+.fingerprint-overlay {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  z-index: 2;  
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} 
+
+body {
+  background-color: #e4ecf6;
+  margin: 0; 
+  padding: 0; 
+}
+
+/* .progress-bar {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(navy 75%, #e4ecf6 0);    
+}
+
+.progressBarText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: navy;
+  font-weight: bold;
+} */
