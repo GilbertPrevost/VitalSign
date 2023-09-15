@@ -175,11 +175,11 @@ const CameraVitals = () => {
       </div>
       <div className="camera-text">
 
-        <div>
+        {/* <div>
           <button onClick={toggleFlashlight}>
             {isFlashlightOn ? 'Flashlight On/Off' : 'Flashlight On/Off'}
           </button>
-        </div>
+        </div> */}
 
         <p><b>We are scanning your vital signs.</b></p>
         <p><b>Please keep your finger stationary.</b></p>

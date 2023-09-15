@@ -51,14 +51,14 @@ const TakeVitals = () => {
   const handleStartClick = () => {
     const userAgent = navigator.userAgent;
 
-    navigate('/Camera');
+    // navigate('/Camera');
 
 
-    // if (userAgent.match(/Android/i) || userAgent.match(/iPhone/i)) {
-    //   navigate('/Camera');
-    // } else {
-    //   setAlertMessage('This Vital Signs can be measured only in mobile devices.');
-    // }
+    if (userAgent.match(/Android/i) || userAgent.match(/iPhone/i)) {
+      navigate('/Camera');
+    } else {
+      setAlertMessage('This Vital Signs can be measured only in mobile devices.');
+    }
   };
 
 

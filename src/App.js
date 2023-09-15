@@ -135,7 +135,7 @@ function App() {
             width="100%"
             height="100%"
             frameBorder="0"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=staycuredmedicalclinic&zoom=18`}
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=11.0250608,76.9582571&zoom=18`}
 
 
             allowFullScreen
