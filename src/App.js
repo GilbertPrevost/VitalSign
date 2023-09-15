@@ -5,8 +5,10 @@ import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-
 function App() {
+
+  const Navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setcountryCode] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
@@ -17,48 +19,20 @@ function App() {
   const handlePhoneNumberChange = (value, country) => {
     const code = country.dialCode;
     console.log("code", code);
-    setcountryCode(code); // Get the country dial code
-    const formattedNumber = value.slice(countryCode.length); // Remove country code
+    setcountryCode(code);
+    const formattedNumber = value.slice(countryCode.length);
     setPhoneNumber(formattedNumber);
     console.log("phone", formattedNumber);
-    // setPhoneNumber(value);
   };
+
   var requestBody = {
     PhoneNumber: "+" + countryCode + phoneNumber,
     UserName: phoneNumber
   };
 
-
-
-
-  const login1 = () => {
-    fetch(proxyURL + loginUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Handle the response data here
-        console.log(data);
-      })
-      .catch((error) => {
-        // Handle any errors here
-        console.error("Error:", error);
-      });
-
-
-  };
-
-
   const login = () => {
+    setIsLoading(true);
+
     axios
       .post(proxyURL + loginUrl, requestBody, {
         headers: {
@@ -73,41 +47,44 @@ function App() {
         if (data.indexOf("Already Exist") !== -1) {
           console.log("Already Exist");
           Navigate('/verification');
+          localStorage.setItem('userPhoneNumber', "+" + countryCode + phoneNumber);
+          localStorage.setItem('userName', phoneNumber);
+
+
         }
         else {
           console.log("newnumber");
+          console.log("result", response.data.result);
+          const jsonObject = JSON.parse(response.data.result);
+          console.log("session id", jsonObject.Details);
+          localStorage.setItem('newSessionId', jsonObject.Details);
           Navigate('/otp');
         }
       })
       .catch((error) => {
-        // Handle any errors here
-        console.error("Error:1111", error);
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        setIsLoading(false); // Turn off the loading spinner
       });
   };
 
 
-
-
-
-
-
-
-  const Navigate = useNavigate();
   const handleButtonClick = () => {
-    Navigate('/verification');
     if (!phoneNumber) {
-      setAlertMessage('Please fill the mobile number');
-      // Navigate('/otp');
+      setAlertMessage('Please fill in the mobile number');
+    } else {
+      login(); // Start the login process
     }
-    else {
-      // const phoneNumberWithoutCountryCode = phoneNumber.replace(`+${countryCode}`, '');
-      console.log(phoneNumber);
-      // login();
-      // Navigate('/verification');
-    }
-
   };
 
+  const LoadingSpinner = () => {
+    return (
+      <div className="loading-spinner">
+        <div className="spinner"></div>
+      </div>
+    );
+  };
 
 
   return (
@@ -115,8 +92,6 @@ function App() {
 
 
       <div style={{ backgroundImage: `url(Indian-Girls.jpg)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-
-
 
 
         <header style={{ padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -129,7 +104,6 @@ function App() {
 
             <PhoneInput
               country={'in'}
-              // value={phoneNumber}
               onChange={handlePhoneNumberChange}
               inputStyle={{ width: '100%' }}
               containerStyle={{ textAlign: 'left' }}
@@ -147,36 +121,32 @@ function App() {
               borderRadius: '10px',
             }}
             onClick={handleButtonClick}
+            disabled={isLoading}
           >
-            REGISTER OR SIGN IN
+            Register or Sign In
           </button>
           {alertMessage && <div style={{ color: 'red' }}>{alertMessage}</div>}
-
-
-
-
         </div>
 
 
-        <div style={{ width: '100%', height: '320px', marginTop: '20px' }}>
+        <div style={{ width: '100%', height: '420px', marginTop: '20px' }}>
           <iframe
             title="Google Map"
             width="100%"
             height="100%"
             frameBorder="0"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=techunitysoftware&zoom=18`}
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=staycuredmedicalclinic&zoom=18`}
+
+
             allowFullScreen
           ></iframe>
         </div>
-
-
         <footer style={{ backgroundColor: 'white', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'navy' }}>
-          {/* <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '150px', height: '50px' }} /> */}
           <div>
             <button
               style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
               onClick={() => {
-                window.open('https://yourvitals.ai/', '_blank');
+                window.open('https://yourvitals.ai/terms_of_use.html', '_blank');
               }}
             >
               Terms Of Use
@@ -184,7 +154,7 @@ function App() {
             <button
               style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
               onClick={() => {
-                window.open('https://yourvitals.ai/', '_blank');
+                window.open('https://yourvitals.ai/privacy_policy.html', '_blank');
               }}
             >
               Privacy Policy
@@ -192,26 +162,24 @@ function App() {
             <button
               style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
               onClick={() => {
-                window.open('https://yourvitals.ai/', '_blank');
+                window.open('https://yourvitals.ai/#', '_blank');
               }}
             >
               FAQ
             </button>
           </div>
-
-
           <div>
             <p>
               <strong style={{ color: 'orange' }}>YourVitals, Inc. </strong>
               <span style={{ color: '#454e6f' }}>©2023, All Rights Reserved.</span>
             </p>
           </div>
+
+
         </footer>
-
-
       </div>
+      {isLoading && <LoadingSpinner />}
     </div>
   );
 }
 export default App;
-

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import './App.js';
 
-
 const CameraVitals = () => {
   const videoRef = useRef(null);
   const [countdown, setCountdown] = useState(30);
@@ -12,7 +11,19 @@ const CameraVitals = () => {
   const [timerCompleted, setTimerCompleted] = useState(false);
 
   // Add a state to track the flashlight status
-  const [flashlightOn, setFlashlightOn] = useState(false);
+
+  const [isFlashlightOn, setIsFlashlightOn] = useState(false);
+
+  const toggleFlashlight = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      const track = stream.getVideoTracks()[0];
+      await track.applyConstraints({ advanced: [{ torch: isFlashlightOn }] });
+      setIsFlashlightOn(!isFlashlightOn);
+    } catch (error) {
+      console.error('Error accessing flashlight:', error);
+    }
+  };
 
   // Add the redScreenDetected state
   const [redScreenDetected, setRedScreenDetected] = useState(false);
@@ -78,18 +89,6 @@ const CameraVitals = () => {
     getCameraStream();
   }, []);
 
-
-  useEffect(() => {
-    // Turn off the flashlight when the timer countdown ends
-    if (timerCompleted && flashlightOn) {
-      const track = videoRef.current.srcObject.getVideoTracks()[0];
-      track.applyConstraints({
-        advanced: [{ torch: false }]
-      });
-      setFlashlightOn(false);
-    }
-  }, [timerCompleted, flashlightOn]);
-
   useEffect(() => {
     if (redScreenDetected) {
       if (countdown > 0) {
@@ -126,7 +125,6 @@ const CameraVitals = () => {
       };
     }
   }, [timerCompleted, showMessage, navigate]);
-
 
   const headingStyles = {
     backgroundColor: 'navy',
@@ -176,6 +174,12 @@ const CameraVitals = () => {
         <video ref={videoRef} autoPlay playsInline />
       </div>
       <div className="camera-text">
+
+        <div>
+          <button onClick={toggleFlashlight}>
+            {isFlashlightOn ? 'Flashlight On/Off' : 'Flashlight On/Off'}
+          </button>
+        </div>
 
         <p><b>We are scanning your vital signs.</b></p>
         <p><b>Please keep your finger stationary.</b></p>

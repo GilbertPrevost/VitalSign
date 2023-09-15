@@ -4,28 +4,25 @@ import React from 'react';
 
 
 function ECGChart() {
+
+
   const svgStyle = {
     display: 'block',
     margin: 'auto',
   };
 
-
-
-
-
-
-
-
   const numVerticalLines = 10;
   const HorizontalLineSpacing = (465 - 50) / (numVerticalLines - 1) * 1.8;
   const verticalLineSpacing = (223 - 50) / (numVerticalLines - 1) * 1.8;
 
-
-
-
-
-
-
+  const heading = {
+    backgroundColor: 'navy',
+    color: 'white',
+    padding: '20px',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: '35px',
+  };
 
   const verticalLines = [];
   for (let i = 0; i < numVerticalLines; i++) {
@@ -35,9 +32,6 @@ function ECGChart() {
       <line key={i} x1={x} y1={50} x2={x} y2={300} stroke={color} strokeWidth="1" />
     );
   }
-
-
-
 
   // ECG data (sample data, replace with your actual data)
   const ecgData = [
@@ -88,47 +82,16 @@ function ECGChart() {
   ];
 
 
-
-
-  const heading = {
-    backgroundColor: 'navy',
-    color: 'white',
-    padding: '20px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: '35px',
-};
-
-
-
-
   // Calculate the scaling factors based on chart dimensions and data range
   const xScale = (362 - 50) / (ecgData.length - 1);
   const yScale = (148 - 50) / (Math.max(...ecgData.map(point => point.y)) - Math.min(...ecgData.map(point => point.y)));
 
-
-
-
-
-
-
-
   // Convert ECG data to SVG path
   const ecgPath = `M${ecgData.map((point, index) => `${50 + index * xScale},${230 - (point.y - Math.min(...ecgData.map(point => point.y))) * yScale}`).join(' L')}`;
-
-
-
-
-
-
-
 
   return (
     <div>
       <div style={heading}>Electrocardiogram</div>
-
-
-
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
         <svg width={500} height={350} style={svgStyle}>
@@ -137,24 +100,10 @@ function ECGChart() {
           {/* X-Axis Label (centered) */}
           <text x={205} y={325} textAnchor="middle" fontWeight="bold">(Seconds)</text>
 
-
-
-
-
-
-
-
           {/* Y-Axis */}
           <line x1={50} y1={300} x2={50} y2={50} stroke="black" strokeWidth="2" />
           {/* Y-Axis Label (centered) */}
           <text x={7} y={188} textAnchor="middle" fontWeight="bold" transform="rotate(-90, 10, 175)">(Milli-Volts)</text>
-
-
-
-
-
-
-
 
           {/* Optional labels for Y-axis */}
           <text x={40} y={300} textAnchor="end">-1</text>
@@ -162,24 +111,10 @@ function ECGChart() {
           <text x={40} y={150} textAnchor="end">1</text>
           <text x={40} y={75} textAnchor="end">2</text>
 
-
-
-
-
-
-
-
           {/* Horizontal lines with increased spacing */}
           <line x1={50} y1={300 - HorizontalLineSpacing} x2={362} y2={300 - HorizontalLineSpacing} stroke="gray" strokeWidth="1" />
           <line x1={50} y1={300 - 2 * HorizontalLineSpacing} x2={362} y2={300 - 2 * HorizontalLineSpacing} stroke="gray" strokeWidth="1" />
           <line x1={50} y1={300 - 3 * HorizontalLineSpacing} x2={362} y2={300 - 3 * HorizontalLineSpacing} stroke="black" strokeWidth="2" />
-
-
-
-
-
-
-
 
           {/* Render the ECG line series */}
           <path d={ecgPath} stroke="#0276cb" strokeWidth="2.5" fill="none" />
@@ -188,99 +123,81 @@ function ECGChart() {
         </svg>
       </div>
 
+      <div style={{ marginTop: '75px' }}>
+        <center><h3>ECG Intervals</h3></center>
 
-      <center><h3>ECG Intervals</h3></center>
-     
         <div className="section">
-         
+
           <div className="details">
             <h3>QT Interval</h3>
             {/* {Blood !== 0 ? ( */}
-           
-           <>
-              <div className="value">{}</div>
-             <div className="result">{}</div>
-               </>
-           {/* ) : ( */}
-               <div className="value"> 0 </div>
-             {/* )} */}
-             <center><h3>Normal Range</h3></center>
+
+            <>
+              <div className="value">{ }</div>
+              <div className="result">{ }</div>
+            </>
+            {/* ) : ( */}
+            <div className="value"> 0 </div>
+            {/* )} */}
+            <center><h3>Normal Range</h3></center>
             <div className="range">0.06 - 01.2 Sec</div>
           </div>
         </div>
 
-
-
-
         <div className="section">
-       
+
           <div className="details">
             <h3>SG Segment</h3>
-           {/* {Blood !== 0 ? ( */}
-           
-           <>
-              <div className="value">{}</div>
-             <div className="result">{}</div>
-               </>
-           {/* ) : ( */}
-               <div className="value"> 0 </div>
-             {/* )} */}
-             <center><h3>Normal Range</h3></center>
+            {/* {Blood !== 0 ? ( */}
+
+            <>
+              <div className="value">{ }</div>
+              <div className="result">{ }</div>
+            </>
+            {/* ) : ( */}
+            <div className="value"> 0 </div>
+            {/* )} */}
+            <center><h3>Normal Range</h3></center>
             <div className="range">0.08 Sec</div>
           </div>
         </div>
 
-
-
-
         <div className="section">
-         
+
           <div className="details">
             <h3>PR Interval</h3>
             {/* {Blood !== 0 ? ( */}
-           
-           <>
-              <div className="value">{}</div>
-             <div className="result">{}</div>
-               </>
-           {/* ) : ( */}
-               <div className="value"> 0 </div>
-             {/* )} */}
-             <center><h3>Normal Range</h3></center>
+
+            <>
+              <div className="value">{ }</div>
+              <div className="result">{ }</div>
+            </>
+            {/* ) : ( */}
+            <div className="value"> 0 </div>
+            {/* )} */}
+            <center><h3>Normal Range</h3></center>
             <div className="range">0.12 - 0.20 Sec</div>
           </div>
         </div>
 
-
-
-
         <div className="section">
-         
+
           <div className="details">
             <h3>QRS Interval</h3>
             {/* {Blood !== 0 ? ( */}
-           
-           <>
-              <div className="value">{}</div>
-             <div className="result">{}</div>
-               </>
-           {/* ) : ( */}
-               <div className="value"> 0 </div>
-             {/* )} */}
-             <center><h3>Normal Range</h3></center>
+
+            <>
+              <div className="value">{ }</div>
+              <div className="result">{ }</div>
+            </>
+            {/* ) : ( */}
+            <div className="value"> 0 </div>
+            {/* )} */}
+            <center><h3>Normal Range</h3></center>
             <div className="range">0.06 - 0.10 Sec</div>
           </div>
         </div>
-
-
-
-
-       
-
-
-
-
-       
+      </div>
     </div>
   );
 }

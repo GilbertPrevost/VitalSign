@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'react-phone-input-2/lib/style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,18 +7,24 @@ import Switch from 'react-switch';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-
 function Password() {
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [isLoading, setIsLoading] = useState(false); // Added loading state
+    const [userPhoneNumber, setUserPhoneNumber] = useState(localStorage.getItem('userPhoneNumber'));
+    const [userName, setUserName] = useState(localStorage.getItem("userName"));
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const proxyURL = 'https://cors-anywhere.herokuapp.com/';
     const loginUrl = "https://staycured-clinic.azurewebsites.net/API/Login";
+    const forgotUrl = "https://staycured-clinic.azurewebsites.net/API/ForgetPWD";
+    useEffect(() => {
+        setUserPhoneNumber(localStorage.getItem('userPhoneNumber'));
+        setUserName(localStorage.getItem("userName"));
+    }, []);
 
     const handlePhoneNumberChange = (value, country) => {
-        setPhoneNumber(value);
+        setUserPhoneNumber(value);
     };
 
     const handlePasswordChange = (event) => {
@@ -26,39 +32,40 @@ function Password() {
         console.log("pass", password);
     };
 
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
 
     const toggleRememberMe = () => {
         setRememberMe(!rememberMe);
     };
 
-
     const Navigate = useNavigate();
     const backButton = () => {
-
 
         Navigate('/');
     };
 
-
     const handleButtonClick = () => {
-        Navigate('/Home-Page');
+        // Navigate('/Home-Page');
         if (password.length == 0) {
             setAlertMessage("Enter password");
             console.error("Enter password");
         } else {
             setAlertMessage("");
-            // login();
-            Navigate('/Home-Page');
+            login();
+            // Navigate('/Home-Page');
         }
     };
 
+    const handleforgotClick = () => {
+        forgotRequest();
+
+    };
+
     const login = () => {
-        console.log("requesting...")
+        setIsLoading(true);
+        console.log("requesting...", requestBody);
         axios
             .post(proxyURL + loginUrl, requestBody, {
                 headers: {
@@ -72,7 +79,8 @@ function Password() {
                 // var errorjson = JSON.parse();
                 if (data == "1") {
                     console.log("success=", response.data.response);
-                    Navigate('/verification');
+                    localStorage.setItem('guid', response.data.guid);
+                    Navigate('/Home-Page');
                 }
                 else {
                     console.log("error=", response.data.errormessage);
@@ -83,13 +91,70 @@ function Password() {
             .catch((error) => {
                 // Handle any errors here
                 console.error("Error:1111", error);
+            })
+            .finally(() => {
+                setIsLoading(false); // Turn off the loading spinner
             });
     };
+
+    const forgotRequest = () => {
+        setIsLoading(true);
+        console.log("forgot password requesting...", requestBodyforgot)
+        axios
+            .put(proxyURL + forgotUrl, requestBodyforgot, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((response) => {
+                // Handle the response data here
+                console.log("data", response.data);
+                var data = response.data.response;
+                // var errorjson = JSON.parse();
+                if (data == "Success") {
+                    console.log("success=", response.data.response);
+                    console.log("result", response.data.result);
+                    const jsonString = response.data.result;
+                    const phIndex = jsonString.indexOf("Ph");
+                    const jsonStringWithoutPh = jsonString.substring(0, phIndex);
+                    const jsonObject = JSON.parse(jsonStringWithoutPh);
+                    console.log("session id", jsonObject.Details);
+                    localStorage.setItem('forgotSessionId', jsonObject.Details);
+                    Navigate('/otp');
+                    // Navigate('/verification');
+                }
+                else {
+                    console.log("error=", response.data.errormessage);
+                    setAlertMessage("Error occured ");
+                    // Navigate('/verification');
+                }
+            })
+            .catch((error) => {
+                // Handle any errors here
+                console.error("Error:1111", error);
+            })
+            .finally(() => {
+                setIsLoading(false); // Turn off the loading spinner
+            });
+    };
+
     var requestBody = {
-        username: "+918526062100",
+        username: userPhoneNumber,
         passwords: password
     };
 
+
+    var requestBodyforgot = {
+        Username: userName
+    };
+
+    const LoadingSpinner = () => {
+        return (
+            <div className="loading-spinner">
+                <div className="spinner"></div>
+            </div>
+        );
+    };
 
     return (
         <div className="App">
@@ -110,6 +175,7 @@ function Password() {
                         />
                         <button
                             onClick={togglePasswordVisibility}
+                            disabled={isLoading}
                             style={{ position: 'absolute', top: '50%', right: '10px', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer' }}
                         >
                             <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} style={{ fontSize: '20px' }} />
@@ -117,7 +183,6 @@ function Password() {
                     </div>
                     {alertMessage && <div style={{ color: 'red' }}>{alertMessage}</div>}
                 </div>
-
 
                 <div style={{ display: 'flex', alignItems: 'center', width: '300px', marginBottom: '10px' }}>
                     <label htmlFor="rememberMe" style={{ fontWeight: 'bold', marginRight: '127px' }}>Remember Me:</label>
@@ -129,7 +194,6 @@ function Password() {
                         offColor="#ccc"
                     />
                 </div>
-
 
                 <div style={{ display: 'flex', justifyContent: 'center', width: '300px' }}>
                     <div style={{ marginRight: '20px' }}>
@@ -152,9 +216,6 @@ function Password() {
                     </div>
                 </div>
 
-
-
-
                 <button
                     style={{
                         backgroundColor: 'transparent',
@@ -164,15 +225,12 @@ function Password() {
                         cursor: 'pointer',
                         marginLeft: '250px',
                     }}
-                    onClick={() => {
-
-
-                    }}
+                    onClick={handleforgotClick}
+                    disabled={isLoading}
                 >
                     Forget Password
                 </button>
             </div>
-
 
             <footer style={{ backgroundColor: 'white', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'navy' }}>
                 {/* <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '150px', height: '50px' }} /> */}
@@ -180,17 +238,16 @@ function Password() {
                     <button
                         style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
                         onClick={() => {
-                            window.open('https://yourvitals.ai/', '_blank');
+                            window.open('https://yourvitals.ai/terms_of_use.html', '_blank');
                         }}
                     >
                         Terms Of Use
                     </button>
 
-
                     <button
                         style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
                         onClick={() => {
-                            window.open('https://yourvitals.ai/', '_blank');
+                            window.open('https://yourvitals.ai/privacy_policy.html', '_blank');
                         }}
                     >
                         Privacy Policy
@@ -198,7 +255,7 @@ function Password() {
                     <button
                         style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
                         onClick={() => {
-                            window.open('https://yourvitals.ai/', '_blank');
+                            window.open('https://yourvitals.ai/#', '_blank');
                         }}
                     >
                         FAQ
@@ -211,9 +268,9 @@ function Password() {
                     <span style={{ color: '#454e6f' }}>©2023, All Rights Reserved.</span>
                 </p>
             </div>
+            {isLoading && <LoadingSpinner />}
         </div>
     );
 }
-
 
 export default Password;
