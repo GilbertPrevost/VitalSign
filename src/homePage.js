@@ -1,11 +1,17 @@
-import React, { useState, useRef } from "react";
 import "./App.css";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+
+
 
 Modal.setAppElement("#root");
 
 function HomePage() {
+
+  const [scrollX, setScrollX] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [dialogueVisible, setDialogueVisible] = useState(false);
   const [gender, setGender] = useState("");
@@ -40,12 +46,15 @@ function HomePage() {
 
   const zoomECG = (zoomIn) => {
     if (zoomIn) {
-      setZoomLevel(zoomLevel + zoomFactor);
+      if (zoomLevel < 1.7) {
+        setZoomLevel((prevZoom) => Math.min(prevZoom + zoomFactor, 5));
+      }
     } else {
-      setZoomLevel(Math.max(zoomLevel - zoomFactor, 1)); // Ensure minimum zoom level is 1
+      if (zoomLevel > 1) {
+        setZoomLevel((prevZoom) => Math.max(prevZoom - zoomFactor, 1));
+      }
     }
   };
-
 
   const [bmi, setBMI] = useState(null);
 
@@ -238,18 +247,55 @@ function HomePage() {
     display: 'flex',
   };
 
-  const ECGContainer = {
-    backgroundColor: "#efefef",
-    width: "96%",
-    margin: "auto",
-    marginRight: "2em",
-    marginLeft: "1.3em",
-    transform: `scale(${zoomLevel})`, // Apply the zoom level to scale the container
+
+
+
+  const handleScrollX = (scroll) => {
+    const container = document.getElementById("ecg-container");
+    if (container) {
+      const maxScrollX = container.scrollWidth - container.clientWidth;
+      setScrollX(Math.min(maxScrollX, Math.max(0, scroll)));
+    }
   };
 
+  const handleScrollY = (scroll) => {
+    const container = document.getElementById("ecg-container");
+    if (container) {
+      const maxScrollY = container.scrollHeight - container.clientHeight;
+      setScrollY(Math.min(maxScrollY, Math.max(0, scroll)));
+    }
+  };
 
+  useEffect(() => {
+    handleScrollX(scrollX);
+    handleScrollY(scrollY);
+  }, [scrollX, scrollY]);
 
-
+  const ECGContainer = {
+    backgroundColor: "#efefef",
+    height: "22em",
+    width: "100%",
+    margin: "auto",
+    marginRight: "10px",
+    marginLeft: "10px",
+    overflow: "auto", 
+    scrollLeft: scrollX, 
+    scrollTop: scrollY, // Set scrollTop to scrollY
+  };
+  
+  const ECGGraphContainer = {
+    display: "flex",
+    backgroundColor: "#efefef",
+    transform: `scale(${zoomLevel})`,
+    width: "96%",
+    transformOrigin: "top left",
+    position: "absolute",
+    top: "0",
+    left: "0",
+    transition: "width 0.2s, height 0.2s", 
+    overflow: "auto", 
+  };
+  
   return (
 
     <div>
@@ -264,8 +310,7 @@ function HomePage() {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundImage: `url(Indian-Girls.jpg)`,
-        backgroundRepeat: 'no-repeat',
-        zIndex: '999', // Added this to make sure the header is on top
+        zIndex: '999',
       }}>
         <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
         <div style={{}}></div>
@@ -317,7 +362,6 @@ function HomePage() {
           <div className="range">120/80 - 140/90</div>
           <div className="range">95 - 100</div>
         </div>
-
 
         <div className="image-container">
           <img src="heart.png" alt="Heart Rate" className="image" />
@@ -396,8 +440,6 @@ function HomePage() {
           <div className="range2">18.5 - 25</div>
         </div>
 
-        {/* </div> */}
-
         <div className="footer">
           <button
             className="button"
@@ -427,131 +469,97 @@ function HomePage() {
         </button>
 
         {showContainer && (
-          <div
-            className="white-container"
-            style={{ marginBottom: '10px', width: "96%", background: "#e5e5e6;", }}
-          >
+          <div className="white-container" style={{ marginBottom: '10px', width: "96%", background: "#e5e5e6;", position: "relative" }}>
 
             <div style={ECGContainer}>
               {/* Electrocardiogram graph */}
               <div
                 style={{
-                  position: "relative", // Make sure this div is a positioned container
+                  position: "relative",
                   width: "100%",
                   height: "100%",
                 }}
               >
-                <svg width={"100%"} height={350} style={svgStyle}>
-                  {/* X-Axis */}
-                  <line x1={50} y1={300} x2={362} y2={300} stroke="black" strokeWidth="2" />
-                  {/* X-Axis Label (centered) */}
-                  <text x={205} y={325} textAnchor="middle" fontWeight="bold">
-                    (Seconds)
-                  </text>
 
-                  {/* Y-Axis */}
-                  <line x1={50} y1={300} x2={50} y2={50} stroke="black" strokeWidth="2" />
-                  {/* Y-Axis Label (centered) */}
-                  <text
-                    x={7}
-                    y={188}
-                    textAnchor="middle"
-                    fontWeight="bold"
-                    transform="rotate(-90, 10, 175)"
-                  >
-                    (Milli-Volts)
-                  </text>
-
-                  {/* Optional labels for Y-axis */}
-                  <text x={40} y={300} textAnchor="end">
-                    -1
-                  </text>
-                  <text x={40} y={225} textAnchor="end">
-                    0
-                  </text>
-                  <text x={40} y={150} textAnchor="end">
-                    1
-                  </text>
-                  <text x={40} y={75} textAnchor="end">
-                    2
-                  </text>
-
-                  {/* Horizontal lines with increased spacing */}
-                  <line
-                    x1={50}
-                    y1={300 - HorizontalLineSpacing}
-                    x2={362}
-                    y2={300 - HorizontalLineSpacing}
-                    stroke="gray"
-                    strokeWidth="1"
-                  />
-                  <line
-                    x1={50}
-                    y1={300 - 2 * HorizontalLineSpacing}
-                    x2={362}
-                    y2={300 - 2 * HorizontalLineSpacing}
-                    stroke="gray"
-                    strokeWidth="1"
-                  />
-                  <line
-                    x1={50}
-                    y1={300 - 3 * HorizontalLineSpacing}
-                    x2={362}
-                    y2={300 - 3 * HorizontalLineSpacing}
-                    stroke="black"
-                    strokeWidth="2"
-                  />
-
-                  {/* Render the ECG line series */}
-                  <path d={ecgPath} stroke="#0276cb" strokeWidth="2.5" fill="none" />
-                  {/* Render the vertical lines */}
-                  {verticalLines}
-                </svg>
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "10px",
-                    right: "10px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-end", // Align buttons to the right
-                  }}
-                >
-                  <button
+                <div style={ECGGraphContainer}>
+                  {/* Electrocardiogram graph */}
+                  <div
                     style={{
-                      width: "40px",
-                      height: "40px",
-                      backgroundColor: "navy",
-                      color: "white",
-                      borderRadius: "50%",
-                      border: "none",
-                      cursor: "pointer",
-                      marginBottom: "10px",
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
                     }}
-                    onClick={() => zoomECG(true)} // Zoom In
                   >
-                    +
-                  </button>
-                  <button
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      backgroundColor: "navy",
-                      color: "white",
-                      borderRadius: "50%",
-                      border: "none",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => zoomECG(false)} // Zoom Out
-                  >
-                    -
-                  </button>
+                    <svg width={"100%"} height={350} style={svgStyle}>
+                      {/* X-Axis */}
+                      <line x1={50} y1={300} x2={362} y2={300} stroke="black" strokeWidth="2" />
+                      {/* X-Axis Label (centered) */}
+                      <text x={205} y={325} textAnchor="middle" fontWeight="bold">
+                        (Seconds)
+                      </text>
 
+                      {/* Y-Axis */}
+                      <line x1={50} y1={300} x2={50} y2={50} stroke="black" strokeWidth="2" />
+                      {/* Y-Axis Label (centered) */}
+                      <text
+                        x={7}
+                        y={188}
+                        textAnchor="middle"
+                        fontWeight="bold"
+                        transform="rotate(-90, 10, 175)"
+                      >
+                        (Milli-Volts)
+                      </text>
+
+                      {/* Optional labels for Y-axis */}
+                      <text x={40} y={300} textAnchor="end">
+                        -1
+                      </text>
+                      <text x={40} y={225} textAnchor="end">
+                        0
+                      </text>
+                      <text x={40} y={150} textAnchor="end">
+                        1
+                      </text>
+                      <text x={40} y={75} textAnchor="end">
+                        2
+                      </text>
+
+                      {/* Horizontal lines with increased spacing */}
+                      <line
+                        x1={50}
+                        y1={300 - HorizontalLineSpacing}
+                        x2={362}
+                        y2={300 - HorizontalLineSpacing}
+                        stroke="gray"
+                        strokeWidth="1"
+                      />
+                      <line
+                        x1={50}
+                        y1={300 - 2 * HorizontalLineSpacing}
+                        x2={362}
+                        y2={300 - 2 * HorizontalLineSpacing}
+                        stroke="gray"
+                        strokeWidth="1"
+                      />
+                      <line
+                        x1={50}
+                        y1={300 - 3 * HorizontalLineSpacing}
+                        x2={362}
+                        y2={300 - 3 * HorizontalLineSpacing}
+                        stroke="black"
+                        strokeWidth="2"
+                      />
+
+                      {/* Render the ECG line series */}
+                      <path d={ecgPath} stroke="#0276cb" strokeWidth="2.5" fill="none" />
+                      {/* Render the vertical lines */}
+                      {verticalLines}
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
-
-
 
             <div style={{ marginTop: '75px' }}>
               <center><h3>ECG Intervals</h3></center>
@@ -599,8 +607,57 @@ function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
 
+            <div
+              style={{
+                position: "absolute",
+                top: "2em",
+                right: "10px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
+              <button
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  backgroundColor: "navy",
+                  color: "white",
+                  borderRadius: "25%",
+                  border: "none",
+                  cursor: "pointer",
+                  marginBottom: "10px",
+                }}
+                onClick={() => {
+                  zoomECG(true); // Zoom In
+                  handleScrollX(scrollX * zoomFactor);
+                  handleScrollY(scrollY * zoomFactor);
+                }}
+              >
+                +
+              </button>
+              <button
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  backgroundColor: "navy",
+                  color: "white",
+                  borderRadius: "25%",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  zoomECG(false); // Zoom Out
+                  handleScrollX(scrollX / zoomFactor);
+                  handleScrollY(scrollY / zoomFactor);
+                }}
+              >
+                -
+              </button>
+
+            </div>
+          </div>
         )}
 
         <Modal
@@ -807,7 +864,6 @@ function HomePage() {
             </form>
           </div>
         </Modal>
-
       </div>
 
       <footer className="footer1"
@@ -820,10 +876,8 @@ function HomePage() {
           marginTop: '100vh',
           width: '100%',
           backgroundImage: `url(Indian-Girls.jpg)`,
-          backgroundRepeat: 'no-repeat'
         }}
       >
-
         <div>
           <button
             style={{
@@ -872,7 +926,7 @@ function HomePage() {
           </button>
         </div>
         <p>
-          <strong style={{ color: "orange" }}>YourVitals, Inc. </strong>
+          <strong style={{ color: "orange" }}>YourVitals, Inc.</strong>
           <span style={{ color: "white" }}>
             ©2023, All Rights Reserved.
           </span>

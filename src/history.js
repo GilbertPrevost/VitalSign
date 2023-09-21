@@ -23,10 +23,9 @@ const History = () => {
     };
 
     const historyRectangleStyle = {
-        width: '320px', // Make the width 100% for mobile
+        width: '460px', // Make the width 100% for mobile
         height: '270px',
         backgroundColor: 'white',
-        border: '2px solid black',
         margin: '10px auto',
         display: 'flex',
         flexDirection: 'column',
@@ -112,7 +111,7 @@ const History = () => {
             {vitalSigns.map((vitalSign, index) => (
                 <div key={index} style={historyRectangleStyle}>
                     <div style={historyTopContentStyle}>
-                        <div style={{ flex: '1' }}>
+                        <div style={{ flex: 'auto' }}>
                             <p><span style={historyBoldTextStyle}>Date:</span> {vitalSign.onlyDate}</p>
                             <p><span style={historyBoldTextStyle}>Time:</span> {vitalSign.onlyTime}</p>
                             <p><span style={historyBoldTextStyle}>HR:</span> {vitalSign.heartRate}</p>
@@ -122,10 +121,10 @@ const History = () => {
                             <p><span style={historyBoldTextStyle}>PR:</span> {vitalSign.printerval}</p>
                         </div>
                         <div style={{ flex: '1' }}>
-                            <p><span style={historyBoldTextStyle}>O2 Level:</span>{vitalSign.oxygenLevel}</p>
-                            <p><span style={historyBoldTextStyle}>BodyTemp:</span>{vitalSign.bodyTemprature}</p>
-                            <p><span style={historyBoldTextStyle}>Respiration:</span>{vitalSign.respirationRate}</p>
-                            <p><span style={historyBoldTextStyle}>BMI:</span>{vitalSign.bodyMassIndex}</p>
+                            <p><span style={historyBoldTextStyle}>O2 Level:</span> {vitalSign.oxygenLevel}</p>
+                            <p><span style={historyBoldTextStyle}>BodyTemp:</span> {vitalSign.bodyTemprature}</p>
+                            <p><span style={historyBoldTextStyle}>Respiration:</span> {vitalSign.respirationRate}</p>
+                            <p><span style={historyBoldTextStyle}>BMI:</span> {vitalSign.bodyMassIndex}</p>
                             <p style={{ color: '#ffffff' }}><span style={historyBoldTextStyle}>ECG</span></p>
                             <p><span style={historyBoldTextStyle}>ST:</span> {vitalSign.stinterval}</p>
                             <p><span style={historyBoldTextStyle}>QRS:</span> {vitalSign.qrsinterval}</p>
