@@ -5,6 +5,7 @@ import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 function App() {
   const Navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +14,7 @@ function App() {
   const [alertMessage, setAlertMessage] = useState('');
   const proxyURL = 'https://cors-anywhere.herokuapp.com/';
   const loginUrl = 'https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/SentOTP';
+
 
   // Determine the default country code based on the user's locale
   useEffect(() => {
@@ -27,22 +29,27 @@ function App() {
     }
   }, []);
 
+
   const handleCountryCodeChange = (value, country) => {
     const code = country.dialCode;
     setCountryCode(code);
   };
 
+
   const handlePhoneNumberChange = (value) => {
     setPhoneNumber(value);
   };
+
 
   const requestBody = {
     PhoneNumber: `+${countryCode}${phoneNumber}`,
     UserName: phoneNumber,
   };
 
+
   const login = () => {
     setIsLoading(true);
+
 
     axios
       .post(proxyURL + loginUrl, requestBody, {
@@ -54,6 +61,7 @@ function App() {
         // Handle the response data here
         console.log('data', response.data);
         var data = response.data.errormessage;
+
 
         if (data.indexOf('Already Exist') !== -1) {
           console.log('Already Exist');
@@ -77,6 +85,7 @@ function App() {
       });
   };
 
+
   const handleButtonClick = () => {
     if (!phoneNumber) {
       setAlertMessage('Please fill in the mobile number');
@@ -85,6 +94,7 @@ function App() {
     }
   };
 
+
   const LoadingSpinner = () => {
     return (
       <div className="loading-spinner">
@@ -92,6 +102,7 @@ function App() {
       </div>
     );
   };
+
 
   return (
     <div className="main-container">
@@ -126,11 +137,11 @@ function App() {
                 opacity: '0.25', backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
               }} />
-
+             
             <div
               style={{
                 position: 'absolute',
-                width: '16em'
+                width:'16em'
               }}>
               <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '8em', marginBottom: '1em', marginTop: '11.2em' }}>Phone Number:</label>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
@@ -147,6 +158,7 @@ function App() {
                   />
                 </div>
 
+
                 {/* New text field */}
                 <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                   <input
@@ -159,6 +171,7 @@ function App() {
                   />
                 </div>
               </div>
+
 
               <button
                 style={{
@@ -181,8 +194,13 @@ function App() {
             </div>
           </div>
 
+
+          {/* ------- */}
+
+
         </div>
       </div>
+
 
       <footer
         style={{
@@ -192,7 +210,7 @@ function App() {
           alignItems: "center",
           color: "navy",
           marginTop: 'auto',
-
+          
         }}
       >
         <div style={{ width: "100%", height: "9em", }}>
@@ -261,9 +279,13 @@ function App() {
       </footer>
       {isLoading && <LoadingSpinner />}
 
+
     </div>
   );
 }
 
 
 export default App;
+
+
+
