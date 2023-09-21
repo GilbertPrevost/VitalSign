@@ -7,6 +7,9 @@ import Switch from 'react-switch';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
+
+
+
 function Password() {
     const [isLoading, setIsLoading] = useState(false); // Added loading state
     const [userPhoneNumber, setUserPhoneNumber] = useState(localStorage.getItem('userPhoneNumber'));
@@ -23,28 +26,49 @@ function Password() {
         setUserName(localStorage.getItem("userName"));
     }, []);
 
+
+
+
     const handlePhoneNumberChange = (value, country) => {
         setUserPhoneNumber(value);
     };
+
+
+
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
         console.log("pass", password);
     };
 
+
+
+
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+
+
 
     const toggleRememberMe = () => {
         setRememberMe(!rememberMe);
     };
 
+
+
+
     const Navigate = useNavigate();
     const backButton = () => {
 
+
+
+
         Navigate('/');
     };
+
+
+
 
     const handleButtonClick = () => {
         // Navigate('/Home-Page');
@@ -58,10 +82,19 @@ function Password() {
         }
     };
 
+
+
+
     const handleforgotClick = () => {
         forgotRequest();
 
+
+
+
     };
+
+
+
 
     const login = () => {
         setIsLoading(true);
@@ -96,6 +129,9 @@ function Password() {
                 setIsLoading(false); // Turn off the loading spinner
             });
     };
+
+
+
 
     const forgotRequest = () => {
         setIsLoading(true);
@@ -138,15 +174,27 @@ function Password() {
             });
     };
 
+
+
+
     var requestBody = {
         username: userPhoneNumber,
         passwords: password
     };
 
 
+
+
+
+
+
+
     var requestBodyforgot = {
         Username: userName
     };
+
+
+
 
     const LoadingSpinner = () => {
         return (
@@ -156,22 +204,62 @@ function Password() {
         );
     };
 
+
+
+
     return (
-        <div className="App">
-            <header style={{ backgroundColor: '#454e6f', padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
-            </header>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '70vh' }}>
-                <div style={{ width: '300px', marginBottom: '20px' }}>
-                    <label htmlFor="password" style={{ fontWeight: 'bold' }}>Please Enter Your Password</label>
-                    <div style={{ position: 'relative' }}>
+        <div className="main-container">
+      <div className="content" style={{
+        backgroundImage: `url(Indian-Girls.jpg)`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        height:'80vh'
+      }}>
+
+
+        <div>
+          <header
+            style={{
+              padding: "10px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src="yourvitals_logo_panner.png"
+              alt="yourVitals"
+              style={{ width: "300px", height: "100px" }}
+            />
+          </header>
+
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+            <img src='mobileScreen.png'
+              style={{
+                maxHeight:'36em',
+                // filter: 'blur(5px)', // Adjust the blur amount as needed
+                opacity: '0.25', backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',     // Adjust the opacity value (0.0 to 1.0) as needed
+              }} />
+            <div style={{
+      position: 'absolute',
+      width:'15em',
+       // Adjust the top position as needed
+       // Adjust the left position as needed
+       // Center the inner div
+    }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '50vh' }}>
+            <label style={{display:'flex',fontWeight: 'bold', color: 'white',marginRight:'1.5em',marginBottom:'1em',marginTop:'3.2em'}}>Please Enter Your Password</label>
+                <div style={{ width: '250px', marginBottom: '20px' }}>
+                    <div style={{ position: 'relative' ,marginRight:'12px'}}>
                         <input
                             type={showPassword ? 'text' : 'password'}
                             id="password"
                             name="password"
                             value={password}
                             onChange={handlePasswordChange}
-                            style={{ width: '100%', padding: '5px', height: '25px' }}
+                            style={{ width: '100%', padding: '6px', height: '25px' ,border:'none',borderRadius:'4px'}}
                         />
                         <button
                             onClick={togglePasswordVisibility}
@@ -184,8 +272,11 @@ function Password() {
                     {alertMessage && <div style={{ color: 'red' }}>{alertMessage}</div>}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', width: '300px', marginBottom: '10px' }}>
-                    <label htmlFor="rememberMe" style={{ fontWeight: 'bold', marginRight: '127px' }}>Remember Me:</label>
+
+
+
+                <div style={{ display: 'flex', alignItems: 'center', width: '400px', marginBottom: '10px',marginRight:'2px' }}>
+                    <label htmlFor="rememberMe" style={{ fontWeight: 'bold', marginLeft: '4.9em', color:'white',marginRight:'4.8em' }}>Remember Me:</label>
                     <Switch
                         id="rememberMe"
                         checked={rememberMe}
@@ -195,10 +286,15 @@ function Password() {
                     />
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'center', width: '300px' }}>
+
+
+
+                <div style={{ display: 'flex', justifyContent: 'center', width: '300px',marginLeft:'6.5em',marginBottom:'5px' }}>
                     <div style={{ marginRight: '20px' }}>
                         <button
-                            style={{ backgroundColor: 'navy', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer', borderRadius: '10px', fontWeight: 'bold' }}
+                            style={{ backgroundColor: '#f8b413', color: 'white',padding: '10px 17px', borderRadius: '10px', fontWeight: 'bold',border: 'none',
+                            cursor: 'pointer',
+                            fontWeight: 'bold'}}
                             onClick={() => {
                                 backButton()
                             }}
@@ -208,7 +304,7 @@ function Password() {
                     </div>
                     <div>
                         <button
-                            style={{ backgroundColor: 'navy', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer', borderRadius: '10px', fontWeight: 'bold' }}
+                            style={{backgroundColor: '#f8b413', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '10px', fontWeight: 'bold' }}
                             onClick={handleButtonClick}
                         >
                             Sign In
@@ -216,14 +312,18 @@ function Password() {
                     </div>
                 </div>
 
+
+
+
                 <button
                     style={{
                         backgroundColor: 'transparent',
                         border: 'none',
-                        color: 'navy',
+                        color: 'white',
                         textDecoration: 'underline',
                         cursor: 'pointer',
-                        marginLeft: '250px',
+                        marginLeft: '9.5em',
+                        paddingTop:'5px',
                     }}
                     onClick={handleforgotClick}
                     disabled={isLoading}
@@ -231,46 +331,103 @@ function Password() {
                     Forget Password
                 </button>
             </div>
-
-            <footer style={{ backgroundColor: 'white', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'navy' }}>
-                {/* <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '150px', height: '50px' }} /> */}
-                <div>
-                    <button
-                        style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-                        onClick={() => {
-                            window.open('https://yourvitals.ai/terms_of_use.html', '_blank');
-                        }}
-                    >
-                        Terms Of Use
-                    </button>
-
-                    <button
-                        style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-                        onClick={() => {
-                            window.open('https://yourvitals.ai/privacy_policy.html', '_blank');
-                        }}
-                    >
-                        Privacy Policy
-                    </button>
-                    <button
-                        style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-                        onClick={() => {
-                            window.open('https://yourvitals.ai/#', '_blank');
-                        }}
-                    >
-                        FAQ
-                    </button>
-                </div>
-            </footer>
-            <div>
-                <p>
-                    <strong style={{ color: 'orange' }}>YourVitals, Inc. </strong>
-                    <span style={{ color: '#454e6f' }}>©2023, All Rights Reserved.</span>
-                </p>
             </div>
-            {isLoading && <LoadingSpinner />}
-        </div>
+          </div>
+          </div>
+          </div>
+
+
+          <footer
+            style={{
+              backgroundColor: "white",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: "navy",
+              marginTop:'auto',
+            }}
+          >
+            <div style={{ width: "100%", height: "9em", }}>
+              <iframe
+                title="Google Map"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=staycuredmedicalclinic&zoom=18`}
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className='footercontent' style={{ alignItems: 'center', marginTop: '1em' }}>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "navy",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.open("https://yourvitals.ai/terms_of_use.html", "_blank");
+                }}
+              >
+                Terms Of Use
+              </button>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "navy",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.open(
+                    "https://yourvitals.ai/privacy_policy.html",
+                    "_blank"
+                  );
+                }}
+              >
+                Privacy Policy
+              </button>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "navy",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.open("https://yourvitals.ai/#", "_blank");
+                }}
+              >
+                FAQ
+              </button>
+            </div>
+            <p>
+              <strong style={{ color: "orange" }}>YourVitals, Inc. </strong>
+              <span style={{ color: "#454e6f" }}>
+                ©2023, All Rights Reserved.
+              </span>
+            </p>
+          </footer>
+          {isLoading && <LoadingSpinner />}
+
+
+      </div>
     );
 }
 
+
+
+
 export default Password;
+
+
+
+
+
+
+
+
+

@@ -194,13 +194,19 @@ function OtpPage() {
 
 
     return (
+        
         <div className="App">
-            <header style={{ backgroundImage: 'url("Indian-Girls.jpg")', padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+            <div style={{ backgroundImage: `url(Indian-Girls.jpg)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+
+            <header style={{  padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
             </header>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '70vh' }}>
-                <div style={{ width: '300px', marginBottom: '20px' }}>
-                    <label htmlFor="password" style={{ fontWeight: 'bold' }}>Please enter the OTP just send to your Mobile Number</label>
+          
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '30vh' }}>
+<div style={{ width: '300px', marginBottom: '20px' }}>
+                    <label htmlFor="password" style={{color: 'white', fontWeight: 'bold' }}>Please enter the OTP just send to your Mobile Number {userPhoneNumber}</label>
                     <div style={{ position: 'relative' }}>
                         <input
                             type={showPassword ? 'text' : 'password'}
@@ -213,60 +219,83 @@ function OtpPage() {
                         />
                     </div>
                 </div>
+    {/* <div style={{ marginRight: '10px' }}> */}
+        <button
+            style={{ 
+            backgroundColor: '#f8b413',
+            color: 'white',
+            padding: '10px',
+            border: 'none',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            borderRadius: '10px',
+            marginLeft:'17.5em' }}
+            onClick={signinclick}
+        >
+            REGISTER
+        </button>
+    {/* </div> */}
+    
+</div>
+
+            <footer style={{ backgroundColor: 'white',  display: 'flex', flexDirection: 'column',  color: 'navy' }}>
+          <div>
+
+          <div style={{ width: '100%', height: '420px' }}>
+          <iframe
+            title="Google Map"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=11.0250608,76.9582571&zoom=18`}
 
 
-                <div style={{ display: 'flex', justifyContent: 'center', width: '300px' }}>
-
-                    <div>
-                        <button
-                            style={{ backgroundColor: 'navy', color: 'white', border: 'none', padding: '10px 20px', cursor: 'pointer', borderRadius: '10px', fontWeight: 'bold' }}
-                            onClick={signinclick}
-                        >
-                            REGISTER
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <footer style={{ backgroundColor: 'white', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'navy' }}>
-                <div>
-                    <button
-                        style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-                        onClick={() => {
-                            window.open('https://yourvitals.ai/terms_of_use.html', '_blank');
-                        }}
-                    >
-                        Terms Of Use
-                    </button>
+            allowFullScreen
+          ></iframe>
+        </div>
 
 
-                    <button
-                        style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-                        onClick={() => {
-                            window.open('https://yourvitals.ai/privacy_policy.html', '_blank');
-                        }}
-                    >
-                        Privacy Policy
-                    </button>
-                    <button
-                        style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-                        onClick={() => {
-                            window.open('https://yourvitals.ai/#', '_blank');
-                        }}
-                    >
-                        FAQ
-                    </button>
-                </div>
-            </footer>
-            <div>
-                <p>
-                    <strong style={{ color: 'orange' }}>YourVitals, Inc. </strong>
-                    <span style={{ color: '#454e6f' }}>©2023, All Rights Reserved.</span>
-                </p>
-            </div>
+            <button
+              style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
+              onClick={() => {
+                window.open('https://yourvitals.ai/terms_of_use.html', '_blank');
+              }}
+            >
+              Terms Of Use
+            </button>
+            <button
+              style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
+              onClick={() => {
+                window.open('https://yourvitals.ai/privacy_policy.html', '_blank');
+              }}
+            >
+              Privacy Policy
+            </button>
+            <button
+              style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
+              onClick={() => {
+                window.open('https://yourvitals.ai/#', '_blank');
+              }}
+            >
+              FAQ
+            </button>
+          </div>
+          <div>
+            <p>
+              <strong style={{ color: 'orange' }}>YourVitals, Inc. </strong>
+              <span style={{ color: '#454e6f' }}>©2023, All Rights Reserved.</span>
+            </p>
+          </div>
+
+
+        </footer>
+
+            
+            
             {isLoading && <LoadingSpinner />}
         </div>
+        
+         </div>
     );
 }
 

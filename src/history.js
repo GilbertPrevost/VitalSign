@@ -83,7 +83,31 @@ const History = () => {
 
     return (
         <div>
-            <div style={historyHeaderStyle}>VITAL SIGN HISTORY</div>
+
+<header style={{
+  position: '100%',
+  top: '0',
+  left: '0',
+  right: '0',
+  padding: '18px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundImage: `url(Indian-Girls.jpg)`,
+  
+  zIndex: '999', // Added this to make sure the header is on top
+}}>
+  <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
+  <div style={{}}></div>
+</header>
+
+
+<div className="container" >
+
+<header style={{ padding: '9px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'navy',border: '1px solid #ccc', borderRadius: '5px',
+           color: "white", marginBottom: "3px", fontSize: "25px" }}>
+            VITAL SIGN HISTORY
+          </header>
 
             {vitalSigns.map((vitalSign, index) => (
                 <div key={index} style={historyRectangleStyle}>
@@ -109,6 +133,78 @@ const History = () => {
                     </div>
                 </div>
             ))}
+
+
+                </div>
+
+            <footer className="footer1"
+            style={{
+              backgroundColor: "white",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              color: "navy",
+            //   marginTop: '100vh',
+              width: '100%',
+              backgroundImage: `url(Indian-Girls.jpg)`,
+               
+            }}
+          >
+
+            <div>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "white",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.open("https://yourvitals.ai/terms_of_use.html", "_blank");
+                }}
+              >
+                Terms Of Use
+              </button>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "white",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.open(
+                    "https://yourvitals.ai/privacy_policy.html",
+                    "_blank"
+                  );
+                }}
+              >
+                Privacy Policy
+              </button>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "white",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.open("https://yourvitals.ai/#", "_blank");
+                }}
+              >
+                FAQ
+              </button>
+            </div>
+            <p>
+              <strong style={{ color: "orange" }}>YourVitals, Inc. </strong>
+              <span style={{ color: "white" }}>
+                ©2023, All Rights Reserved.
+              </span>
+            </p>
+          </footer>
         </div>
     );
 };
