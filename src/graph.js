@@ -11,7 +11,7 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
-  const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+  // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
   const loginUrl = 'https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/SentOTP';
 
   // Determine the default country code based on the user's locale
@@ -45,7 +45,7 @@ function App() {
     setIsLoading(true);
 
     axios
-      .post(proxyURL + loginUrl, requestBody, {
+      .post(loginUrl, requestBody, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -426,7 +426,7 @@ export default App;
 
 //           <div className="details">
 //             <h3>QT Interval</h3>
-            
+
 //             <div className="value"> 0 </div>
 //             {/* )} */}
 //             <center><h3>Normal Range</h3></center>
@@ -438,7 +438,7 @@ export default App;
 
 //           <div className="details">
 //             <h3>SG Segment</h3>
-            
+
 //             <div className="value"> 0 </div>
 //             {/* )} */}
 //             <center><h3>Normal Range</h3></center>
@@ -450,7 +450,7 @@ export default App;
 
 //           <div className="details">
 //             <h3>PR Interval</h3>
-            
+
 //             <div className="value"> 0 </div>
 //             {/* )} */}
 //             <center><h3>Normal Range</h3></center>
@@ -462,7 +462,7 @@ export default App;
 
 //           <div className="details">
 //             <h3>QRS Interval</h3>
-            
+
 //             <div className="value"> 0 </div>
 //             {/* )} */}
 //             <center><h3>Normal Range</h3></center>

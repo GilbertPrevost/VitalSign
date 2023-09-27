@@ -5,7 +5,6 @@ import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 function App() {
   const Navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +12,8 @@ function App() {
   const [countryCode, setCountryCode] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+  //https://staycured-clinic-staging.azurewebsites.net/
   const loginUrl = 'https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/SentOTP';
-
 
   // Determine the default country code based on the user's locale
   useEffect(() => {
@@ -29,27 +28,25 @@ function App() {
     }
   }, []);
 
-
   const handleCountryCodeChange = (value, country) => {
     const code = country.dialCode;
     setCountryCode(code);
+    setPhoneNumber('');
   };
-
 
   const handlePhoneNumberChange = (value) => {
-    setPhoneNumber(value);
+    if (value.length <= 15) {
+      setPhoneNumber(value);
+    }
   };
-
 
   const requestBody = {
     PhoneNumber: `+${countryCode}${phoneNumber}`,
     UserName: phoneNumber,
   };
 
-
   const login = () => {
     setIsLoading(true);
-
 
     axios
       .post(proxyURL + loginUrl, requestBody, {
@@ -62,11 +59,10 @@ function App() {
         console.log('data', response.data);
         var data = response.data.errormessage;
 
-
         if (data.indexOf('Already Exist') !== -1) {
           console.log('Already Exist');
           Navigate('/verification');
-          localStorage.setItem('userPhoneNumber', phoneNumber);
+          localStorage.setItem('userPhoneNumber', '+' + countryCode + phoneNumber);
           localStorage.setItem('userName', phoneNumber);
         } else {
           console.log('newnumber');
@@ -74,7 +70,9 @@ function App() {
           const jsonObject = JSON.parse(response.data.result);
           console.log('session id', jsonObject.Details);
           localStorage.setItem('newSessionId', jsonObject.Details);
-          Navigate('/otp');
+          Navigate('/new-user');
+          localStorage.setItem('userPhoneNumber', '+' + countryCode + phoneNumber);
+          localStorage.setItem('userName', phoneNumber);
         }
       })
       .catch((error) => {
@@ -85,15 +83,14 @@ function App() {
       });
   };
 
-
   const handleButtonClick = () => {
-    if (!phoneNumber) {
-      setAlertMessage('Please fill in the mobile number');
+    if (!phoneNumber || phoneNumber.length < 8) {
+      setAlertMessage('Please enter a valid Mobile number');
     } else {
+      setAlertMessage('');
       login();
     }
   };
-
 
   const LoadingSpinner = () => {
     return (
@@ -103,18 +100,17 @@ function App() {
     );
   };
 
-
   return (
     <div className="main-container">
       <div className="content" style={{
-        backgroundImage: `url(Indian-Girls.jpg)`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        height: '80vh'
-      }}>
+      backgroundImage: `url(Indian-Girls.jpg)`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "100vh",
+      // marginBottom: '35px', 
+    }}>
 
-
-        <div>
+        <div >
           <header
             style={{
               padding: "10px",
@@ -137,11 +133,11 @@ function App() {
                 opacity: '0.25', backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
               }} />
-             
+
             <div
               style={{
                 position: 'absolute',
-                width:'16em'
+                width: '16em'
               }}>
               <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '8em', marginBottom: '1em', marginTop: '11.2em' }}>Phone Number:</label>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
@@ -158,11 +154,9 @@ function App() {
                   />
                 </div>
 
-
-                {/* New text field */}
                 <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                   <input
-                    type="text"
+                    type="tel"
                     id="newField"
                     name="newField"
                     value={phoneNumber}
@@ -171,7 +165,6 @@ function App() {
                   />
                 </div>
               </div>
-
 
               <button
                 style={{
@@ -194,13 +187,8 @@ function App() {
             </div>
           </div>
 
-
-          {/* ------- */}
-
-
         </div>
       </div>
-
 
       <footer
         style={{
@@ -209,8 +197,10 @@ function App() {
           flexDirection: "column",
           alignItems: "center",
           color: "navy",
-          marginTop: 'auto',
-          
+          // marginTop: '100px',
+          // marginBottom: '5px',
+          // position: 'fixed',
+
         }}
       >
         <div style={{ width: "100%", height: "9em", }}>
@@ -279,13 +269,9 @@ function App() {
       </footer>
       {isLoading && <LoadingSpinner />}
 
-
     </div>
   );
 }
 
 
 export default App;
-
-
-

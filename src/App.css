@@ -44,11 +44,17 @@ body {
   background-color: #f2f2f2;
 }
 
+.react-tel-input .flag-dropdown {
+  bottom: 55px !important;
+  height: 35px !important;
+  top: 213px !important;
+}
 
 .main-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  max-height: 100vh;
+  
 }
 /* Default styles for .container */
  .container {
@@ -133,9 +139,11 @@ body {
 
 
 .content{
-  margin-top: 10px;
+  /* margin-top: 10px; */
   border-top: 1px solid black;
-  padding-top: 5px;
+
+  /* padding-top: 5px; */
+  /* margin-bottom: 1em; */
 }
 
 .container-image{
@@ -273,11 +281,6 @@ body {
 }
 
 
-.content {
-  margin-top: 10px;
-  border-top: 1px solid black;
-  padding-top: 5px;
-}
 .section { 
   display: flex;
   margin: 10px 0;

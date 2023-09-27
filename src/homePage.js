@@ -2,16 +2,42 @@ import "./App.css";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
 
 Modal.setAppElement("#root");
 
+
 function HomePage() {
+
+  const [guid, setguid] = useState(localStorage.getItem('guid'));
+  const [time, setTime] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
+
+  const [isSaveYes, setIsSaveYes] = useState(false);
+  const [isSaveNo, setIsSaveNo] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
+
+  // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+  const loginUrl = "https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2";
+  const saveVitalsUrl = "https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/Post_V1";
+
+
+  const [HR, setHR] = useState(localStorage.getItem('0'));
+  const [Blood1, setBloodp] = useState(localStorage.getItem('"0"'));
+  const [Temperature, setTemp] = useState(localStorage.getItem('0'));
+  const [oxygen, setOxyzen] = useState(localStorage.getItem('0'));
+  const [Respiration, setResp] = useState(localStorage.getItem('0'));
+  const [qt, setQt] = useState(localStorage.getItem('0'));
+  const [Qrs, setQrs] = useState(localStorage.getItem('0'));
+  const [ST, setSt] = useState(localStorage.getItem('0'));
+  const [Pr, setPr] = useState(localStorage.getItem('0'));
+  const [bmi, setBMI] = useState(localStorage.getItem('0'));
 
   const [scrollX, setScrollX] = useState(0);
   const [scrollY, setScrollY] = useState(0);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [dialogueVisible, setDialogueVisible] = useState(false);
   const [gender, setGender] = useState("");
@@ -20,28 +46,28 @@ function HomePage() {
   const [weight, setWeight] = useState("");
   const [validationError, setValidationError] = useState(false);
   const [bmiDescription, setBMIDescription] = useState("");
-
-  const [oxygen, setOxygenValue] = useState("0");
-  const [Blood, setBloodValue] = useState("0");
-  const [Respiration, setRespriationValue] = useState("0");
-  const [Temperature, setTempValue] = useState("0");
-  const [heart, setHeartValue] = useState("0");
-  const [bmiDes, setBmiValue] = useState("0");
-
-  const [oxygen1, setOxygenValue1] = useState("");
-  const [Blood1, setBloodValue1] = useState("");
-  const [Respiration1, setRespriationValue1] = useState("");
-  const [Temperature1, setTempValue1] = useState("");
-  const [heart1, setHeartValue1] = useState("");
-  const [bmiDes1, setBmiValue1] = useState("");
+  const [from, setFrom] = useState("login")
 
   // Add these state variables at the top of your component
   const [zoomLevel, setZoomLevel] = useState(1);
   const zoomFactor = 0.1; // You can adjust this factor as needed
 
   const [showContainer, setShowContainer] = useState(false);
+
+  const [isRotated, setIsRotated] = useState(false);
+  const rotation = isRotated ? 90 : 0;
+
   const toggleECGContainer = () => {
     setShowContainer(!showContainer);
+    setIsRotated(!isRotated);
+  };
+
+  const imgStyle = {
+    position: 'absolute',
+    right: '10px',
+    height: '0.7em',
+    width: '0.7em',
+    transform: `rotate(${rotation}deg)`,
   };
 
   const zoomECG = (zoomIn) => {
@@ -56,31 +82,39 @@ function HomePage() {
     }
   };
 
-  const [bmi, setBMI] = useState(null);
+
+
+
 
   const navigate = useNavigate();
+
 
   const takeVitalSigns = () => {
     setModalIsOpen(true);
   };
 
+
   const GoToHistory = () => {
     navigate("/history");
   };
 
+
   const closeDialog = () => {
     setModalIsOpen(true);
   };
+
 
   const validateForm = () => {
     if (!gender || age <= 0 || height <= 0 || weight <= 0) {
       setValidationError(true);
     } else {
       setValidationError(false);
-      calculateBMI();
+
       navigate("/takevitals");
+      calculateBMI();
     }
   };
+
 
   const RandomOxygenValue = () => {
     let oxygen = ""
@@ -88,7 +122,9 @@ function HomePage() {
     const randomValue = Math.floor(Math.random() * (100 - 95 + 1)) + 95;
     setOxygenValue(String(randomValue));
 
+
   };
+
 
   const bloodpre = () => {
     let blood = ""
@@ -99,12 +135,14 @@ function HomePage() {
     setBloodValue(String(bloodPressureValue));
   };
 
+
   const RespirationRate = () => {
     let blood = ""
     setRespriationValue1(blood);
     const randomValue = Math.floor(Math.random() * (20 - 12 + 1)) + 12;
     setRespriationValue(String(randomValue));
   };
+
 
   const BodyTemperature = () => {
     let blood = ""
@@ -113,6 +151,7 @@ function HomePage() {
     setTempValue(String(randomValue));
   };
 
+
   const HeartRate = () => {
     let blood = ""
     setHeartValue1(blood);
@@ -120,23 +159,14 @@ function HomePage() {
     setHeartValue(String(randomValue));
   };
 
+
   const calculateBMI = () => {
     if (weight > 0 && height > 0) {
       const heightInMeters = height / 100;
-      const bmiValue = weight / (heightInMeters * heightInMeters);
-      setBMI(bmiValue);
-
-      let bmiResult = "";
-      if (bmiValue < 18.5) {
-        bmiResult = "Underweight";
-      } else if (bmiValue >= 18.5 && bmiValue < 25) {
-        bmiResult = "Normal Weight";
-      } else if (bmiValue >= 25 && bmiValue < 30) {
-        bmiResult = "Overweight";
-      } else {
-        bmiResult = "Obese";
-      }
-      setBMIDescription(bmiResult);
+      const bmiValue1 = weight / (heightInMeters * heightInMeters);
+      const bmiValue = bmiValue1.toFixed(2);
+      localStorage.setItem('Bmi1', + bmiValue)
+      console.log("bMi.." + bmiValue)
     }
   };
 
@@ -144,26 +174,25 @@ function HomePage() {
   var isSuccess = true;
   isSuccess = localStorage.getItem('isSuccess');
 
+
   // Perform initial setup only once when isSuccess becomes true
   if (isSuccess && hasPerformedInitialSetup) {
     setHasPerformedInitialSetup(true);
-    calculateBMI();
-    RandomOxygenValue();
-    bloodpre();
-    RespirationRate();
-    BodyTemperature();
-    HeartRate();
+
     localStorage.setItem('isSuccess', false);
   }
+
 
   const svgStyle = {
     display: 'block',
     margin: 'auto',
   };
 
+
   const numVerticalLines = 10;
   const HorizontalLineSpacing = (465 - 50) / (numVerticalLines - 1) * 1.8;
   const verticalLineSpacing = (223 - 50) / (numVerticalLines - 1) * 1.8;
+
 
   const heading = {
     backgroundColor: "navy",
@@ -174,14 +203,19 @@ function HomePage() {
     fontSize: '25px',
   };
 
+
+
+
   const verticalLines = [];
   for (let i = 0; i < numVerticalLines; i++) {
-    const x = 50 + i * verticalLineSpacing;
+    const x = 90 + i * verticalLineSpacing;
     const color = i === 9 ? "black" : "gray"; // Change color to black for the 10th line
     verticalLines.push(
       <line key={i} x1={x} y1={50} x2={x} y2={300} stroke={color} strokeWidth="1" />
     );
   }
+
+
   // ECG data (sample data, replace with your actual data)
   const ecgData = [
     { x: 0, y: 0 },
@@ -231,11 +265,11 @@ function HomePage() {
   ];
 
   // Calculate the scaling factors based on chart dimensions and data range
-  const xScale = (362 - 50) / (ecgData.length - 1);
+  const xScale = (361 - 50) / (ecgData.length - 1);
   const yScale = (148 - 50) / (Math.max(...ecgData.map(point => point.y)) - Math.min(...ecgData.map(point => point.y)));
 
   // Convert ECG data to SVG path
-  const ecgPath = `M${ecgData.map((point, index) => `${50 + index * xScale},${230 - (point.y - Math.min(...ecgData.map(point => point.y))) * yScale}`).join(' L')}`;
+  const ecgPath = `M${ecgData.map((point, index) => `${90 + index * xScale},${230 - (point.y - Math.min(...ecgData.map(point => point.y))) * yScale}`).join(' L')}`;
 
   const headingStyles = {
     width: '20px',
@@ -246,9 +280,6 @@ function HomePage() {
     position: 'relative',
     display: 'flex',
   };
-
-
-
 
   const handleScrollX = (scroll) => {
     const container = document.getElementById("ecg-container");
@@ -271,6 +302,7 @@ function HomePage() {
     handleScrollY(scrollY);
   }, [scrollX, scrollY]);
 
+
   const ECGContainer = {
     backgroundColor: "#efefef",
     height: "22em",
@@ -278,24 +310,402 @@ function HomePage() {
     margin: "auto",
     marginRight: "10px",
     marginLeft: "10px",
-    overflow: "auto", 
-    scrollLeft: scrollX, 
+    overflow: "auto",
+    scrollLeft: scrollX,
     scrollTop: scrollY, // Set scrollTop to scrollY
   };
-  
+
   const ECGGraphContainer = {
     display: "flex",
     backgroundColor: "#efefef",
     transform: `scale(${zoomLevel})`,
     width: "96%",
-    transformOrigin: "top left",
+    transformOrigin: "center",
     position: "absolute",
     top: "0",
     left: "0",
-    transition: "width 0.2s, height 0.2s", 
-    overflow: "auto", 
+    transition: "width 0.2s, height 0.2s",
+    overflow: "auto",
   };
-  
+
+  const Navigate = useNavigate();
+  const backButton = () => {
+    Navigate('/');
+  };
+
+  const cancelButton = () => {
+    setIsLogout('true')
+  }
+
+  const [showSaveButton, setShowSaveButton] = useState(false);
+
+
+  useEffect(() => {
+    const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
+
+
+    if (userCameFromCameraVitals) {
+      setShowSaveButton(true);
+      setHR(localStorage.getItem('HR'));
+      setResp(localStorage.getItem('resp'));
+      setBloodp(localStorage.getItem('bloodp'));
+      // setBloodp("ee");
+      setTemp(localStorage.getItem('temp'));
+      setBMI(localStorage.getItem('Bmi1'))
+
+
+      setOxyzen(localStorage.getItem('oxyzen'));
+      setSt(localStorage.getItem('st'));
+      setPr(localStorage.getItem('pr'));
+      setQrs(localStorage.getItem('qrs'));
+      setQt(localStorage.getItem('qt'));
+
+
+
+
+      localStorage.removeItem('cameFromCameraVitals');
+    }
+  }, []);
+
+
+  useEffect(() => {
+    setTime(getCurrentTime());
+    const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
+    callVitalsHistoryOnLoad();
+
+
+  }, []);
+  useEffect(() => {
+    setguid(localStorage.getItem('guid'));
+    setFrom(localStorage.getItem('from'));
+    handleScrollX(scrollX);
+    handleScrollY(scrollY);
+  }, [scrollX, scrollY]);
+
+
+  const getCurrentTime = () => {
+    const now = new Date();
+
+
+    // Get the current year, month, day, hours, and minutes
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+
+    // Create the formatted date and time string
+    const formattedTime = `${year}-${month}-${day}T${hours}:${minutes}:00`;
+
+
+    setTime(formattedTime);
+    return formattedTime;
+  };
+
+
+
+
+
+  useEffect(() => {
+
+
+    console.log('from', from);
+    if (from === "camera") {
+
+
+      setHR(localStorage.getItem('HR'));
+      setResp(localStorage.getItem('resp'));
+      setBloodp(localStorage.getItem('bloodp'));
+      // setBloodp("ee");
+      setTemp(localStorage.getItem('temp'));
+      setBMI(localStorage.getItem('Bmi1'))
+
+
+      setOxyzen(localStorage.getItem('oxyzen'));
+      setSt(localStorage.getItem('st'));
+      setPr(localStorage.getItem('pr'));
+      setQrs(localStorage.getItem('qrs'));
+      setQt(localStorage.getItem('qt'));
+
+
+    }
+    else if (from === "login") {
+      callVitalsHistoryOnLoad();
+    }
+
+
+    else {
+      callVitalsHistoryOnLoad();
+    }
+
+
+
+
+  }, [from]);
+
+
+  var requestBody = {
+    PatientGUID: guid
+  };
+
+
+  const callVitalsHistoryOnLoad = () => {
+    console.log('Function called when component is loaded');
+    console.log("requesting", requestBody);
+
+
+
+
+    axios
+      .post(loginUrl, requestBody, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log("data", response.data);
+        var data = response.data.errormessage;
+        var dataArray = response.data;
+        console.log("array lenth", dataArray.length);
+
+        // else {
+        if (dataArray.length !== 0) {
+          if (!userCameFromCameraVitals) {
+            setBloodp(dataArray[0].bloodPressure);
+            setOxyzen(dataArray[0].oxygenLevel);
+            setHR(dataArray[0].heartRate);
+            setTemp(dataArray[0].bodyTemprature);
+            setResp(dataArray[0].respirationRate);
+            setBMI(dataArray[0].bodyMassIndex);
+            setPr(dataArray[0].printerval);
+            setQrs(dataArray[0].qrsinterval);
+            setQt(dataArray[0].qtinterval);
+            setSt(dataArray[0].stinterval);
+          }
+        }
+        // }
+
+
+        // setVitalSigns(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:1111", error);
+      });
+
+
+  };
+
+
+  var requestBodySave = {
+    PatientGUID: guid,
+    vitalSignType: "All",
+    heartRate: parseInt(HR),
+    bloodPressure: Blood1,
+    respirationRate: parseInt(Respiration),
+    oxygenLevel: parseInt(oxygen),
+    bodyTemprature: parseFloat(Temperature),
+    recordingDateTime: time,
+    bodyMassIndex: bmi,
+    qtinterval: qt,
+    stinterval: ST,
+    printerval: Pr,
+    qrsinterval: Qrs
+  };
+
+  const openLogoutModel = () => {
+    setIsLogout(true);
+  }
+
+  const openSaveYesModel = () => {
+    setIsSaveYes(true);
+  };
+
+  const openSaveNoModel = () => {
+    setIsSaveNo(true);
+  };
+
+
+  const saveVitals = () => {
+
+
+
+
+    setIsLoading(true);
+    console.log("Requesting....", requestBodySave);
+
+
+    axios
+      .post(saveVitalsUrl, requestBodySave, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // Handle the response data here
+        console.log("data", response.data);
+        var data = response.data.result;
+        // var errorjson = JSON.parse();
+        if (data == "1") {
+          console.log("vitals saved");
+          openSaveYesModel()
+
+
+        }
+        else {
+          console.log("vitals not saved");
+          openSaveNoModel()
+
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+
+
+
+  const LoadingSpinner = () => {
+    return (
+      <div className="loading-spinner">
+        <div className="spinner"></div>
+      </div>
+    );
+  };
+
+
+
+  const [showGraph, setGraph] = useState(false);
+
+  useEffect(() => {
+    const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
+
+    if (userCameFromCameraVitals) {
+      setGraph(true);
+
+      localStorage.removeItem('cameFromCameraVitals');
+    }
+  }, []);
+
+
+
+  const overlayStyle = {
+    display: isModalOpen ? 'block' : 'none',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 1000,
+  };
+
+
+
+  const saveYes = {
+    display: isSaveYes ? 'block' : 'none',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'navy',
+    zIndex: 1000,
+    width: '20em',
+    height: '8.5em',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    textAlign: 'center',
+    background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
+  };
+
+  const saveNo = {
+    display: isSaveNo ? 'block' : 'none',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'navy',
+    zIndex: 1000,
+    width: '20em',
+    height: '8.5em',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    textAlign: 'center',
+    background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
+  };
+
+  const logout = {
+    display: isLogout ? 'block' : 'none',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'navy',
+    zIndex: 1000,
+    width: '20em',
+    height: '8.5em',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    textAlign: 'center',
+    background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
+  };
+
+  const okayButtonStyle = {
+    backgroundColor: 'navy',
+    color: 'white',
+    fontWeight: 'bold',
+    position: 'absolute',
+    bottom: '10px',
+    left: '8em',
+    transform: 'translateX(-50%)',
+    cursor: 'pointer',
+    padding: '10px 20px',
+    borderRadius: '5px',
+  };
+
+  const cancelButtonStyle = {
+    backgroundColor: 'navy',
+    color: 'white',
+    fontWeight: 'bold',
+    position: 'absolute',
+    bottom: '10px',
+    right: '2em',
+    transform: 'translateX(-50%)',
+    cursor: 'pointer',
+    padding: '10px 20px',
+    borderRadius: '5px',
+  };
+
+
+  const headingStyle = {
+    color: 'white',
+    marginTop: '0px',
+  };
+
+  const alertTextStyle = {
+    color: 'black',
+  }
+
+
+
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOkClick = () => {
+
+    openModal();
+
+  };
+
+
   return (
 
     <div>
@@ -313,17 +723,69 @@ function HomePage() {
         zIndex: '999',
       }}>
         <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
-        <div style={{}}></div>
       </header>
 
       <div className="container" >
 
         <header style={{
-          padding: '9px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'navy', border: '1px solid #ccc', borderRadius: '5px',
-          color: "white", marginBottom: "3px", fontSize: "25px"
+          padding: '9px',
+          display: 'flex',
+          backgroundColor: 'navy',
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          color: 'white',
+          marginBottom: '3px',
+          fontSize: '25px'
         }}>
-          VITAL SIGNS
+          <div style={{
+            marginLeft: '6.5em',
+            textAlign: 'center'
+          }}>
+            VITAL SIGNS
+          </div>
+
+          <button
+            style={{
+              backgroundColor: '#000080',
+              color: 'white',
+              border: 'none',
+              padding: '10px',
+              cursor: 'pointer',
+              borderRadius: '10px',
+              fontWeight: 'bold',
+              display: 'flex',
+              alignItems: 'center', // Center the content vertically
+            }}
+            onClick={() => {
+              openLogoutModel();
+            }}
+          >
+            <img
+              src="logout.png"
+              alt="Back"
+              style={{
+                height: '30px',
+                width: '30px',
+                marginRight: '5px', // Add some space between the image and text
+              }}
+            />
+            {/* Logout */}
+          </button>
+
         </header>
+
+        <div style={logout}>
+          <button style={okayButtonStyle} onClick={() => { backButton(); }}>
+            Okay
+          </button>
+          <button style={cancelButtonStyle} onClick={() => { cancelButton(); setIsLogout(false); }}>
+            Cancel
+          </button>
+          <h2 style={headingStyle}>Alert</h2>
+          <h4 style={alertTextStyle}>Are You sure you want to logout?</h4>
+        </div>
 
         <div className="image-container">
           <img src="hypertension.png" alt="Blood Pressure" className="image1" />
@@ -335,10 +797,9 @@ function HomePage() {
         </div>
 
         <div className="details-container">
-          {Blood !== 0 ? (
+          {Blood1 !== 0 ? (
             <>
-              <div className="value">{Blood}</div>
-              <div className="result">{setBloodValue}</div>
+              <div className="value">{Blood1}</div>
             </>
           ) : (
             <div className="value"> 0 </div>
@@ -346,17 +807,18 @@ function HomePage() {
           {oxygen !== 0 ? (
             <>
               <div className="value">{oxygen}</div>
-              <div className="result">{setOxygenValue}</div>
             </>
           ) : (
             <div className="value"> 0 </div>
           )}
         </div>
 
+
         <div className="tilte-contaniner">
           <div className="tilte">Normal Range</div>
           <div className="tilte">Normal Range</div>
         </div>
+
 
         <div className="range-container">
           <div className="range">120/80 - 140/90</div>
@@ -372,24 +834,24 @@ function HomePage() {
           <h4 className="header-title1">Body Temperature</h4>
         </div>
 
+
         <div className="details-container">
-          {heart !== 0 ? (
+          {HR !== 0 ? (
             <>
-              <div className="value">{heart}</div>
-              <div className="result">{setHeartValue}</div>
+              <div className="value">{HR}</div>
             </>
           ) : (
-            <div className="value"> 0 </div>
+            <div className="value">0</div>
           )}
           {Temperature !== 0 ? (
             <>
               <div className="value">{Temperature}</div>
-              <div className="result">{setTempValue}</div>
             </>
           ) : (
-            <div className="value"> 0 </div>
+            <div className="value">0</div>
           )}
         </div>
+
 
         <div className="tilte-contaniner">
           <div className="tilte">Normal Range</div>
@@ -414,16 +876,16 @@ function HomePage() {
           {Respiration !== 0 ? (
             <>
               <div className="value">{Respiration}</div>
-              <div className="result">{setRespriationValue}</div>
+              {/* <div className="result">{setRespriationValue}</div> */}
             </>
           ) : (
             <div className="value"> 0 </div>
           )}
-          {bmiDes !== 0 ? (
+          {bmi !== 0 ? (
             <>
               {/* <div className="value">{bmi.toFixed(2)}</div>  */}
-              <div className="value">{bmiDes}</div>
-              <div className="result">{setBmiValue}</div>
+              <div className="value">{bmi}</div>
+              {/* <div className="result">{setBmiValue}</div> */}
             </>
           ) : (
             <div className="value"> 0 </div>
@@ -440,225 +902,281 @@ function HomePage() {
           <div className="range2">18.5 - 25</div>
         </div>
 
-        <div className="footer">
+        <div className="footer" style={{ display: 'flex', flexDirection: 'column' }}>
+
+
           <button
-            className="button"
+            className="button ecg-button"
+            onClick={toggleECGContainer}
+            style={{
+              height: '40px',
+              fontSize: '19px',
+              backgroundColor: 'navy',
+              color: 'white',
+              position: 'relative',
+            }}
+          >
+            <span className="button-text">
+              {showContainer ? "Electrocardiogram" : "Electrocardiogram"}
+            </span>
+            <img
+              src="arrow.png"
+              alt="Arrow"
+              style={imgStyle}
+            />
+          </button>
+
+
+          {showContainer && (
+            <div className="white-container" style={{ marginBottom: '10px', width: "96%", background: "#e5e5e6;", position: "relative" }}>
+
+              <div style={ECGContainer}>
+                {/* Electrocardiogram graph */}
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+
+                  <div style={ECGGraphContainer}>
+                    {/* Electrocardiogram graph */}
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <svg width={"100%"} height={350} style={svgStyle}>
+                        {/* X-Axis */}
+                        <line x1={90} y1={300} x2={402} y2={300} stroke="black" strokeWidth="2" />
+                        {/* X-Axis Label (centered) */}
+                        <text x={235} y={325} textAnchor="middle" fontWeight="bold">
+                          (Seconds)
+                        </text>
+
+                        {/* Y-Axis */}
+                        <line x1={90} y1={300} x2={90} y2={50} stroke="black" strokeWidth="2" />
+                        {/* Y-Axis Label (centered) */}
+                        <text
+                          x={9}
+                          y={223}
+                          textAnchor="middle"
+                          fontWeight="bold"
+                          transform="rotate(-90, 10, 175)"
+                        >
+                          (Milli-Volts)
+                        </text>
+
+                        {/* Optional labels for Y-axis */}
+                        <text x={80} y={300} textAnchor="end">
+                          -1
+                        </text>
+                        <text x={80} y={225} textAnchor="end">
+                          0
+                        </text>
+                        <text x={80} y={140} textAnchor="end">
+                          1
+                        </text>
+                        <text x={80} y={60} textAnchor="end">
+                          2
+                        </text>
+
+                        {/* Horizontal lines with increased spacing */}
+                        <line
+                          x1={90}
+                          y1={300 - HorizontalLineSpacing}
+                          x2={402}
+                          y2={300 - HorizontalLineSpacing}
+                          stroke="gray"
+                          strokeWidth="1"
+                        />
+                        <line
+                          x1={90}
+                          y1={300 - 2 * HorizontalLineSpacing}
+                          x2={402}
+                          y2={300 - 2 * HorizontalLineSpacing}
+                          stroke="gray"
+                          strokeWidth="1"
+                        />
+                        <line
+                          x1={90}
+                          y1={300 - 3 * HorizontalLineSpacing}
+                          x2={402}
+                          y2={300 - 3 * HorizontalLineSpacing}
+                          stroke="black"
+                          strokeWidth="2"
+                        />
+
+                        {/* Render the ECG line series */}
+                        <path d={ecgPath} stroke="#0276cb" strokeWidth="2.5" fill="none" />
+                        {/* Render the vertical lines */}
+                        {verticalLines}
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '90px' }}>
+                <center><h3>ECG Intervals</h3></center>
+
+
+                <div className="container-image">
+
+
+                  <div className="header-container">
+                    <h3 className="header-title2">QT Interval</h3>
+                    <h3 className="header-title2">ST Segment</h3>
+                  </div>
+
+
+                  <div className="details-container">
+                    <div className="value"> {qt} </div>
+                    <div className="value"> {ST} </div>
+                  </div>
+
+
+                  <div className="tilte-contaniner">
+                    <div className="tilte">Normal Range</div>
+                    <div className="tilte">Normal Range</div>
+                  </div>
+
+
+                  <div className="range-container1">
+                    <div className="range3">0.06 - 01.2 Sec</div>
+                    <div className="range3">0.08 Sec</div>
+                  </div>
+
+
+                  <div className="header-container">
+                    <h3 className="header-title2">PR Interval</h3>
+                    <h3 className="header-title2">QRS Interval</h3>
+                  </div>
+
+
+                  <div className="details-container">
+                    <div className="value"> {Pr} </div>
+                    <div className="value"> {Qrs} </div>
+                  </div>
+
+
+                  <div className="tilte-contaniner">
+                    <div className="tilte">Normal Range</div>
+                    <div className="tilte">Normal Range</div>
+                  </div>
+
+
+                  <div className="range-container1">
+                    <div className="range4">0.12 - 0.20 Sec</div>
+                    <div className="range4">0.06 - 0.10 Sec</div>
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "23em",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                }}
+              >
+                <button
+                  style={{
+                    width: "100px",
+                    height: "40px",
+                    backgroundColor: "navy",
+                    color: "white",
+                    borderRadius: "10px",
+                    border: "none",
+                    cursor: "pointer",
+                    marginBottom: "10px",
+                    marginLeft: '4.82em',
+                    // marginRight: "0.5em",
+
+                  }}
+                  onClick={() => {
+                    zoomECG(true); // Zoom In
+                    handleScrollX(scrollX * zoomFactor);
+                    handleScrollY(scrollY * zoomFactor);
+                  }}
+                >
+                  +
+                </button>
+                <div style={{ fontSize: '20px', fontWeight: "bold", marginTop: '0.4em', marginLeft: '2.5em', marginRight: '2.5em', }}>Zoom</div>
+                <button
+                  style={{
+                    width: "100px",
+                    height: "40px",
+                    backgroundColor: "navy",
+                    color: "white",
+                    borderRadius: "10px",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    zoomECG(false); // Zoom Out
+                    handleScrollX(scrollX / zoomFactor);
+                    handleScrollY(scrollY / zoomFactor);
+                  }}
+                >
+                  -
+                </button>
+              </div>
+            </div>
+          )}
+
+          <button
+            className="button ecg-button"
             onClick={takeVitalSigns}
-            style={{ width: '180px', height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white' }}
+            style={{ height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', }}
           >
             Take Vital Signs
           </button>
 
           <button
-            className="button"
+            className="button ecg-button"
             onClick={GoToHistory}
-            style={{ width: '180px', height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white' }}
+            style={{ height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', }}
           >
             Vital Sign History
           </button>
-        </div>
 
-        <button
-          className="button ecg-button"
-          onClick={toggleECGContainer}
-          style={{ height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', marginBottom: '2em' }}
-        >
-          <span className="button-text">
-            {showContainer ? "Electrocardiogram" : "Electrocardiogram"}
-          </span>
-        </button>
-
-        {showContainer && (
-          <div className="white-container" style={{ marginBottom: '10px', width: "96%", background: "#e5e5e6;", position: "relative" }}>
-
-            <div style={ECGContainer}>
-              {/* Electrocardiogram graph */}
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-
-                <div style={ECGGraphContainer}>
-                  {/* Electrocardiogram graph */}
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    <svg width={"100%"} height={350} style={svgStyle}>
-                      {/* X-Axis */}
-                      <line x1={50} y1={300} x2={362} y2={300} stroke="black" strokeWidth="2" />
-                      {/* X-Axis Label (centered) */}
-                      <text x={205} y={325} textAnchor="middle" fontWeight="bold">
-                        (Seconds)
-                      </text>
-
-                      {/* Y-Axis */}
-                      <line x1={50} y1={300} x2={50} y2={50} stroke="black" strokeWidth="2" />
-                      {/* Y-Axis Label (centered) */}
-                      <text
-                        x={7}
-                        y={188}
-                        textAnchor="middle"
-                        fontWeight="bold"
-                        transform="rotate(-90, 10, 175)"
-                      >
-                        (Milli-Volts)
-                      </text>
-
-                      {/* Optional labels for Y-axis */}
-                      <text x={40} y={300} textAnchor="end">
-                        -1
-                      </text>
-                      <text x={40} y={225} textAnchor="end">
-                        0
-                      </text>
-                      <text x={40} y={150} textAnchor="end">
-                        1
-                      </text>
-                      <text x={40} y={75} textAnchor="end">
-                        2
-                      </text>
-
-                      {/* Horizontal lines with increased spacing */}
-                      <line
-                        x1={50}
-                        y1={300 - HorizontalLineSpacing}
-                        x2={362}
-                        y2={300 - HorizontalLineSpacing}
-                        stroke="gray"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1={50}
-                        y1={300 - 2 * HorizontalLineSpacing}
-                        x2={362}
-                        y2={300 - 2 * HorizontalLineSpacing}
-                        stroke="gray"
-                        strokeWidth="1"
-                      />
-                      <line
-                        x1={50}
-                        y1={300 - 3 * HorizontalLineSpacing}
-                        x2={362}
-                        y2={300 - 3 * HorizontalLineSpacing}
-                        stroke="black"
-                        strokeWidth="2"
-                      />
-
-                      {/* Render the ECG line series */}
-                      <path d={ecgPath} stroke="#0276cb" strokeWidth="2.5" fill="none" />
-                      {/* Render the vertical lines */}
-                      {verticalLines}
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ marginTop: '75px' }}>
-              <center><h3>ECG Intervals</h3></center>
-
-              <div className="container-image">
-
-                <div className="header-container">
-                  <h3 className="header-title2">QT Interval</h3>
-                  <h3 className="header-title2">ST Segment</h3>
-                </div>
-
-                <div className="details-container">
-                  <div className="value"> 0 </div>
-                  <div className="value"> 0 </div>
-                </div>
-
-                <div className="tilte-contaniner">
-                  <div className="tilte">Normal Range</div>
-                  <div className="tilte">Normal Range</div>
-                </div>
-
-                <div className="range-container1">
-                  <div className="range3">0.06 - 01.2 Sec</div>
-                  <div className="range3">0.08 Sec</div>
-                </div>
-
-                <div className="header-container">
-                  <h3 className="header-title2">PR Interval</h3>
-                  <h3 className="header-title2">QRS Interval</h3>
-                </div>
-
-                <div className="details-container">
-                  <div className="value"> 0 </div>
-                  <div className="value"> 0 </div>
-                </div>
-
-                <div className="tilte-contaniner">
-                  <div className="tilte">Normal Range</div>
-                  <div className="tilte">Normal Range</div>
-                </div>
-
-                <div className="range-container1">
-                  <div className="range4">0.12 - 0.20 Sec</div>
-                  <div className="range4">0.06 - 0.10 Sec</div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                position: "absolute",
-                top: "2em",
-                right: "10px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-              }}
+          {showSaveButton && (
+            <button
+              className="button ecg-button"
+              onClick={saveVitals}
+              disabled={isLoading}
+              style={{ height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', marginBottom: '2em' }}
             >
-              <button
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  backgroundColor: "navy",
-                  color: "white",
-                  borderRadius: "25%",
-                  border: "none",
-                  cursor: "pointer",
-                  marginBottom: "10px",
-                }}
-                onClick={() => {
-                  zoomECG(true); // Zoom In
-                  handleScrollX(scrollX * zoomFactor);
-                  handleScrollY(scrollY * zoomFactor);
-                }}
-              >
-                +
-              </button>
-              <button
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  backgroundColor: "navy",
-                  color: "white",
-                  borderRadius: "25%",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  zoomECG(false); // Zoom Out
-                  handleScrollX(scrollX / zoomFactor);
-                  handleScrollY(scrollY / zoomFactor);
-                }}
-              >
-                -
-              </button>
+              SAVE
+            </button>
+          )}
 
-            </div>
+          <div style={overlayStyle}></div>
+
+          <div style={saveYes}>
+            <button style={okayButtonStyle} onClick={handleOkClick}>
+              Okay
+            </button>
+            <h2 style={headingStyle}>Alert</h2>
+            <h4 style={alertTextStyle}>Vitals data saved successfully.</h4>
           </div>
-        )}
+
+          <div style={saveNo}>
+            <button style={okayButtonStyle} onClick={handleOkClick}>
+              Okay
+            </button>
+            <h2 style={headingStyle}>Alert</h2>
+            <h4 style={alertTextStyle}>Network issue please take vitlas once again.</h4>
+          </div>
+
+
+
+        </div>
 
         <Modal
           isOpen={modalIsOpen}
@@ -932,10 +1450,11 @@ function HomePage() {
           </span>
         </p>
       </footer>
-
+      {isLoading && <LoadingSpinner />}
     </div >
 
   );
 }
+
 
 export default HomePage;

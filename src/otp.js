@@ -21,11 +21,11 @@ function OtpPage() {
     const Navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
-    const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
     const verifyUrl = "https://staycured-clinic.azurewebsites.net/API/ForgetPWD/OTPVerification_New";
     const loginUrl = "https://staycured-clinic.azurewebsites.net/API/Login";
     const PasswordUpdateUrl = 'https://staycured-clinic.azurewebsites.net/API/ForgetPWD/UpdateChangePassword';
-
+    const [alertMessage, setAlertMessage] = useState('');
 
     useEffect(() => {
         setUserPhoneNumber(localStorage.getItem('userPhoneNumber'));
@@ -75,7 +75,7 @@ function OtpPage() {
         console.log("requesting...")
         console.log("request body", requestBodyVerify);
         axios
-            .post(proxyURL + verifyUrl, requestBodyVerify, {
+            .post(verifyUrl, requestBodyVerify, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -114,7 +114,7 @@ function OtpPage() {
         setIsLoading(true);
         console.log("requesting...", requestBodyLogin);
         axios
-            .post(proxyURL + loginUrl, requestBodyLogin, {
+            .post(loginUrl, requestBodyLogin, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -166,7 +166,7 @@ function OtpPage() {
         console.log("requesting...");
         console.log("update passowrd body", requestBodyupdatePsw);
         axios
-            .post(proxyURL + PasswordUpdateUrl, requestBodyupdatePsw, {
+            .post(PasswordUpdateUrl, requestBodyupdatePsw, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -192,110 +192,209 @@ function OtpPage() {
             });
     };
 
+    // const Navigate = useNavigate();
+    const backButton = () => {
+        Navigate('/');
+    };
+
 
     return (
-        
-        <div className="App">
+        <div className="main-container">
+            <div className="content" style={{
+                backgroundImage: `url(Indian-Girls.jpg)`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                height: '80vh'
+            }}>
 
-            <div style={{ backgroundImage: `url(Indian-Girls.jpg)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
-
-            <header style={{  padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
-            </header>
-          
-
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '30vh' }}>
-<div style={{ width: '300px', marginBottom: '20px' }}>
-                    <label htmlFor="password" style={{color: 'white', fontWeight: 'bold' }}>Please enter the OTP just send to your Mobile Number {userPhoneNumber}</label>
-                    <div style={{ position: 'relative' }}>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            id="password"
-                            name="password"
-                            value={otp}
-                            onChange={handlePasswordChange}
-                            disabled={isLoading}
-                            style={{ width: '100%', padding: '5px', height: '25px' }}
+                <div>
+                    <header
+                        style={{
+                            padding: "10px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <img
+                            src="yourvitals_logo_panner.png"
+                            alt="yourVitals"
+                            style={{ width: "300px", height: "100px", alignItems: 'center', justifyContent: 'center', }}
                         />
+                    </header>
+                    {/* ------- */}
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <img src='mobileScreen.png'
+                            style={{
+                                maxHeight: '36em',
+                                opacity: '0.25', backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat',
+                            }} />
+
+                        <div
+                            style={{
+                                position: 'absolute',
+                                width: '16em'
+                            }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '30vh' }}>
+                                <div style={{ width: '230px', marginTop: '8.5em' }}>
+                                    <label htmlFor="password" style={{ color: 'white', fontWeight: 'bold', }}>Please enter the OTP just send to your Mobile Number</label>
+                                    <div style={{ color: 'white', fontWeight: 'bold', alignItems: 'center', justifyContent: 'center', marginLeft: '3em' }}>{userPhoneNumber}</div>
+                                    <div style={{ position: 'relative', marginTop: '2em', alignItems: 'center', }}>
+                                        <input
+                                            type="tel" // Change the type to "tel"
+                                            id="password"
+                                            name="password"
+                                            value={otp}
+                                            onChange={handlePasswordChange}
+                                            disabled={isLoading}
+                                            style={{
+                                                width: '100%',
+                                                padding: '5px',
+                                                height: '25px',
+                                                width: '96%',
+                                                borderRadius: '5px',
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                {/* <div style={{ marginRight: '10px' }}> */}
+
+
+                                <div style={{ display: 'flex', justifyContent: 'center', width: '300px', marginLeft: '3.9em', marginTop: '15px' }}>
+                                    <div style={{ marginRight: '20px' }}>
+                                        <button
+                                            style={{
+                                                backgroundColor: '#f8b413', color: 'white', padding: '10px 17px', borderRadius: '10px', fontWeight: 'bold', border: 'none',
+                                                cursor: 'pointer',
+                                                fontWeight: 'bold'
+                                            }}
+                                            onClick={() => {
+                                                backButton()
+                                            }}
+                                        >
+                                            Back
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button
+                                            style={{ backgroundColor: '#f8b413', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '10px', fontWeight: 'bold' }}
+                                            onClick={signinclick}
+                                        // disabled={isLoading}
+                                        >
+                                            REGISTER
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+                                {/* <button
+                                    style={{
+                                        backgroundColor: '#f8b413',
+                                        color: 'white',
+                                        padding: '10px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        fontWeight: 'bold',
+                                        borderRadius: '10px',
+                                        marginLeft: '10.5em',
+                                        marginTop: '1.5em',
+                                    }}
+                                    onClick={signinclick}
+                                >
+                                    REGISTER
+                                </button> */}
+                                {/* </div> */}
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-    {/* <div style={{ marginRight: '10px' }}> */}
-        <button
-            style={{ 
-            backgroundColor: '#f8b413',
-            color: 'white',
-            padding: '10px',
-            border: 'none',
-            cursor: 'pointer',
-            fontWeight: 'bold',
-            borderRadius: '10px',
-            marginLeft:'17.5em' }}
-            onClick={signinclick}
-        >
-            REGISTER
-        </button>
-    {/* </div> */}
-    
-</div>
-
-            <footer style={{ backgroundColor: 'white',  display: 'flex', flexDirection: 'column',  color: 'navy' }}>
-          <div>
-
-          <div style={{ width: '100%', height: '420px' }}>
-          <iframe
-            title="Google Map"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=11.0250608,76.9582571&zoom=18`}
+            </div>
 
 
-            allowFullScreen
-          ></iframe>
-        </div>
+            <footer
+                style={{
+                    backgroundColor: "white",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    color: "navy",
+                    marginTop: 'auto',
 
-
-            <button
-              style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-              onClick={() => {
-                window.open('https://yourvitals.ai/terms_of_use.html', '_blank');
-              }}
+                }}
             >
-              Terms Of Use
-            </button>
-            <button
-              style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-              onClick={() => {
-                window.open('https://yourvitals.ai/privacy_policy.html', '_blank');
-              }}
-            >
-              Privacy Policy
-            </button>
-            <button
-              style={{ backgroundColor: 'transparent', border: 'none', color: 'navy', textDecoration: 'underline', cursor: 'pointer' }}
-              onClick={() => {
-                window.open('https://yourvitals.ai/#', '_blank');
-              }}
-            >
-              FAQ
-            </button>
-          </div>
-          <div>
-            <p>
-              <strong style={{ color: 'orange' }}>YourVitals, Inc. </strong>
-              <span style={{ color: '#454e6f' }}>©2023, All Rights Reserved.</span>
-            </p>
-          </div>
+                <div style={{ width: "100%", height: "9em", }}>
+                    <iframe
+                        title="Google Map"
+                        width="100%"
+                        height="100%"
+                        frameBorder="0"
+                        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=staycuredmedicalclinic&zoom=18`}
+                        allowFullScreen
+                    ></iframe>
+                </div>
+                <div className='footercontent' style={{ alignItems: 'center', marginTop: '1em' }}>
+                    <button
+                        style={{
+                            backgroundColor: "transparent",
+                            border: "none",
+                            color: "navy",
+                            textDecoration: "underline",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            window.open("https://yourvitals.ai/terms_of_use.html", "_blank");
+                        }}
+                    >
+                        Terms Of Use
+                    </button>
+                    <button
+                        style={{
+                            backgroundColor: "transparent",
+                            border: "none",
+                            color: "navy",
+                            textDecoration: "underline",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            window.open(
+                                "https://yourvitals.ai/privacy_policy.html",
+                                "_blank"
+                            );
+                        }}
+                    >
+                        Privacy Policy
+                    </button>
+                    <button
+                        style={{
+                            backgroundColor: "transparent",
+                            border: "none",
+                            color: "navy",
+                            textDecoration: "underline",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            window.open("https://yourvitals.ai/#", "_blank");
+                        }}
+                    >
+                        FAQ
+                    </button>
+                </div>
+                <p>
+                    <strong style={{ color: "orange" }}>YourVitals, Inc. </strong>
+                    <span style={{ color: "#454e6f" }}>
+                        ©2023, All Rights Reserved.
+                    </span>
+                </p>
+            </footer>
 
 
-        </footer>
-
-            
-            
             {isLoading && <LoadingSpinner />}
+
         </div>
-        
-         </div>
+
     );
 }
 
