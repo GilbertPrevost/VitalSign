@@ -6,7 +6,7 @@ import './App.js';
 
 const CameraVitals = () => {
   const videoRef = useRef(null);
-  const [countdown, setCountdown] = useState(3);
+  const [countdown, setCountdown] = useState(30);
   const [showMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
   const [timerCompleted, setTimerCompleted] = useState(false);
@@ -131,7 +131,7 @@ const CameraVitals = () => {
         }
       }
     } else {
-      setCountdown(3);
+      setCountdown(30);
     }
   }, [countdown, blackScreenDetected]);
 
@@ -335,45 +335,16 @@ const CameraVitals = () => {
       </header>
 
 
-      <div className='container'>
+      <div className='cameraContainer'>
 
 
         <div className="camera-container">
-          {/* <header style={{
-            padding: '9px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'navy', border: '1px solid #ccc', borderRadius: '5px',
-            color: "white", marginBottom: "3px", fontSize: "25px"
-          }}>
-            VITAL SIGN PROCESS
-          </header> */}
+       
+          <header className='cameraHeader'>
 
 
-          <header style={{
-            display: 'flex',
-            backgroundColor: 'navy',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            color: 'white',
-            marginBottom: '3px',
-            fontSize: '25px',
-            width: '100%',
-            height: '55px'
-          }}>
-
-
-            <button
-              style={{
-                backgroundColor: '#000080',
-                color: 'white',
-                border: 'none',
-                padding: '10px',
-                cursor: 'pointer',
-                borderRadius: '10px',
-                fontWeight: 'bold',
-                display: 'flex',
-                alignItems: 'center', // Center the content vertically
-              }}
+            <button className= 'cameraBackBtn'
+              
               onClick={() => {
                 backButton();
               }}
@@ -381,28 +352,17 @@ const CameraVitals = () => {
               <img
                 src="back.png"
                 alt="Back"
-                style={{
-                  height: '30px',
-                  width: '30px',
-                  marginRight: '5px', // Add some space between the image and text
-                }}
+                className='ImgCameraBackBtn'
               />
               {/* Logout */}
             </button>
 
 
-            <div style={{
-              marginRight: '5em',
-              textAlign: 'center'
-            }}>
+            <div className= 'cameraHeaderTxt'>
               VITAL SIGN PROCESS
             </div>
 
-
           </header>
-
-
-
 
           <div className="circle-mask">
             <img src="/fingerprint.png" alt="Fingerprint Overlay" className="fingerprint-overlay" />
@@ -423,7 +383,8 @@ const CameraVitals = () => {
 
 
             <img src="ecgGIF.gif" alt="ECG GIF" style={imageStyles} />
-            {blackScreenDetected && countdown > 0 ? (
+            {blackScreenDetected && countdown > 0 ? 
+            (
               <div className="progress-bar-container" style={progressBarContainerStyles}>
                 <div className="progress-bar" style={progressBarStyles}>
                   <div className="progressBarText" style={progressBarTextStyles}>
@@ -441,7 +402,7 @@ const CameraVitals = () => {
                     <div style={{ fontSize: '18px', marginTop: '10px' }}>This may take some time...               </div>
                   </>
                 ) : (
-                  <div style={{ fontSize: '24px', marginTop: '10px', color: 'black' }}>
+                  <div className='cameraAlertText'>
                     Place your finger on the camera to take vitals.
                   </div>
                 )}

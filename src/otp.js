@@ -21,10 +21,10 @@ function OtpPage() {
     const Navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
-    // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    const verifyUrl = "https://staycured-clinic.azurewebsites.net/API/ForgetPWD/OTPVerification_New";
-    const loginUrl = "https://staycured-clinic.azurewebsites.net/API/Login";
-    const PasswordUpdateUrl = 'https://staycured-clinic.azurewebsites.net/API/ForgetPWD/UpdateChangePassword';
+    const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
+    const verifyUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/ForgetPWD/OTPVerification_New`;
+    const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Login`;
+    const PasswordUpdateUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/ForgetPWD/UpdateChangePassword`;
     const [alertMessage, setAlertMessage] = useState('');
 
     useEffect(() => {
@@ -219,7 +219,7 @@ function OtpPage() {
                         <img
                             src="yourvitals_logo_panner.png"
                             alt="yourVitals"
-                            style={{ width: "300px", height: "100px", alignItems: 'center', justifyContent: 'center', }}
+                            style={{ width: "300px", height: "100px", alignItems: 'center', justifyContent: 'center',marginRight:'1.5em' }}
                         />
                     </header>
                     {/* ------- */}
@@ -247,6 +247,17 @@ function OtpPage() {
                                             name="password"
                                             value={otp}
                                             onChange={handlePasswordChange}
+
+                                            onKeyPress={(e) => {
+                                                // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
+                                                const isNumericInput = /^[0-9]+$/.test(e.key);
+
+                                                // If the input is not numeric, prevent it from being entered
+                                                if (!isNumericInput) {
+                                                    e.preventDefault();
+                                                }
+                                            }}
+
                                             disabled={isLoading}
                                             style={{
                                                 width: '100%',
@@ -256,6 +267,7 @@ function OtpPage() {
                                                 borderRadius: '5px',
                                             }}
                                         />
+
                                     </div>
                                 </div>
                                 {/* <div style={{ marginRight: '10px' }}> */}

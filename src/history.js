@@ -10,8 +10,8 @@ const History = () => {
   const [vitalSigns, setVitalSigns] = useState([]);
   const [guid, setguid] = useState(localStorage.getItem('guid'));
 
-  // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
-  const loginUrl = "https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2";
+  const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
+  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2`;
   // const rectangles = Array(length).fill(null);
 
   const historyHeaderStyle = {
@@ -103,7 +103,7 @@ const History = () => {
 
         zIndex: '999', // Added this to make sure the header is on top
       }}>
-        <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
+        <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px',marginRight:'1.5em' }} />
         <div style={{}}></div>
       </header>
 

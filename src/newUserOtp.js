@@ -19,11 +19,11 @@ function NewUserVerification() {
   const Navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
-  const verifyUrl = 'https://staycured-clinic.azurewebsites.net/API/ForgetPWD/OTPVerification_New';
-  const newUrl = 'https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/OTPVerification';
-  const loginUrl = 'https://staycured-clinic.azurewebsites.net/API/Login';
-  const PasswordUpdateUrl = 'https://staycured-clinic.azurewebsites.net/API/ForgetPWD/UpdateChangePassword';
+  const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
+  const verifyUrl = `https://staycured-clinic.azurewebsites.net/API/ForgetPWD/OTPVerification_New`;
+  const newUrl = `https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/OTPVerification`;
+  const loginUrl = `https://staycured-clinic.azurewebsites.net/API/Login`;
+  const PasswordUpdateUrl = `https://staycured-clinic.azurewebsites.net/API/ForgetPWD/UpdateChangePassword`;
   const [alertMessage, setAlertMessage] = useState('');
 
   useEffect(() => {
@@ -174,6 +174,7 @@ function NewUserVerification() {
                 height: '100px',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginRight:'1.5em',
               }}
             />
           </header>
@@ -234,6 +235,15 @@ function NewUserVerification() {
                       name="password"
                       value={otp}
                       onChange={handlePasswordChange}
+                      onKeyPress={(e) => {
+                        // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
+                        const isNumericInput = /^[0-9]+$/.test(e.key);
+
+                        // If the input is not numeric, prevent it from being entered
+                        if (!isNumericInput) {
+                          e.preventDefault();
+                        }
+                      }}
                       disabled={isLoading}
                       style={{
                         width: '100%',

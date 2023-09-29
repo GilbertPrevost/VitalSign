@@ -18,9 +18,9 @@ function Password() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const proxyURL = 'https://cors-anywhere.herokuapp.com/';
-  const loginUrl = "https://staycured-clinic.azurewebsites.net/API/Login";
-  const forgotUrl = "https://staycured-clinic.azurewebsites.net/API/ForgetPWD";
+  const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
+  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Login`;
+  const forgotUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/ForgetPWD`;
   useEffect(() => {
     setUserPhoneNumber(localStorage.getItem('userPhoneNumber'));
     setUserName(localStorage.getItem("userName"));
@@ -84,7 +84,7 @@ function Password() {
     setIsLoading(true);
     console.log("requesting...", requestBody);
     axios
-      .post(proxyURL + loginUrl, requestBody, {
+      .post(loginUrl, requestBody, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -97,6 +97,12 @@ function Password() {
         if (data == "1") {
           console.log("success=", response.data.response);
           localStorage.setItem('guid', response.data.guid);
+          localStorage.setItem('password', password);
+          localStorage.setItem('gender', response.data.gender);
+          localStorage.setItem('height', response.data.height);
+          localStorage.setItem('weight', response.data.weight);
+
+
           Navigate('/Home-Page');
         }
         else {
@@ -213,7 +219,7 @@ function Password() {
             <img
               src="yourvitals_logo_panner.png"
               alt="yourVitals"
-              style={{ width: "300px", height: "100px" }}
+              style={{ width: "300px", height: "100px",marginRight:'1.5em' }}
             />
           </header>
 

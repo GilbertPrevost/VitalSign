@@ -11,7 +11,7 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
-  // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+  // const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
   const loginUrl = 'https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/SentOTP';
 
   // Determine the default country code based on the user's locale

@@ -19,13 +19,14 @@ function HomePage() {
   const [isSaveNo, setIsSaveNo] = useState(false);
   const [isLogout, setIsLogout] = useState(false);
 
-  // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
-  const loginUrl = "https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2";
-  const saveVitalsUrl = "https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/Post_V1";
+  const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
+  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2`;
+  const saveVitalsUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/Post_V1`;
 
 
+  const [userCameFromCameraVitals, setuserCameFromCameraVitals] = useState(localStorage.getItem('0'));
   const [HR, setHR] = useState(localStorage.getItem('0'));
-  const [Blood1, setBloodp] = useState(localStorage.getItem('"0"'));
+  const [Blood1, setBloodp] = useState(localStorage.getItem('0'));
   const [Temperature, setTemp] = useState(localStorage.getItem('0'));
   const [oxygen, setOxyzen] = useState(localStorage.getItem('0'));
   const [Respiration, setResp] = useState(localStorage.getItem('0'));
@@ -40,10 +41,10 @@ function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [dialogueVisible, setDialogueVisible] = useState(false);
-  const [gender, setGender] = useState("");
-  const [age, setAge] = useState(Number);
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  const [gender, setGender] = useState(localStorage.getItem('gender'));
+  const [age, setAge] = useState('');
+  const [height, setHeight] = useState(localStorage.getItem('height'));
+  const [weight, setWeight] = useState(localStorage.getItem('weight'));
   const [validationError, setValidationError] = useState(false);
   const [bmiDescription, setBMIDescription] = useState("");
   const [from, setFrom] = useState("login")
@@ -64,7 +65,8 @@ function HomePage() {
 
   const imgStyle = {
     position: 'absolute',
-    right: '10px',
+    marginTop: '0.2em',
+    right: '13px',
     height: '0.7em',
     width: '0.7em',
     transform: `rotate(${rotation}deg)`,
@@ -100,7 +102,7 @@ function HomePage() {
 
 
   const closeDialog = () => {
-    setModalIsOpen(true);
+    setModalIsOpen(false);
   };
 
 
@@ -333,19 +335,37 @@ function HomePage() {
     Navigate('/');
   };
 
-  const cancelButton = () => {
-    setIsLogout('true')
+  const okClick = () => {
+    setIsSaveYes(false)
   }
 
   const [showSaveButton, setShowSaveButton] = useState(false);
 
+  // useEffect(() => {
+  //   const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
+
+  //   if (userCameFromCameraVitals) {
+  //     setShowSaveButton(true);
+
+  //     localStorage.removeItem('cameFromCameraVitals');
+  //   }
+  // }, []);
+
+
+
+
+
 
   useEffect(() => {
     const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
-
+    setTime(getCurrentTime());
+    // callVitalsHistoryOnLoad();
 
     if (userCameFromCameraVitals) {
+      // setuserCameFromCameraVitals(localStorage.getItem('cameFromCameraVitals'));
       setShowSaveButton(true);
+      setGraph(true);
+
       setHR(localStorage.getItem('HR'));
       setResp(localStorage.getItem('resp'));
       setBloodp(localStorage.getItem('bloodp'));
@@ -365,22 +385,26 @@ function HomePage() {
 
       localStorage.removeItem('cameFromCameraVitals');
     }
+    else {
+      callVitalsHistoryOnLoad();
+    }
   }, []);
 
 
-  useEffect(() => {
-    setTime(getCurrentTime());
-    const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
-    callVitalsHistoryOnLoad();
+  // useEffect(() => {
+  //   setTime(getCurrentTime());
+  //   callVitalsHistoryOnLoad();
 
 
-  }, []);
+  // }, []);
   useEffect(() => {
     setguid(localStorage.getItem('guid'));
     setFrom(localStorage.getItem('from'));
-    handleScrollX(scrollX);
-    handleScrollY(scrollY);
-  }, [scrollX, scrollY]);
+    setGender(localStorage.getItem('gender'));
+    setHeight(localStorage.getItem('height'));
+    setWeight(localStorage.getItem('weight'));
+
+  }, []);
 
 
   const getCurrentTime = () => {
@@ -407,42 +431,42 @@ function HomePage() {
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
 
-    console.log('from', from);
-    if (from === "camera") {
+  //   console.log('from', from);
+  //   if (from === "camera") {
 
 
-      setHR(localStorage.getItem('HR'));
-      setResp(localStorage.getItem('resp'));
-      setBloodp(localStorage.getItem('bloodp'));
-      // setBloodp("ee");
-      setTemp(localStorage.getItem('temp'));
-      setBMI(localStorage.getItem('Bmi1'))
+  //     setHR(localStorage.getItem('HR'));
+  //     setResp(localStorage.getItem('resp'));
+  //     setBloodp(localStorage.getItem('bloodp'));
+  //     // setBloodp("ee");
+  //     setTemp(localStorage.getItem('temp'));
+  //     setBMI(localStorage.getItem('Bmi1'))
 
 
-      setOxyzen(localStorage.getItem('oxyzen'));
-      setSt(localStorage.getItem('st'));
-      setPr(localStorage.getItem('pr'));
-      setQrs(localStorage.getItem('qrs'));
-      setQt(localStorage.getItem('qt'));
+  //     setOxyzen(localStorage.getItem('oxyzen'));
+  //     setSt(localStorage.getItem('st'));
+  //     setPr(localStorage.getItem('pr'));
+  //     setQrs(localStorage.getItem('qrs'));
+  //     setQt(localStorage.getItem('qt'));
 
 
-    }
-    else if (from === "login") {
-      callVitalsHistoryOnLoad();
-    }
+  //   }
+  //   else if (from === "login") {
+  //     callVitalsHistoryOnLoad();
+  //   }
 
 
-    else {
-      callVitalsHistoryOnLoad();
-    }
+  //   else {
+  //     callVitalsHistoryOnLoad();
+  //   }
 
 
 
 
-  }, [from]);
+  // }, [from]);
 
 
   var requestBody = {
@@ -483,6 +507,17 @@ function HomePage() {
             setQt(dataArray[0].qtinterval);
             setSt(dataArray[0].stinterval);
           }
+        } else {
+          setBloodp('0');
+          setOxyzen('0');
+          setHR('0');
+          setTemp('0');
+          setResp('0');
+          setBMI('0');
+          setPr('0');
+          setQrs('0');
+          setQt('0');
+          setSt('0');
         }
         // }
 
@@ -491,6 +526,16 @@ function HomePage() {
       })
       .catch((error) => {
         console.error("Error:1111", error);
+        setBloodp('0');
+        setOxyzen('0');
+        setHR('0');
+        setTemp('0');
+        setResp('0');
+        setBMI('0');
+        setPr('0');
+        setQrs('0');
+        setQt('0');
+        setSt('0');
       });
 
 
@@ -512,25 +557,13 @@ function HomePage() {
     printerval: Pr,
     qrsinterval: Qrs
   };
-
   const openLogoutModel = () => {
     setIsLogout(true);
   }
 
-  const openSaveYesModel = () => {
-    setIsSaveYes(true);
-  };
-
-  const openSaveNoModel = () => {
-    setIsSaveNo(true);
-  };
 
 
   const saveVitals = () => {
-
-
-
-
     setIsLoading(true);
     console.log("Requesting....", requestBodySave);
 
@@ -548,13 +581,11 @@ function HomePage() {
         // var errorjson = JSON.parse();
         if (data == "1") {
           console.log("vitals saved");
-          openSaveYesModel()
-
-
+          setIsSaveYes(true)
         }
         else {
           console.log("vitals not saved");
-          openSaveNoModel()
+          setIsSaveNo(true);
 
         }
       })
@@ -581,15 +612,15 @@ function HomePage() {
 
   const [showGraph, setGraph] = useState(false);
 
-  useEffect(() => {
-    const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
+  // useEffect(() => {
+  //   const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
 
-    if (userCameFromCameraVitals) {
-      setGraph(true);
+  //   if (userCameFromCameraVitals) {
 
-      localStorage.removeItem('cameFromCameraVitals');
-    }
-  }, []);
+
+  //     localStorage.removeItem('cameFromCameraVitals');
+  //   }
+  // }, []);
 
 
 
@@ -670,6 +701,18 @@ function HomePage() {
     borderRadius: '5px',
   };
 
+  const okayButtonStyleSuccess = {
+    backgroundColor: 'navy',
+    color: 'white',
+    fontWeight: 'bold',
+    position: 'absolute',
+    bottom: '10px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    cursor: 'pointer',
+    padding: '10px 20px',
+    borderRadius: '5px',
+  };
   const cancelButtonStyle = {
     backgroundColor: 'navy',
     color: 'white',
@@ -699,11 +742,11 @@ function HomePage() {
   const openModal = () => {
     setIsModalOpen(true);
   };
-  const handleOkClick = () => {
+  // const handleOkClick = () => {
 
-    openModal();
+  //   openModal();
 
-  };
+  // };
 
 
   return (
@@ -722,12 +765,13 @@ function HomePage() {
         backgroundImage: `url(Indian-Girls.jpg)`,
         zIndex: '999',
       }}>
-        <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
+        <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px',marginRight:'1.5em' }} />
       </header>
 
       <div className="container" >
 
         <header style={{
+          height: '1.4em',
           padding: '9px',
           display: 'flex',
           backgroundColor: 'navy',
@@ -737,11 +781,13 @@ function HomePage() {
           alignItems: 'center',
           color: 'white',
           marginBottom: '3px',
-          fontSize: '25px'
+
         }}>
           <div style={{
-            marginLeft: '6.5em',
-            textAlign: 'center'
+            marginLeft: '9.3em',
+            textAlign: 'center',
+            fontSize: '20px',
+            fontWeight: 600
           }}>
             VITAL SIGNS
           </div>
@@ -757,6 +803,7 @@ function HomePage() {
               fontWeight: 'bold',
               display: 'flex',
               alignItems: 'center', // Center the content vertically
+              height: 18,
             }}
             onClick={() => {
               openLogoutModel();
@@ -766,9 +813,8 @@ function HomePage() {
               src="logout.png"
               alt="Back"
               style={{
-                height: '30px',
-                width: '30px',
-                marginRight: '5px', // Add some space between the image and text
+                height: '25px',
+                width: '25px',
               }}
             />
             {/* Logout */}
@@ -780,7 +826,7 @@ function HomePage() {
           <button style={okayButtonStyle} onClick={() => { backButton(); }}>
             Okay
           </button>
-          <button style={cancelButtonStyle} onClick={() => { cancelButton(); setIsLogout(false); }}>
+          <button style={cancelButtonStyle} onClick={() => { setIsLogout(false) }}>
             Cancel
           </button>
           <h2 style={headingStyle}>Alert</h2>
@@ -906,15 +952,9 @@ function HomePage() {
 
 
           <button
-            className="button ecg-button"
+            className="elctrocardiogram-button"
             onClick={toggleECGContainer}
-            style={{
-              height: '40px',
-              fontSize: '19px',
-              backgroundColor: 'navy',
-              color: 'white',
-              position: 'relative',
-            }}
+
           >
             <span className="button-text">
               {showContainer ? "Electrocardiogram" : "Electrocardiogram"}
@@ -940,7 +980,7 @@ function HomePage() {
                   }}
                 >
 
-                  <div style={ECGGraphContainer}>
+                  <div className="ECGGraphContainer">
                     {/* Electrocardiogram graph */}
                     <div
                       style={{
@@ -1021,7 +1061,7 @@ function HomePage() {
               </div>
 
               <div style={{ marginTop: '90px' }}>
-                <center><h3>ECG Intervals</h3></center>
+                <center><h3 className="ECGIntervelText">ECG Intervals</h3></center>
 
 
                 <div className="container-image">
@@ -1040,14 +1080,14 @@ function HomePage() {
 
 
                   <div className="tilte-contaniner">
-                    <div className="tilte">Normal Range</div>
-                    <div className="tilte">Normal Range</div>
+                    <div className="tilteT">Normal Range</div>
+                    <div className="tilteT">Normal Range</div>
                   </div>
 
 
                   <div className="range-container1">
-                    <div className="range3">0.06 - 01.2 Sec</div>
-                    <div className="range3">0.08 Sec</div>
+                    <div className="range5">0.06 - 01.2 Sec</div>
+                    <div className="range5">0.08 Sec</div>
                   </div>
 
 
@@ -1064,14 +1104,14 @@ function HomePage() {
 
 
                   <div className="tilte-contaniner">
-                    <div className="tilte">Normal Range</div>
-                    <div className="tilte">Normal Range</div>
+                    <div className="tilteT">Normal Range</div>
+                    <div className="tilteT">Normal Range</div>
                   </div>
 
 
                   <div className="range-container1">
-                    <div className="range4">0.12 - 0.20 Sec</div>
-                    <div className="range4">0.06 - 0.10 Sec</div>
+                    <div className="range6">0.12 - 0.20 Sec</div>
+                    <div className="range6">0.06 - 0.10 Sec</div>
                   </div>
                 </div>
               </div>
@@ -1085,19 +1125,7 @@ function HomePage() {
                 }}
               >
                 <button
-                  style={{
-                    width: "100px",
-                    height: "40px",
-                    backgroundColor: "navy",
-                    color: "white",
-                    borderRadius: "10px",
-                    border: "none",
-                    cursor: "pointer",
-                    marginBottom: "10px",
-                    marginLeft: '4.82em',
-                    // marginRight: "0.5em",
-
-                  }}
+                  className="zoomPlusButton"
                   onClick={() => {
                     zoomECG(true); // Zoom In
                     handleScrollX(scrollX * zoomFactor);
@@ -1106,17 +1134,13 @@ function HomePage() {
                 >
                   +
                 </button>
-                <div style={{ fontSize: '20px', fontWeight: "bold", marginTop: '0.4em', marginLeft: '2.5em', marginRight: '2.5em', }}>Zoom</div>
+
+
+
+                <div className="zoomText">Zoom</div>
+
                 <button
-                  style={{
-                    width: "100px",
-                    height: "40px",
-                    backgroundColor: "navy",
-                    color: "white",
-                    borderRadius: "10px",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
+                  className="zoomMinusButton"
                   onClick={() => {
                     zoomECG(false); // Zoom Out
                     handleScrollX(scrollX / zoomFactor);
@@ -1125,32 +1149,31 @@ function HomePage() {
                 >
                   -
                 </button>
+
+
               </div>
             </div>
           )}
 
           <button
-            className="button ecg-button"
+            className="button-ecg-button"
             onClick={takeVitalSigns}
-            style={{ height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', }}
           >
             Take Vital Signs
           </button>
 
           <button
-            className="button ecg-button"
+            className="button-ecg-button"
             onClick={GoToHistory}
-            style={{ height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', }}
           >
             Vital Sign History
           </button>
 
           {showSaveButton && (
             <button
-              className="button ecg-button"
+              className="button-save-button"
               onClick={saveVitals}
               disabled={isLoading}
-              style={{ height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', marginBottom: '2em' }}
             >
               SAVE
             </button>
@@ -1159,7 +1182,7 @@ function HomePage() {
           <div style={overlayStyle}></div>
 
           <div style={saveYes}>
-            <button style={okayButtonStyle} onClick={handleOkClick}>
+            <button style={okayButtonStyleSuccess} onClick={okClick}>
               Okay
             </button>
             <h2 style={headingStyle}>Alert</h2>
@@ -1167,7 +1190,7 @@ function HomePage() {
           </div>
 
           <div style={saveNo}>
-            <button style={okayButtonStyle} onClick={handleOkClick}>
+            <button style={okayButtonStyleSuccess} onClick={okClick}>
               Okay
             </button>
             <h2 style={headingStyle}>Alert</h2>
@@ -1193,27 +1216,9 @@ function HomePage() {
                 marginBottom: "-30px",
               }}
             >
-              <button
-                className="close-button"
-                onClick={() => {
-                  closeDialog();
-                  setModalIsOpen(false);
-                }}
-                style={{
-                  background: "navy",
-                  color: "white",
-                  borderColor: "white",
-                  fontWeight: "bold",
-                  padding: "3px 7px",
-                  borderRadius: "14px",
-                  fontSize: "12px",
-                  margin: "5px",
-                }}
-              >
-                x
-              </button>
+
             </div>
-            <h6> . </h6>
+            {/* <h6> . </h6> */}
             <form>
               <div
                 id="dialog_box"
@@ -1229,19 +1234,57 @@ function HomePage() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    marginTop: '1.5em',
                   }}
                 >
-                  <h2
-                    style={{
-                      margin: "0",
-                      color: "white",
-                      fontSize: "15px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Confirm and / or Edit your profile
-                  </h2>
+                  <div>
+                    <h2
+                      style={{
+                        // margin: "0",
+                        color: "white",
+                        fontSize: "13px",
+                        fontWeight: "bold",
+                        display:'flex',
+                        marginLeft:'2em',
+                        // alignItems: "center",
+                        // justifyContent: "center",
+                      }}
+                    >
+                      Confirm and / or Edit your profile
+                    </h2>
+                  </div>
+
+                  
+                    <button
+                      className="close-button"
+                      onClick={() => {
+                        setModalIsOpen(false);
+                      }}
+                      style={{
+                        // height: '20px',
+                        // width: '20px',
+                        // right:'2px',
+                        background: "navy",
+                        color: "white",
+                        borderColor: "white",
+                        fontWeight: "bold",
+                        padding: "3px 7px",
+                        borderRadius: "14px",
+                        fontSize: "14px",
+                        display:'flex',
+                        marginLeft:'1em'
+                        // marginRight: '2px',
+                        // marginTop: '1em'
+                      }}
+                    >
+                      x
+                    </button>
+
+                  
+
                 </div>
+
+
 
                 <div
                   style={{ width: "100%", height: "1px", background: "white" }}
@@ -1264,8 +1307,8 @@ function HomePage() {
                     value={gender}
                     style={{
                       width: "100%",
-                      height: "35px",
-                      marginBottom: "5px",
+                      height: "34px",
+                      // marginBottom: "5px",
                       textAlign: "center",
                     }}
                     onChange={(e) => setGender(e.target.value)}
@@ -1292,13 +1335,18 @@ function HomePage() {
                     type="number"
                     style={{
                       width: "100%",
-                      height: "35px",
+                      height: "34px",
                       marginBottom: "5px",
                       textAlign: "center",
                     }}
                     placeholder="Enter the Age"
                     value={age}
-                    onChange={(e) => setAge(e.target.value)}
+                    onChange={(e) => {
+                      const inputValue = e.target.value;
+                      if (inputValue >= 0) {
+                        setAge(inputValue);
+                      }
+                    }}
                   />
 
                   <h3
@@ -1315,13 +1363,18 @@ function HomePage() {
                     type="number"
                     style={{
                       width: "100%",
-                      height: "35px",
+                      height: "34px",
                       marginBottom: "5px",
                       textAlign: "center",
                     }}
                     placeholder="Enter the Height in Centimeters"
                     value={height}
-                    onChange={(e) => setHeight(e.target.value)}
+                    onChange={(e) => {
+                      const inputValue = e.target.value;
+                      if (inputValue >= 0) {
+                        setHeight(inputValue);
+                      }
+                    }}
                   />
 
                   <h3
@@ -1338,13 +1391,18 @@ function HomePage() {
                     type="number"
                     style={{
                       width: "100%",
-                      height: "35px",
+                      height: "34px",
                       marginBottom: "5px",
                       textAlign: "center",
                     }}
                     placeholder="Enter the Weight in Kilograms"
                     value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
+                    onChange={(e) => {
+                      const inputValue = e.target.value;
+                      if (inputValue >= 0) {
+                        setWeight(inputValue);
+                      }
+                    }}
                   />
                 </div>
                 <div
@@ -1352,9 +1410,13 @@ function HomePage() {
                 ></div>
                 <div
                   id="proceed_section"
-                  style={{ textAlign: "center", margin: "3px", marginTop: "5px" }}
+                  style={{ 
+                    textAlign: "center", 
+                    margin: "3px", 
+                    marginTop: "5px" 
+                  }}
                 >
-                  <p style={{ color: "black", fontWeight: "bold" }}>
+                  <p style={{ color: "black", fontWeight: "bold",   }}>
                     If necessary, you can edit your profile before proceeding.
                   </p>
                   <button
@@ -1454,6 +1516,7 @@ function HomePage() {
     </div >
 
   );
+
 }
 
 
