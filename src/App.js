@@ -4,31 +4,20 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getCountryCallingCode } from 'libphonenumber-js';
 
 function App() {
   const Navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('');
+  const [dialCodes, setDialCode] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
   //https://staycured-clinic-staging.azurewebsites.net/
   const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/SentOTP`;
 
   // Determine the default country code based on the user's locale
-  // useEffect(() => {
-  //   const userLocale = navigator.language;
-  //   if (userLocale.startsWith('en-US')) {
-  //     setCountryCode('us');
-  //   } else if (userLocale.startsWith('en-IN')) {
-  //     setCountryCode('in');
-  //   } else {
-  //     // Set a default country code here for other locales
-  //     setCountryCode('us');
-  //   }
-  // }, []);
-
-
   useEffect(() => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -38,12 +27,21 @@ function App() {
           axios
             .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q`)
             .then((response) => {
+              debugger;
               const results = response.data.results;
               if (results && results.length > 0) {
                 for (const component of results[0].address_components) {
                   if (component.types.includes('country')) {
-                    const countryCode = component.short_name.toLowerCase();
-                    setCountryCode(countryCode);
+                    const name = component.short_name.toLowerCase();
+                    const code = component.short_name;
+
+                    try {
+                      const dCode = getCountryCallingCode(code);
+                      setCountryCode(name);
+                      setDialCode(dCode)
+                    } catch (e) {
+                      console.error('Error determining dial code:', e);
+                    }
                     break;
                   }
                 }
@@ -65,12 +63,14 @@ function App() {
       // Geolocation is not supported, set a default country code
       setCountryCode('us');
     }
+
+    // Check for phone number in local storage
+    const savedPhoneNumber = localStorage.getItem('phoneNumberInput');
+    if (savedPhoneNumber) {
+      setPhoneNumber(savedPhoneNumber);
+    }
   }, []);
-
-
-
-
-  const handleCountryCodeChange = (value, country) => {
+  const handleCountryCodeChange = (country) => {
     const code = country.dialCode;
     setCountryCode(code);
     setPhoneNumber('');
@@ -79,11 +79,12 @@ function App() {
   const handlePhoneNumberChange = (value) => {
     if (value.length <= 15) {
       setPhoneNumber(value);
+      localStorage.setItem('phoneNumberInput', value);
     }
   };
 
   const requestBody = {
-    PhoneNumber: `+${countryCode}${phoneNumber}`,
+    PhoneNumber: `+${dialCodes}${phoneNumber}`,
     UserName: phoneNumber,
   };
 
@@ -104,7 +105,7 @@ function App() {
         if (data.indexOf('Already Exist') !== -1) {
           console.log('Already Exist');
           Navigate('/verification');
-          localStorage.setItem('userPhoneNumber', '+' + countryCode + phoneNumber);
+          localStorage.setItem('userPhoneNumber', '+' + dialCodes + phoneNumber);
           localStorage.setItem('userName', phoneNumber);
         } else {
           console.log('newnumber');
@@ -113,7 +114,7 @@ function App() {
           console.log('session id', jsonObject.Details);
           localStorage.setItem('newSessionId', jsonObject.Details);
           Navigate('/new-user');
-          localStorage.setItem('userPhoneNumber', '+' + countryCode + phoneNumber);
+          localStorage.setItem('userPhoneNumber', '+' + dialCodes + phoneNumber);
           localStorage.setItem('userName', phoneNumber);
         }
       })
@@ -126,7 +127,7 @@ function App() {
   };
 
   const handleButtonClick = () => {
-    if (!phoneNumber || phoneNumber.length < 8) {
+    if (!phoneNumber || phoneNumber.length < 7) {
       setAlertMessage('Please enter a valid Mobile number');
     } else {
       setAlertMessage('');
@@ -149,7 +150,7 @@ function App() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         height: "100vh",
-        // marginBottom: '35px', 
+        // marginBottom: '35px',
       }}>
 
         <div >
@@ -188,8 +189,7 @@ function App() {
                     country={countryCode}
                     onChange={handleCountryCodeChange}
                     inputStyle={{
-                      width: '7em',
-                      pointerEvents: 'none',
+                      width: '7em', pointerEvents: 'none',
                       backgroundColor: '#D3D3D3',
                     }}
                     containerStyle={{ textAlign: 'left' }}
@@ -198,22 +198,19 @@ function App() {
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                  {/* <input
-                    type="tel"
-                    id="newField"
-                    name="newField"
-                    value={phoneNumber}
-                    onChange={(e) => handlePhoneNumberChange(e.target.value)}
-                    style={{ width: '100%', height: '32px', marginLeft: '0.5em', border: 0, borderRadius: '4px' }}
-                  /> */}
-
                   <input
                     type="tel"
                     id="newField"
                     name="newField"
                     value={phoneNumber}
                     onChange={(e) => handlePhoneNumberChange(e.target.value)}
+
                     onKeyPress={(e) => {
+                      // If Enter key is pressed, click the button
+                      if (e.key === 'Enter') {
+                        document.getElementById('registerButton').click();
+                        return; // Exit the function to prevent the following logic from executing
+                      }
                       // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
                       const isNumericInput = /^[0-9]+$/.test(e.key);
 
@@ -222,6 +219,7 @@ function App() {
                         e.preventDefault();
                       }
                     }}
+                    
                     style={{ width: '100%', height: '32px', marginLeft: '0.5em', border: 0, borderRadius: '4px' }}
                   />
 
@@ -229,6 +227,7 @@ function App() {
               </div>
 
               <button
+                id='registerButton'
                 style={{
                   width: '152px',
                   backgroundColor: '#f8b413',

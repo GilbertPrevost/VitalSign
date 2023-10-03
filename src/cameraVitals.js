@@ -6,14 +6,11 @@ import './App.js';
 
 const CameraVitals = () => {
   const videoRef = useRef(null);
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(3);
   const [showMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
   const [timerCompleted, setTimerCompleted] = useState(false);
-
-
   // Add a state to track the flashlight status
-
 
   const [isFlashlightOn, setIsFlashlightOn] = useState(false);
 
@@ -131,7 +128,7 @@ const CameraVitals = () => {
         }
       }
     } else {
-      setCountdown(30);
+      setCountdown(3);
     }
   }, [countdown, blackScreenDetected]);
 
@@ -142,7 +139,7 @@ const CameraVitals = () => {
         setShowMessage(true);
         localStorage.setItem('isSuccess', true);
         localStorage.setItem("from", "camera");
-       
+
 
 
         HeartRate();
@@ -221,19 +218,19 @@ const CameraVitals = () => {
   const HeartRate = () => {
     let blood = ""
     // setHeartValue1(blood);
-    const randomValue = Math.floor(Math.random() * (90 - 60 + 1)) + 60;
-    console.log('HR...',randomValue);
-    // setHeartValue(String(randomValue));
-    localStorage.setItem('HR',  + randomValue)
+    const Value = Math.floor(Math.random() * (90 - 60 + 1)) + 60;
+    console.log('HR...',Value);
+    // setHeartValue(String(Value));
+    localStorage.setItem('HR',  + Value)
   };
 
 
   const oxyzen = () => {
     // let oxygen = ""
     // setOxygenValue1(oxygen);
-    const randomValue = Math.floor(Math.random() * (100 - 95 + 1)) + 95;
-    // setOxygenValue(String(randomValue));
-    localStorage.setItem('oxyzen',  + randomValue)
+    const Value = Math.floor(Math.random() * (100 - 95 + 1)) + 95;
+    // setOxygenValue(String(Value));
+    localStorage.setItem('oxyzen',  + Value)
 
 
   };
@@ -246,10 +243,10 @@ const CameraVitals = () => {
     // setBloodValue1(blood);
     const systolic = Math.floor(Math.random() * (140 - 120 + 1)) + 120;
     const diastolic = Math.floor(Math.random() * (90 - 80 + 1)) + 80;
-    const randomValue = ""+systolic +"/" +diastolic;
+    const Value = systolic +"/" +diastolic;
     // setBloodValue(String(bloodPressureValue));
-    localStorage.setItem('bloodp',  randomValue)
-    console.log('BLo...',randomValue);
+    localStorage.setItem('bloodp',  Value)
+    console.log('BLo...',Value);
   };
 
 
@@ -258,9 +255,9 @@ const CameraVitals = () => {
   const RespirationRate = () => {
     // let blood = ""
     // setRespriationValue1(blood);
-    const randomValue = Math.floor(Math.random() * (20 - 12 + 1)) + 12;
-    // setRespriationValue(String(randomValue));
-    localStorage.setItem('resp', + randomValue)
+    const Value = Math.floor(Math.random() * (20 - 12 + 1)) + 12;
+
+    localStorage.setItem('resp', + Value)
   };
 
 
@@ -269,219 +266,230 @@ const CameraVitals = () => {
   const BodyTemperature = () => {
     // let blood = ""
     // setTempValue1(blood);
-    const randomValue = Math.floor(Math.random() * (98.4 - 96 + 1)) + 96;
-    // setTempValue(String(randomValue));
-    localStorage.setItem('temp',  + randomValue)
+    const Value1 = Math.floor(Math.random() * (98.4 - 96 + 1)) + 96;
+    const Value = Value1 ;
+
+    localStorage.setItem('temp',  + Value)
+    console.log('Temp...',Value);
   };
 
 
   const QT = () => {
     // let blood = ""
     // setTempValue1(blood);
-    const randomValue = Math.floor(Math.random() * (1.2 - 0.6 + 1)) + 0.6;
-    // setTempValue(String(randomValue));
-    localStorage.setItem('qt',  + randomValue)
+    const Value1 = Math.floor(Math.random() * (1.2 - 0.6 + 1)) + 0.6;
+    const Value = Value1;
+
+    localStorage.setItem('qt',  + Value)
+    console.log('Qt...',Value);
   };
 
 
   const ST = () => {
     // let blood = ""
     // setTempValue1(blood);
-    const randomValue = Math.floor(Math.random() * (0.08 - 0.08 + 1)) + 0.08;
-    // setTempValue(String(randomValue));
-    localStorage.setItem('st',  + randomValue)
+    const Value1 = Math.floor(Math.random() * (0.08 - 0.08 + 1)) + 0.08;
+    const Value = Value1;
+
+    localStorage.setItem('st',  + Value)
+    console.log('ST...',Value);
   };
 
 
   const PR = () => {
     // let blood = ""
     // setTempValue1(blood);
-    const randomValue = Math.floor(Math.random() * (0.20 - 0.12 + 1)) + 0.12;
-    // setTempValue(String(randomValue));
-    localStorage.setItem('pr',  + randomValue)
+    const Value1 = Math.floor(Math.random() * (0.20 - 0.12 + 1)) + 0.12;
+    const Value = Value1;
+
+    localStorage.setItem('pr',  + Value)
+    console.log('PR...',Value);
   };
 
 
   const QRS = () => {
     // let blood = ""
     // setTempValue1(blood);
-    const randomValue = Math.floor(Math.random() * (0.6 - 0.10 + 1)) + 0.6;
-    // setTempValue(String(randomValue));
-    localStorage.setItem('qrs',  + randomValue)
+    const Value1 = Math.floor(Math.random() * (0.6 - 0.10 + 1)) + 0.6;
+    const Value = (Value1);
+
+    localStorage.setItem('qrs',  + Value)
+    console.log('Qrs...',Value);
   };
 
 
 
-  
+
 
   return (
 
 
     <div>
-      <header style={{
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        right: '0',
-        padding: '18px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundImage: `url(Indian-Girls.jpg)`,
-        zIndex: '999',
-      }}>
-        <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: '300px', height: '100px' }} />
-        <div style={{}}></div>
-      </header>
+    <header style={{
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      right: '0',
+      padding: '18px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundImage: `url(Indian-Girls.jpg)`,
+      zIndex: '999',
+    }}>
+      <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: "300px", height: "100px",marginRight: '1.5em' }} />
+      <div style={{}}></div>
+    </header>
 
 
-      <div className='cameraContainer'>
+    <div className='cameraContainer'>
 
 
-        <div className="camera-container">
-       
-          <header className='cameraHeader'>
+      <div className="camera-container">
+
+        <header className='cameraHeader'>
 
 
-            <button className= 'cameraBackBtn'
-              
-              onClick={() => {
-                backButton();
-              }}
-            >
-              <img
-                src="back.png"
-                alt="Back"
-                className='ImgCameraBackBtn'
-              />
-              {/* Logout */}
-            </button>
+          <button className= 'cameraBackBtn'
+
+            onClick={() => {
+              backButton();
+            }}
+          >
+            <img
+              src="back.png"
+              alt="Back"
+              className='ImgCameraBackBtn'
+            />
+            {/* Logout */}
+          </button>
 
 
-            <div className= 'cameraHeaderTxt'>
-              VITAL SIGN PROCESS
-            </div>
-
-          </header>
-
-          <div className="circle-mask">
-            <img src="/fingerprint.png" alt="Fingerprint Overlay" className="fingerprint-overlay" />
-            <video ref={videoRef} autoPlay playsInline />
+          <div className= 'cameraHeaderTxt'>
+            VITAL SIGN PROCESS
           </div>
-          <div className="camera-text">
+
+        </header>
+
+        <div className="circle-mask">
+          <img src="/fingerprint.png" alt="Fingerprint Overlay" className="fingerprint-overlay" />
+          <video ref={videoRef} autoPlay playsInline />
+        </div>
+        <div className="camera-text">
 
 
-            {/* <div>
-                <button onClick={toggleFlashlight}>
-                  {isFlashlightOn ? 'Flashlight On/Off' : 'Flashlight On/Off'}
-                </button>
-              </div> */}
+          {/* <div>
+              <button onClick={toggleFlashlight}>
+                {isFlashlightOn ? 'Flashlight On/Off' : 'Flashlight On/Off'}
+              </button>
+            </div> */}
 
 
-            <p><b>We are scanning your vital signs.</b></p>
-            <p><b>Please keep your finger stationary.</b></p>
+          <p><b>We are scanning your vital signs.</b></p>
+          <p><b>Please keep your finger stationary.</b></p>
 
 
-            <img src="ecgGIF.gif" alt="ECG GIF" style={imageStyles} />
-            {blackScreenDetected && countdown > 0 ? 
-            (
-              <div className="progress-bar-container" style={progressBarContainerStyles}>
-                <div className="progress-bar" style={progressBarStyles}>
-                  <div className="progressBarText" style={progressBarTextStyles}>
-                    {`${countdown}s Remaining...`}
-                  </div>
+          <img src="ecgGIF.gif" alt="ECG GIF" style={imageStyles} />
+          {blackScreenDetected && countdown > 0 ?
+          (
+            <div className="progress-bar-container" style={progressBarContainerStyles}>
+              <div className="progress-bar" style={progressBarStyles}>
+                <div className="progressBarText" style={progressBarTextStyles}>
+                  {`${countdown}s Remaining...`}
                 </div>
               </div>
-            ) : (
-              <>
-                {timerCompleted ? (
-                  <>
-                    <div style={{ fontSize: '24px', marginTop: '10px', color: 'green' }}>You may take your hands! </div>
-                    <div style={{ fontSize: '18px', marginTop: '10px' }}>Don't close this tab                     </div>
-                    <div style={{ fontSize: '18px', marginTop: '10px' }}>Calculating Your Vitlas is in process    </div>
-                    <div style={{ fontSize: '18px', marginTop: '10px' }}>This may take some time...               </div>
-                  </>
-                ) : (
-                  <div className='cameraAlertText'>
-                    Place your finger on the camera to take vitals.
-                  </div>
-                )}
-              </>
-            )}
-          </div>
+            </div>
+          ) : (
+            <>
+              {timerCompleted ? (
+                <>
+                  <div style={{ fontSize: '24px', marginTop: '10px', color: 'green' }}>You may take your hands! </div>
+                  <div style={{ fontSize: '18px', marginTop: '10px' }}>Don't close this tab                     </div>
+                  <div style={{ fontSize: '18px', marginTop: '10px' }}>Calculating Your Vitlas is in process    </div>
+                  <div style={{ fontSize: '18px', marginTop: '10px' }}>This may take some time...               </div>
+                </>
+              ) : (
+                <div className='cameraAlertText'>
+                  Place your finger on the camera to take vitals.
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
-
-
-      <footer className="footer1"
-        style={{
-          backgroundColor: "white",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          color: "navy",
-          marginTop: '100vh',
-          width: '100%',
-          backgroundImage: `url(Indian-Girls.jpg)`,
-        }}
-      >
-        <div>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "white",
-              textDecoration: "underline",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              window.open("https://yourvitals.ai/terms_of_use.html", "_blank");
-            }}
-          >
-            Terms Of Use
-          </button>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "white",
-              textDecoration: "underline",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              window.open(
-                "https://yourvitals.ai/privacy_policy.html",
-                "_blank"
-              );
-            }}
-          >
-            Privacy Policy
-          </button>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "white",
-              textDecoration: "underline",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              window.open("https://yourvitals.ai/#", "_blank");
-            }}
-          >
-            FAQ
-          </button>
-        </div>
-        <p>
-          <strong style={{ color: "orange" }}>YourVitals, Inc.</strong>
-          <span style={{ color: "white" }}>
-            ©2023, All Rights Reserved.
-          </span>
-        </p>
-      </footer>
-
-
     </div>
+
+
+    <footer className="footer1"
+      style={{
+        backgroundColor: "white",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        color: "navy",
+        marginTop: '100vh',
+        width: '100%',
+        backgroundImage: `url(Indian-Girls.jpg)`,
+      }}
+    >
+      <div>
+        <button
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+            color: "white",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            window.open("https://yourvitals.ai/terms_of_use.html", "_blank");
+          }}
+        >
+          Terms Of Use
+        </button>
+        <button
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+            color: "white",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            window.open(
+              "https://yourvitals.ai/privacy_policy.html",
+              "_blank"
+            );
+          }}
+        >
+          Privacy Policy
+        </button>
+        <button
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+            color: "white",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            window.open("https://yourvitals.ai/#", "_blank");
+          }}
+        >
+          FAQ
+        </button>
+      </div>
+      <p>
+        <strong style={{ color: "orange" }}>YourVitals, Inc.</strong>
+        <span style={{ color: "white" }}>
+          ©2023, All Rights Reserved.
+        </span>
+      </p>
+    </footer>
+
+
+  </div>
+
   );
 };
 

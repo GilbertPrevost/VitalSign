@@ -219,7 +219,7 @@ function OtpPage() {
                         <img
                             src="yourvitals_logo_panner.png"
                             alt="yourVitals"
-                            style={{ width: "300px", height: "100px", alignItems: 'center', justifyContent: 'center',marginRight:'1.5em' }}
+                            style={{ width: "300px", height: "100px",marginRight: '1.5em'  }}
                         />
                     </header>
                     {/* ------- */}
@@ -247,7 +247,6 @@ function OtpPage() {
                                             name="password"
                                             value={otp}
                                             onChange={handlePasswordChange}
-
                                             onKeyPress={(e) => {
                                                 // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
                                                 const isNumericInput = /^[0-9]+$/.test(e.key);
@@ -257,7 +256,6 @@ function OtpPage() {
                                                     e.preventDefault();
                                                 }
                                             }}
-
                                             disabled={isLoading}
                                             style={{
                                                 width: '100%',
@@ -267,7 +265,6 @@ function OtpPage() {
                                                 borderRadius: '5px',
                                             }}
                                         />
-
                                     </div>
                                 </div>
                                 {/* <div style={{ marginRight: '10px' }}> */}

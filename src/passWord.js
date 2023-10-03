@@ -101,6 +101,32 @@ function Password() {
           localStorage.setItem('gender', response.data.gender);
           localStorage.setItem('height', response.data.height);
           localStorage.setItem('weight', response.data.weight);
+          localStorage.setItem('userName', response.data.userName);
+          localStorage.setItem('phoneNumber', response.data.phoneNumber);
+          localStorage.setItem('firstName', response.data.firstName);
+          localStorage.setItem('lastName', response.data.lastName);
+          localStorage.setItem('bloodGroup', response.data.bloodGroup);
+          localStorage.setItem('address', response.data.address);
+          localStorage.setItem('email', response.data.email);
+          localStorage.setItem('dob', response.data.dob);
+          localStorage.setItem('medicalPredisposition', response.data.medicalPredisposition);
+          localStorage.setItem('about', response.data.about);
+          localStorage.setItem('city', response.data.city);
+          localStorage.setItem('state', response.data.state);
+          localStorage.setItem('pinCode', response.data.pinCode);
+          localStorage.setItem('regType', response.data.regType);
+          localStorage.setItem('specialistFees', response.data.specialistFees);
+          localStorage.setItem('specializationName', response.data.specializationName);
+          localStorage.setItem('profileIMG', response.data.profileIMG);
+          localStorage.setItem('weighttype', response.data.weighttype);
+          localStorage.setItem('heighttype', response.data.heighttype);
+          localStorage.setItem('inches', response.data.inches);
+          localStorage.setItem('feet', response.data.feet);
+
+
+
+
+
 
 
           Navigate('/Home-Page');
@@ -219,7 +245,7 @@ function Password() {
             <img
               src="yourvitals_logo_panner.png"
               alt="yourVitals"
-              style={{ width: "300px", height: "100px",marginRight:'1.5em' }}
+              style={{ width: "300px", height: "100px",marginRight: '1.5em' }}
             />
           </header>
 
@@ -241,6 +267,7 @@ function Password() {
             }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '50vh' }}>
                 <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '1.5em', marginBottom: '1em', marginTop: '3.2em' }}>Please Enter Your Password</label>
+                <div style={{ color: 'white', fontWeight: 'bold', alignItems: 'center', justifyContent: 'center', marginbottom: '1em' }}>{userPhoneNumber}</div>
                 <div style={{ width: '250px', marginBottom: '20px' }}>
                   <div style={{ position: 'relative', marginRight: '12px' }}>
                     <input
@@ -248,6 +275,19 @@ function Password() {
                       id="password"
                       name="password"
                       value={password}
+                      onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            document.getElementById('signinButton').click();
+                            return; // Exit the function to prevent the following logic from executing
+                          }
+                        // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
+                        const isNumericInput = /^[0-9]+$/.test(e.key);
+
+                        // If the input is not numeric, prevent it from being entered
+                        if (!isNumericInput) {
+                            e.preventDefault();
+                        }
+                    }}
                       onChange={handlePasswordChange}
                       style={{ width: '100%', padding: '6px', height: '25px', border: 'none', borderRadius: '4px' }}
                     />
@@ -276,9 +316,6 @@ function Password() {
                   />
                 </div>
 
-
-
-
                 <div style={{ display: 'flex', justifyContent: 'center', width: '300px', marginLeft: '6.5em', marginBottom: '5px' }}>
                   <div style={{ marginRight: '20px' }}>
                     <button
@@ -296,6 +333,7 @@ function Password() {
                   </div>
                   <div>
                     <button
+                    id='signinButton'
                       style={{ backgroundColor: '#f8b413', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '10px', fontWeight: 'bold' }}
                       onClick={handleButtonClick}
                     >

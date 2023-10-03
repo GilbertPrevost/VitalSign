@@ -60,7 +60,159 @@ body {
 }
 
 
+.takeVitalsContainer {
+  width: 500px;
+  /* height: 46.5em; */
+  margin-bottom: 3.5em;
+  background-color: #e5e5e6;
+  border-radius: 7px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8.6em;
+  bottom: 1em;
+  overflow-y: auto;
+  max-height: 83vh;
+  overflow-x: hidden;
 
+}
+
+.takeVitals-Container {
+  text-align: center;
+}
+
+.takeVitalsHeader {
+  height: 1.4em;
+  padding: 9px;
+  display: flex;
+  background-color: navy;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  justify-content: space-between;
+  align-items :center;
+  color: white;
+  margin-bottom: 3px;
+}
+
+.takeVitalsHeaderTxt {
+  margin-right: 5.3em;
+  text-align: center;
+  font-size: 20px;
+}
+
+.instructionStyle {
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 15px;
+}
+
+/* Define the .stepStyle class */
+.stepStyle {
+  margin-left: 2.6em;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+/* Define the .stepNumberStyle class */
+.stepNumberStyle {
+  margin-left: 1em;
+  min-width: 1.5em;
+  font-size: 0.8em;
+}
+
+.imageStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.startBtn {
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .takeVitalsContainer {
+    width: 500px;
+    height: 100%;
+    background-color: #e5e5e6;
+    border-radius: 7px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8.6em;
+    bottom: 1em;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+  }
+
+  .takeVitals-Container {
+    text-align: center;
+  }
+
+  .takeVitalsHeader {
+    display: flex;
+    background-color: navy;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 3px;
+    font-size: 25px;
+    width: 100%;
+    height: 50px;
+  }
+
+  .takeVitalsHeaderTxt {
+    margin-right: 4.3em;
+    text-align: center;
+    font-size: 20px;
+  }
+
+
+  .instructionStyle {
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 15px;
+  }
+
+  .stepStyle {
+    margin-left: 4.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5em;
+  }
+
+  .stepNumberStyle {
+    margin-left: 1em;
+    min-width: 1.5em;
+    font-size: 0.8em;
+  }
+
+  .imageStyle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4.5em;
+  }
+
+  .startBtn {
+    border-radius: 10px;
+    margin-left: 3.8em;
+
+  }
+
+}
 
 
 
@@ -244,21 +396,20 @@ body {
   max-height: calc(100vh - 10em);
   /* Set maximum height to fill the available space */
   min-height: 11em;
-
+  overflow-x: hidden;
 }
 
 .cameraHeader {
+  height: 1.4em;
+  padding: 9px;
   display: flex;
   background-color: navy;
   border: 1px solid #ccc;
   border-radius: 5px;
   justify-content: space-between;
-  align-items: center;
+  align-items :center;
   color: white;
   margin-bottom: 3px;
-  font-size: 25px;
-  width: 100%;
-  height: 50px;
 }
 
 
@@ -267,7 +418,7 @@ body {
   background-color: #000080;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 3px;
   cursor: pointer;
   border-radius: 10px;
   font-weight: bold;
@@ -1328,4 +1479,8 @@ body {
     width: 30px;
     height: 30px;
   }
+
+
+
+
 }

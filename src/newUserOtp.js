@@ -20,10 +20,10 @@ function NewUserVerification() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
-  const verifyUrl = `https://staycured-clinic.azurewebsites.net/API/ForgetPWD/OTPVerification_New`;
-  const newUrl = `https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/OTPVerification`;
-  const loginUrl = `https://staycured-clinic.azurewebsites.net/API/Login`;
-  const PasswordUpdateUrl = `https://staycured-clinic.azurewebsites.net/API/ForgetPWD/UpdateChangePassword`;
+  const verifyUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/ForgetPWD/OTPVerification_New`;
+  const newUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/OTPVerification`;
+  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Login`;
+  const PasswordUpdateUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/ForgetPWD/UpdateChangePassword`;
   const [alertMessage, setAlertMessage] = useState('');
 
   useEffect(() => {
@@ -170,11 +170,7 @@ function NewUserVerification() {
               src="yourvitals_logo_panner.png"
               alt="yourVitals"
               style={{
-                width: '300px',
-                height: '100px',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginRight:'1.5em',
+                width: "300px", height: "100px",marginRight: '1.5em'
               }}
             />
           </header>
@@ -241,9 +237,9 @@ function NewUserVerification() {
 
                         // If the input is not numeric, prevent it from being entered
                         if (!isNumericInput) {
-                          e.preventDefault();
+                            e.preventDefault();
                         }
-                      }}
+                    }}
                       disabled={isLoading}
                       style={{
                         width: '100%',
