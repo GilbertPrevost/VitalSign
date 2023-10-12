@@ -5,6 +5,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { getCountryCallingCode } from 'libphonenumber-js';
+import PhoneInput from 'react-phone-input-2';
 
 
 Modal.setAppElement("#root");
@@ -13,6 +16,10 @@ Modal.setAppElement("#root");
 
 
 function HomePage() {
+
+
+  const [countryCode, setCountryCode] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
 
   const [guid, setguid] = useState(localStorage.getItem('guid'));
@@ -27,7 +34,8 @@ function HomePage() {
 
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
   const updateUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Patient/PUT`;
-  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2`;
+  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Login`;
+  const getHistoryUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2`;
   const saveVitalsUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/Post_V1`;
 
 
@@ -44,18 +52,21 @@ function HomePage() {
   const [ST, setSt] = useState(localStorage.getItem('0'));
   const [Pr, setPr] = useState(localStorage.getItem('0'));
   const [bmi, setBMI] = useState(localStorage.getItem('0'));
-
-
   const [scrollX, setScrollX] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpen1, setModalIsOpen1] = useState(false);
 
+  const [AlertModel, setAlertModel] = useState(false);
+
   const [dialogueVisible, setDialogueVisible] = useState(false);
 
 
-
+  const [gender1, setGender1] = useState(localStorage.getItem('gender'));
+  const [age1, setAge1] = useState(localStorage.getItem('about'));
+  const [height1, setHeight1] = useState(localStorage.getItem('height'));
+  const [weight1, setWeight1] = useState(localStorage.getItem('weight'));
 
 
 
@@ -86,7 +97,7 @@ function HomePage() {
   const [heighttype, setheighttype] = useState(localStorage.getItem('heighttype'));
   const [feet, setfeet] = useState(localStorage.getItem('feet'));
   const [inches, setinches] = useState(localStorage.getItem('inches'));
-  const[isModalOpen1,setIsModalOpen1] = useState(false);
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [validationError, setValidationError] = useState(false);
   const [bmiDescription, setBMIDescription] = useState("");
   const [from, setFrom] = useState("login")
@@ -100,6 +111,38 @@ function HomePage() {
   const [isRotated, setIsRotated] = useState(false);
   const rotation = isRotated ? 90 : 0;
 
+  const [PhoneNumber, setPhoneNumber] = useState('');
+  const [dialCodes, setDialCode] = useState('');
+
+  // const [unit, setUnit] = useState("cms"); // 'cms', 'ftinches'
+  // const [weightUnit, setWeightUnit] = useState("kg");
+  
+  const toggleUnit = (e) => {
+
+    if (heighttype === "CMS") {
+      const totalInches = Math.round(height / 2.54);
+      setfeet(Math.floor(totalInches / 12));
+      setinches(totalInches % 12);
+      setheighttype("FT/IN");
+    } else {
+      debugger;
+      const totalInches = (parseInt(feet) * 12 ) + parseInt(inches);
+      setHeight(Math.round(totalInches * 2.54)); // Convert inches to cms
+      setheighttype("CMS");
+    }
+  };
+
+  const toggleWeightUnit = (e) => {
+    if (weighttype === "KG") {
+      // Checked state corresponds to lbs
+      setWeight(Math.round(weight * 2.20462)); // Convert kg to lbs
+      setweighttype("LBS");
+    } else {
+      // Unchecked state corresponds to kg
+      setWeight(Math.round(weight / 2.20462)); // Convert lbs to kg
+      setweighttype("KG");
+    }
+  };
 
   const toggleECGContainer = () => {
     setShowContainer(!showContainer);
@@ -161,18 +204,21 @@ function HomePage() {
     setIsModalOpen1(false)
     setIsModalOpen(false)
     closeModal();
+
+    login();
   };
 
 
   const handleStartClick = () => {
     const userAgent = navigator.userAgent;
     setModalIsOpen(false);
-    // navigate('/Camera');
+    // navigate('/takevitals');
     if (userAgent.match(/Android/i) || userAgent.match(/iPhone/i)) {
-      // navigate('/Camera');
+      navigate('/takevitals');
       validateForm();
     } else {
       openModal();
+      // updateProfileData();
     }
   };
 
@@ -181,9 +227,11 @@ function HomePage() {
       setValidationError(true);
     } else {
       setValidationError(false);
+      setModalIsOpen1(false);
       // navigate("/takevitals");
-      updateProfileData();
+
       calculateBMI();
+      updateProfileData();
     }
   };
 
@@ -203,12 +251,22 @@ function HomePage() {
 
 
   const calculateBMI = () => {
+    debugger;
+    var weightinKG = weight;
+
+    if (heighttype=== 'FT/IN') {
+      setHeight((feet*30.48)+(inches*2.54));
+    }
+    if(weighttype === 'LBS'){
+      weightinKG = weight*0.453592;
+    }
+    
     if (weight > 0 && height > 0) {
       const heightInMeters = height / 100;
-      const bmiValue1 = weight / (heightInMeters * heightInMeters);
+      const bmiValue1 = weightinKG / (heightInMeters * heightInMeters);
       const bmiValue = bmiValue1.toFixed(2);
-      localStorage.setItem('Bmi1', + bmiValue)
-      console.log("bMi.." + bmiValue)
+      localStorage.setItem('Bmi1',bmiValue)
+      console.log("bMi..+++--", + bmiValue)
     }
   };
 
@@ -401,9 +459,10 @@ function HomePage() {
     Navigate('/');
   };
 
-
+// msd
   const okClick = () => {
-    setIsSaveYes(false)
+    setIsSaveYes(false);
+    setShowSaveButton(false);
   }
 
 
@@ -433,6 +492,15 @@ function HomePage() {
 
 
   useEffect(() => {
+
+    const NewUserAlert = localStorage.getItem('WelcomeAlert');
+
+    if (NewUserAlert === 'true') {
+      setAlertModel(true);
+      localStorage.setItem('WelcomeAlert', 'false');
+    }
+
+
     const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
     setTime(getCurrentTime());
     // callVitalsHistoryOnLoad();
@@ -469,6 +537,11 @@ function HomePage() {
 
 
   useEffect(() => {
+
+
+
+    login();
+
     setguid(localStorage.getItem('guid'));
     setFrom(localStorage.getItem('from'));
     setGender(localStorage.getItem('gender'));
@@ -505,10 +578,13 @@ function HomePage() {
 
 
   const DateConverter = () => {
-    // debugger;
-    const dateParts = dob.split(' ')[0].split('/');
-    const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(2, '0')}-${dateParts[1].padStart(2, '0')}`;
-    return formattedDate;
+    if (dob === '') {
+      return "2000-01-01";
+    } else {
+      const dateParts = dob.split(' ')[0].split('/');
+      const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(2, '0')}-${dateParts[1].padStart(2, '0')}`;
+      return formattedDate;
+    }
   }
 
 
@@ -556,11 +632,13 @@ function HomePage() {
         if (data == "Success") {
           console.log("success=", response.data.response);
           console.log("result", response.data.result);
-          navigate("/takevitals");
+          // navigate("/takevitals");
           localStorage.setItem('gender', gender);
           localStorage.setItem('about', age);
           localStorage.setItem('height', height);
           localStorage.setItem('weight', weight);
+
+          login();
 
         }
         else {
@@ -573,8 +651,26 @@ function HomePage() {
   };
 
   const closeModal = () => {
-    debugger;
+    
     navigate('/Home-Page');
+  };
+
+
+  const modalStyle2 = {
+    display: AlertModel ? 'block' : 'none',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'navy',
+    zIndex: 1000,
+    width: '20em',
+    height: '10em',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    textAlign: 'center',
+    background: `linear-gradient(to bottom, navy 3em, white 3em)`,
   };
 
   const modalStyle1 = {
@@ -740,7 +836,7 @@ function HomePage() {
 
 
     axios
-      .post(loginUrl, requestBody, {
+      .post(getHistoryUrl, requestBody, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -915,7 +1011,7 @@ function HomePage() {
     top: 0,
     left: 0,
     width: '100%',
-    height: '100%',
+    height: '122%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     zIndex: 1000,
   };
@@ -928,7 +1024,7 @@ function HomePage() {
   const saveYes = {
     display: isSaveYes ? 'block' : 'none',
     position: 'fixed',
-    top: '50%',
+    top: '80%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'navy',
@@ -940,6 +1036,7 @@ function HomePage() {
     borderRadius: '10px',
     textAlign: 'center',
     background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
+  
   };
 
 
@@ -1019,6 +1116,19 @@ function HomePage() {
   };
 
 
+  const cancelButtonStyle1 = {
+    backgroundColor: 'navy',
+    color: 'white',
+    fontWeight: 'bold',
+    position: 'absolute',
+    bottom: '10px',
+    // right: '2em',
+    transform: 'translateX(-50%)',
+    cursor: 'pointer',
+    padding: '10px 40px',
+    borderRadius: '5px',
+  };
+
 
 
   const headingStyle = {
@@ -1030,6 +1140,170 @@ function HomePage() {
   const alertTextStyle = {
     color: 'black',
   }
+
+  const historyBoldTextStyle = {
+    fontWeight: 'bold',
+  };
+
+
+
+  var loginrequestBody = {
+    username: userPhoneNumber,
+    passwords: password
+  };
+
+
+
+  const login = () => {
+    setIsLoading(true);
+    console.log("requesting...", loginrequestBody);
+    axios
+      .post(loginUrl, loginrequestBody, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // Handle the response data here
+        console.log("data", response.data);
+        var data = response.data.result;
+        // var errorjson = JSON.parse();
+        if (data == "1") {
+          console.log("success=", response.data.response);
+          // localStorage.setItem('guid', response.data.guid);
+          localStorage.setItem('password', password);
+          setGender(response.data.gender);
+          setHeight(response.data.height);
+          setWeight(response.data.weight);
+          setAge(response.data.about);
+          setweighttype(response.data.weighttype);
+setheighttype(response.data.heighttype);
+setinches(response.data.inches);
+setfeet( response.data.feet);
+          
+          localStorage.setItem('gender', response.data.gender);
+          localStorage.setItem('height', response.data.height);
+          localStorage.setItem('weight', response.data.weight);
+          localStorage.setItem('about', response.data.about);
+           localStorage.setItem('weighttype', response.data.weighttype);
+          localStorage.setItem('heighttype', response.data.heighttype);
+          localStorage.setItem('inches', response.data.inches);
+          localStorage.setItem('feet', response.data.feet);
+
+
+          // localStorage.setItem('userName', response.data.userName);
+          // localStorage.setItem('phoneNumber', response.data.phoneNumber);
+          // localStorage.setItem('firstName', response.data.firstName);
+          // localStorage.setItem('lastName', response.data.lastName);
+          // localStorage.setItem('bloodGroup', response.data.bloodGroup);
+          // localStorage.setItem('address', response.data.address);
+          // localStorage.setItem('email', response.data.email);
+          // localStorage.setItem('dob', response.data.dob);
+          // localStorage.setItem('medicalPredisposition', response.data.medicalPredisposition);
+
+          // localStorage.setItem('city', response.data.city);
+          // localStorage.setItem('state', response.data.state);
+          // localStorage.setItem('pinCode', response.data.pinCode);
+          // localStorage.setItem('regType', response.data.regType);
+          // localStorage.setItem('specialistFees', response.data.specialistFees);
+          // localStorage.setItem('specializationName', response.data.specializationName);
+          // localStorage.setItem('profileIMG', response.data.profileIMG);
+          // localStorage.setItem('weighttype', response.data.weighttype);
+          // localStorage.setItem('heighttype', response.data.heighttype);
+          // localStorage.setItem('inches', response.data.inches);
+          // localStorage.setItem('feet', response.data.feet);
+
+
+
+
+
+
+
+          // Navigate('/Home-Page');
+        }
+        else {
+          console.log("error=", response.data.errormessage);
+          // setAlertMessage("Invalid Password");
+          // Navigate('/verification');
+        }
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error("Error:1111", error);
+      })
+      .finally(() => {
+        setIsLoading(false); // Turn off the loading spinner
+      });
+  };
+
+
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          axios
+            .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q`)
+            .then((response) => {
+             
+              const results = response.data.results;
+              if (results && results.length > 0) {
+                for (const component of results[0].address_components) {
+                  if (component.types.includes('country')) {
+                    const name = component.short_name.toLowerCase();
+                    const code = component.short_name;
+
+                    try {
+                      const dCode = getCountryCallingCode(code);
+                      setCountryCode(name);
+                      setDialCode(dCode)
+                    } catch (e) {
+                      console.error('Error determining dial code:', e);
+                    }
+                    break;
+                  }
+                }
+              }
+            })
+            .catch((error) => {
+              console.error('Error getting geolocation:', error);
+              // Set a default country code here if geolocation fails
+              setCountryCode('us');
+            });
+        },
+        (error) => {
+          console.error('Error getting geolocation:', error);
+          // Set a default country code here if geolocation fails
+          setCountryCode('us');
+        }
+      );
+    } else {
+      // Geolocation is not supported, set a default country code
+      setCountryCode('us');
+    }
+
+    // Check for phone number in local storage
+    const savedPhoneNumber = localStorage.getItem('phoneNumberInput');
+    if (savedPhoneNumber) {
+      setPhoneNumber(savedPhoneNumber);
+    }
+  }, []);
+
+
+  const handleCountryCodeChange = (country) => {
+    const code = country.dialCode;
+    setCountryCode(code);
+    setPhoneNumber('');
+  };
+
+  const togglePasswordVisibility = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
+
+
 
   return (
 
@@ -1058,6 +1332,7 @@ function HomePage() {
 
         <header style={{
           height: '1.4em',
+          // weight: '2.5em',
           padding: '9px',
           display: 'flex',
           backgroundColor: 'navy',
@@ -1078,7 +1353,6 @@ function HomePage() {
           }}>
             VITAL SIGNS
           </div>
-
 
           <button
             style={{
@@ -1112,11 +1386,53 @@ function HomePage() {
         </header>
 
 
+        <header1 style={{
+          height: '2.8em',
+
+          padding: '9px',
+          display: 'flex',
+          backgroundColor: 'navy',
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          color: 'white',
+          marginBottom: '3px',
+          marginTop: '2px'
+
+
+        }}>
+          {/* <div style={{
+            marginLeft: '9.3em',
+            textAlign: 'right',
+            fontSize: '20px',
+            fontWeight: 300
+          }}>
+            VITAL SIGNS
+          </div> */}
+
+          <div style={{ flex: 'auto', marginLeft: '4.8em' }}>
+            <p><span style={historyBoldTextStyle}>Gender:</span> {gender}</p>
+            <p><span style={historyBoldTextStyle}>Age:</span> {age}</p>
+
+          </div>
+          <div style={{ flex: '1' }}>
+          <p><span style={historyBoldTextStyle}>Height:</span> {heighttype === 'CMS'?height+' cm':feet+"\'"+inches+"\""}</p>
+            <p><span style={historyBoldTextStyle}>Weight:</span> { (weighttype == 'KG')?weight +' Kg':weight +' lbs'}</p>
+          </div>
+
+
+
+
+
+        </header1>
+
+
 
 
         <div style={logout}>
           <button style={okayButtonStyle} onClick={() => { backButton(); }}>
-            Okay
+            Logout
           </button>
           <button style={cancelButtonStyle} onClick={() => { setIsLogout(false) }}>
             Cancel
@@ -1285,7 +1601,7 @@ function HomePage() {
             className="button-ecg-button"
             onClick={GoToHistory}
           >
-            Vital Sign History
+            Vital Signs History
           </button>
 
 
@@ -1485,8 +1801,6 @@ function HomePage() {
                   </div>
 
 
-
-
                   <div className="header-container">
                     <h3 className="header-title2">PR Interval</h3>
                     <h3 className="header-title2">QRS Interval</h3>
@@ -1554,13 +1868,6 @@ function HomePage() {
               </div>
             </div>
           )}
-
-
-
-
-
-
-
 
 
 
@@ -1655,10 +1962,16 @@ function HomePage() {
                       Confirm and / or Edit your profile
                     </h2>
                   </div>
+
+
+
+
+
                   <button
                     className="close-button"
                     onClick={() => {
                       setModalIsOpen(false);
+                      login();
                     }}
                     style={{
                       // height: '20px',
@@ -1689,6 +2002,62 @@ function HomePage() {
                   id="profile_section"
                   style={{ margin: "7px", textAlign: "center" }}
                 >
+
+
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1px', }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+
+                      <PhoneInput
+                        country={countryCode}
+                        onChange={handleCountryCodeChange}
+                        inputStyle={{
+                          width: '7em', pointerEvents: 'none',
+                          backgroundColor: '#D3D3D3',
+                        }}
+                        containerStyle={{ textAlign: 'left' }}
+                        countryCodeEditable={false}
+                      // Add readOnly a comment indicating that the country dropdown is read-only
+                      />
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'flex-start', pointerEvents: 'none' }}>
+                      <input
+                        type="tel"
+                        id="newField"
+                        name="newField"
+
+                        value={userName}
+
+                        style={{ width: '13em', height: '32px', marginLeft: '0.5em', border: 0, borderRadius: '4px', border: '1.5px solid black', }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* karthi */}
+
+                  <div style={{ width: '250px', marginBottom: '20px' }}>
+                    <div style={{ position: 'relative', marginRight: '12px', marginTop: '1em' }}>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        id="password"
+                        name="password"
+                        value={password}
+
+                        style={{ width: '20.1em', padding: '6px', height: '25px', border: 'none', borderRadius: '4px', pointerEvents: 'none', border: '1px solid black', }}
+                      />
+                      <button
+                        onClick={togglePasswordVisibility}
+                        disabled={isLoading}
+                        style={{ position: 'absolute', top: '50%', right: '-3em', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer' }}
+                      >
+                        <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} style={{ fontSize: '20px' }} />
+                      </button>
+                    </div>
+                  </div>
+
+
+
+
                   <h3
                     style={{
                       color: "black",
@@ -1740,7 +2109,7 @@ function HomePage() {
                     value={age}
                     onChange={(e) => {
                       const inputValue = e.target.value;
-                      if (inputValue >= 0) {
+                      if (inputValue >= 0 && inputValue <= 120) {
                         setAge(inputValue);
                       }
                     }}
@@ -1757,6 +2126,7 @@ function HomePage() {
                   />
 
 
+                  {/* <div style={{ display: "flex", alignItems: "center" }}> */}
                   <h3
                     style={{
                       color: "black",
@@ -1764,38 +2134,71 @@ function HomePage() {
                       fontWeight: "bold",
                     }}
                   >
-                    Height (CM)
+                    Height ({heighttype})
+
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={heighttype === "ftinches"}
+                        onChange={toggleUnit}
+                      />
+                      <span className="slider"></span>
+                    </label>
                   </h3>
-                  <input
-                    id="edtheight"
-                    type="number"
-                    style={{
-                      width: "100%",
-                      height: "34px",
-                      marginBottom: "5px",
-                      textAlign: "center",
-                    }}
-                    placeholder="Enter the Height in Centimeters"
-                    value={height}
-                    onChange={(e) => {
-                      const inputValue = e.target.value;
-                      if (inputValue >= 0) {
-                        setHeight(inputValue);
-                      }
-                    }}
-                    onKeyPress={(e) => {
-                      // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
-                      const isNumericInput = /^[0-9]+$/.test(e.key);
 
-
-                      // If the input is not numeric, prevent it from being entered
-                      if (!isNumericInput) {
-                        e.preventDefault();
-                      }
-                    }}
-                  />
-
-
+                  {heighttype === "CMS" ? (
+                    <input
+                      id="edtheight"
+                      type="number"
+                      style={{
+                        width: "100%",
+                        height: "34px",
+                        marginBottom: "5px",
+                        textAlign: "center",
+                      }}
+                      placeholder="Enter the Height in Centimeters"
+                      value={height}
+                      onChange={(e) => {
+                        const inputValue = parseInt(e.target.value);
+                        if (inputValue >= 0 && inputValue <= 243) {
+                          setHeight(inputValue);
+                        } else {
+                          alert("Value out of range!");
+                        }
+                      }}
+                    />
+                  ) : (
+                    <div style={{display:'flex',flexDirection:'rows'}}>
+                      <input
+                        type="number"
+                        style={{
+                          width: "50%",
+                          height: "34px",
+                          textAlign: "center",
+                        }}
+                        value={feet}
+                        onChange={(e) =>
+                          setfeet(Math.max(0, parseInt(e.target.value)))
+                        }
+                        placeholder="Feet"
+                      />
+                      <input
+                        type="number"
+                        style={{
+                          width: "50%",
+                          height: "34px",
+                          textAlign: "center",
+                        }}
+                        value={inches}
+                        onChange={(e) =>
+                          setinches(
+                            Math.max(0, Math.min(11, parseInt(e.target.value)))
+                          )
+                        }
+                        placeholder="Inches"
+                      />
+                    </div>
+                  )}
                   <h3
                     style={{
                       color: "black",
@@ -1803,7 +2206,15 @@ function HomePage() {
                       fontWeight: "bold",
                     }}
                   >
-                    Weight (KG)
+                    Weight ({weighttype})
+                    <label className="switch" style={{ marginTop: "2px" }}>
+                      <input
+                        type="checkbox"
+                        checked={weighttype === "LBS"}
+                        onChange={toggleWeightUnit}
+                      />
+                      <span className="slider"></span>
+                    </label>
                   </h3>
                   <input
                     id="edtweight"
@@ -1814,20 +2225,25 @@ function HomePage() {
                       marginBottom: "5px",
                       textAlign: "center",
                     }}
-                    placeholder="Enter the Weight in Kilograms"
+                    placeholder={
+                      weighttype === "KG"
+                        ? "Enter the Weight in Kilograms"
+                        : "Enter the Weight in Pounds"
+                    }
                     value={weight}
                     onChange={(e) => {
                       const inputValue = e.target.value;
-                      if (inputValue >= 0) {
+                      if (
+                        inputValue >= 0 &&
+                        (weighttype === "KG"
+                          ? inputValue <= 272
+                          : inputValue <= 600)
+                      ) {
                         setWeight(inputValue);
                       }
                     }}
                     onKeyPress={(e) => {
-                      // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
                       const isNumericInput = /^[0-9]+$/.test(e.key);
-
-
-                      // If the input is not numeric, prevent it from being entered
                       if (!isNumericInput) {
                         e.preventDefault();
                       }
@@ -1924,13 +2340,14 @@ function HomePage() {
                         // justifyContent: "center",
                       }}
                     >
-                     My Profile
+                      My Profile
                     </h2>
                   </div>
                   <button
                     className="close-button"
                     onClick={() => {
                       setModalIsOpen1(false);
+                      login();
                     }}
                     style={{
                       // height: '20px',
@@ -1961,6 +2378,61 @@ function HomePage() {
                   id="profile_section"
                   style={{ margin: "7px", textAlign: "center" }}
                 >
+
+
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1px', }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+
+                      <PhoneInput
+                        country={countryCode}
+                        onChange={handleCountryCodeChange}
+                        inputStyle={{
+                          width: '7em', pointerEvents: 'none',
+                          backgroundColor: '#D3D3D3',
+                        }}
+                        containerStyle={{ textAlign: 'left' }}
+                        countryCodeEditable={false}
+                      // Add readOnly a comment indicating that the country dropdown is read-only
+                      />
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'flex-start', pointerEvents: 'none' }}>
+                      <input
+                        type="tel"
+                        // id="newField"
+                        name="newField"
+
+                        value={userName}
+
+                        style={{ width: '13em', height: '32px', marginLeft: '0.5em', border: 0, borderRadius: '4px', border: '1.5px solid black', }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* karthi */}
+
+                  <div style={{ width: '250px', marginBottom: '20px' }}>
+                    <div style={{ position: 'relative', marginRight: '12px', marginTop: '1em' }}>
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        // id="password"
+                        name="password"
+                        value={password}
+
+                        style={{ width: '20.1em', padding: '6px', height: '25px', border: 'none', borderRadius: '4px', pointerEvents: 'none', border: '1px solid black', }}
+                      />
+                      <button
+                        onClick={togglePasswordVisibility}
+                        disabled={isLoading}
+                        style={{ position: 'absolute', top: '50%', right: '-3em', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer' }}
+                      >
+                        <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} style={{ fontSize: '20px' }} />
+                      </button>
+                    </div>
+                  </div>
+
+
+
                   <h3
                     style={{
                       color: "black",
@@ -2012,7 +2484,7 @@ function HomePage() {
                     value={age}
                     onChange={(e) => {
                       const inputValue = e.target.value;
-                      if (inputValue >= 0) {
+                      if (inputValue >= 0 && inputValue <= 120) {
                         setAge(inputValue);
                       }
                     }}
@@ -2029,45 +2501,80 @@ function HomePage() {
                   />
 
 
-                  <h3
+
+{/* <div style={{ display: "flex", alignItems: "center" }}> */}
+<h3
                     style={{
                       color: "black",
                       fontSize: "14px",
                       fontWeight: "bold",
                     }}
                   >
-                    Height (CM)
+                    Height ({heighttype})
+
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={heighttype === "ftinches"}
+                        onChange={toggleUnit}
+                      />
+                      <span className="slider"></span>
+                    </label>
                   </h3>
-                  <input
-                    id="edtheight"
-                    type="number"
-                    style={{
-                      width: "100%",
-                      height: "34px",
-                      marginBottom: "5px",
-                      textAlign: "center",
-                    }}
-                    placeholder="Enter the Height in Centimeters"
-                    value={height}
-                    onChange={(e) => {
-                      const inputValue = e.target.value;
-                      if (inputValue >= 0) {
-                        setHeight(inputValue);
-                      }
-                    }}
-                    onKeyPress={(e) => {
-                      // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
-                      const isNumericInput = /^[0-9]+$/.test(e.key);
 
-
-                      // If the input is not numeric, prevent it from being entered
-                      if (!isNumericInput) {
-                        e.preventDefault();
-                      }
-                    }}
-                  />
-
-
+                  {heighttype === "CMS" ? (
+                    <input
+                      id="edtheight"
+                      type="number"
+                      style={{
+                        width: "100%",
+                        height: "34px",
+                        marginBottom: "5px",
+                        textAlign: "center",
+                      }}
+                      placeholder="Enter the Height in Centimeters"
+                      value={height}
+                      onChange={(e) => {
+                        const inputValue = parseInt(e.target.value);
+                        if (inputValue >= 0 && inputValue <= 243) {
+                          setHeight(inputValue);
+                        } else {
+                          alert("Value out of range!");
+                        }
+                      }}
+                    />
+                  ) : (
+                    <div style={{display:'flex',flexDirection:'rows'}}>
+                      <input
+                        type="number"
+                        style={{
+                          width: "50%",
+                          height: "34px",
+                          textAlign: "center",
+                        }}
+                        value={feet}
+                        onChange={(e) =>
+                          setfeet(Math.max(0, parseInt(e.target.value)))
+                        }
+                        placeholder="Feet"
+                      />
+                      <input
+                        type="number"
+                        style={{
+                          width: "50%",
+                          height: "34px",
+                          textAlign: "center",
+                        }}
+                        value={inches}
+                        onChange={(e) =>
+                          setinches(
+                            Math.max(0, Math.min(11, parseInt(e.target.value)))
+                          )
+                        }
+                        placeholder="Inches"
+                      />
+                    </div>
+                  )}
                   <h3
                     style={{
                       color: "black",
@@ -2075,7 +2582,15 @@ function HomePage() {
                       fontWeight: "bold",
                     }}
                   >
-                    Weight (KG)
+                    Weight ({weighttype})
+                    <label className="switch" style={{ marginTop: "2px" }}>
+                      <input
+                        type="checkbox"
+                        checked={weighttype === "LBS"}
+                        onChange={toggleWeightUnit}
+                      />
+                      <span className="slider"></span>
+                    </label>
                   </h3>
                   <input
                     id="edtweight"
@@ -2086,20 +2601,25 @@ function HomePage() {
                       marginBottom: "5px",
                       textAlign: "center",
                     }}
-                    placeholder="Enter the Weight in Kilograms"
+                    placeholder={
+                      weighttype === "KG"
+                        ? "Enter the Weight in Kilograms"
+                        : "Enter the Weight in Pounds"
+                    }
                     value={weight}
                     onChange={(e) => {
                       const inputValue = e.target.value;
-                      if (inputValue >= 0) {
+                      if (
+                        inputValue >= 0 &&
+                        (weighttype === "KG"
+                          ? inputValue <= 272
+                          : inputValue <= 600)
+                      ) {
                         setWeight(inputValue);
                       }
                     }}
                     onKeyPress={(e) => {
-                      // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
                       const isNumericInput = /^[0-9]+$/.test(e.key);
-
-
-                      // If the input is not numeric, prevent it from being entered
                       if (!isNumericInput) {
                         e.preventDefault();
                       }
@@ -2143,25 +2663,43 @@ function HomePage() {
         </Modal>
 
         <div style={modalStyle}>
-            <button style={okButtonStyle} onClick={setIsModalOpen1}> {/*setIsModalOpen1*/}
-              Ok
-            </button>
-            <button style={cancelButtonStyle} onClick={()=>setIsModalOpen(false)}>
-              Cancel
+          <button style={okButtonStyle} onClick={setIsModalOpen1}> {/*setIsModalOpen1*/}
+            Ok
+          </button>
+          <button style={cancelButtonStyle} onClick={() => setIsModalOpen(false)}>
+            Cancel
+          </button>
+          <h2 style={headingStyle}>Alert</h2>
+          <h4 style={alertTextStyle}>Your pulse can only be caputured using your mobile phone.<br></br>Please use mobile phone to caputure your pulse</h4>
+        </div>
+
+        <div style={modalStyle1}>
+          <button style={RefreshButtonStyle} onClick={closeModal1}>
+            Refresh
+          </button>
+          <button style={cancelButtonStyle} onClick={() => setIsModalOpen1(false)}>
+            Cancel
+          </button>
+          <h2 style={headingStyle}>Alert</h2>
+          <h4 style={alertTextStyle}>After you have caputured your pulse using your mobile phone please click refresh. </h4>
+        </div>
+
+
+        {AlertModel && (
+          <div style={overlayStyle}>
+          <div style={modalStyle2}>
+
+            <button style={cancelButtonStyle1}
+              onClick={() => setAlertModel(false)}
+            >
+              OK
             </button>
             <h2 style={headingStyle}>Alert</h2>
-            <h4 style={alertTextStyle}>Your pulse can only be caputured using your mobile phone.<br></br>Please use mobile phone to caputure your pulse</h4>
+            <h4 style={alertTextStyle}>Welcome to Your Vitals.<br></br>You are new user So your history is empty. Please set a profile and take your vital signs. </h4>
           </div>
-          <div style={modalStyle1}>
-            <button style={RefreshButtonStyle} onClick={closeModal1}>
-              Refresh
-            </button>
-            <button style={cancelButtonStyle} onClick={()=>setIsModalOpen1(false)}>
-              Cancel
-            </button>
-            <h2 style={headingStyle}>Alert</h2>
-            <h4 style={alertTextStyle}>We are waiting you to capture your pulse using your mobile phone.<br></br>After your have caputured your pulse using your mobile phone please click refresh. </h4>
           </div>
+        )}
+
 
 
 
@@ -2180,7 +2718,13 @@ function HomePage() {
           backgroundImage: `url(Indian-Girls.jpg)`,
         }}
       >
-        <div>
+        {/* <div> */}
+        <div style={{ color: "orange",display:'flex',justifyContent:'center',fontWeight:'bold'}}>YourVitals, Inc. </div>
+          <div style={{ color: "#ffffff"}}>
+          © 2023, All Rights Reserved.
+          </div>
+
+        <div className='footercontent' style={{ alignItems: 'center'}}>
           <button
             style={{
               backgroundColor: "transparent",
@@ -2227,12 +2771,6 @@ function HomePage() {
             FAQ
           </button>
         </div>
-        <p>
-          <strong style={{ color: "orange" }}>YourVitals, Inc.</strong>
-          <span style={{ color: "white" }}>
-            ©2023, All Rights Reserved.
-          </span>
-        </p>
       </footer>
       {isLoading && <LoadingSpinner />}
     </div >
@@ -2242,8 +2780,6 @@ function HomePage() {
 
 
 }
-
-
 
 
 export default HomePage;

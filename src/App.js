@@ -165,7 +165,7 @@ function App() {
             <img
               src="yourvitals_logo_panner.png"
               alt="yourVitals"
-              style={{ width: "300px", height: "100px", marginRight: '1.5em' }}
+              style={{ width: "300px", height: "100px",marginRight: '1.5em' }}
             />
           </header>
           {/* ------- */}
@@ -204,13 +204,12 @@ function App() {
                     name="newField"
                     value={phoneNumber}
                     onChange={(e) => handlePhoneNumberChange(e.target.value)}
-
                     onKeyPress={(e) => {
                       // If Enter key is pressed, click the button
-                      if (e.key === 'Enter') {
-                        document.getElementById('registerButton').click();
-                        return; // Exit the function to prevent the following logic from executing
-                      }
+    if (e.key === 'Enter') {
+      document.getElementById('registerButton').click();
+      return; // Exit the function to prevent the following logic from executing
+    }
                       // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
                       const isNumericInput = /^[0-9]+$/.test(e.key);
 
@@ -219,7 +218,6 @@ function App() {
                         e.preventDefault();
                       }
                     }}
-                    
                     style={{ width: '100%', height: '32px', marginLeft: '0.5em', border: 0, borderRadius: '4px' }}
                   />
 
@@ -227,7 +225,7 @@ function App() {
               </div>
 
               <button
-                id='registerButton'
+              id='registerButton'
                 style={{
                   width: '152px',
                   backgroundColor: '#f8b413',
@@ -244,7 +242,7 @@ function App() {
               >
                 Register or Sign In
               </button>
-              {alertMessage && <div style={{ display: 'flex', marginTop: '1em', fontWeight: 500, color: 'red' }}>{alertMessage}</div>}
+              {alertMessage && <div style={{ display: 'flex', marginTop: '1em', fontWeight: 500, color: 'red'}}>{alertMessage}</div>}
             </div>
           </div>
 
@@ -258,6 +256,7 @@ function App() {
           flexDirection: "column",
           alignItems: "center",
           color: "navy",
+          
           // marginTop: '100px',
           // marginBottom: '5px',
           // position: 'fixed',
@@ -270,11 +269,17 @@ function App() {
             width="100%"
             height="100%"
             frameBorder="0"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=staycuredmedicalclinic&zoom=18`}
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=11.02517,  76.95835&zoom=18`}
             allowFullScreen
           ></iframe>
         </div>
-        <div className='footercontent' style={{ alignItems: 'center', marginTop: '1em' }}>
+
+          <div style={{ color: "orange",display:'flex',justifyContent:'center',fontWeight:'bold',marginTop:'0.2em'}}>YourVitals, Inc. </div>
+          <div style={{ color: "#454e6f",marginTop:'0.2em'}}>
+          © 2023, All Rights Reserved.
+          </div>
+
+        <div className='footercontent' style={{ alignItems: 'center',marginTop:'0.2em',marginBottom:'0.2em'}}>
           <button
             style={{
               backgroundColor: "transparent",
@@ -321,12 +326,7 @@ function App() {
             FAQ
           </button>
         </div>
-        <p>
-          <strong style={{ color: "orange" }}>YourVitals, Inc. </strong>
-          <span style={{ color: "#454e6f" }}>
-            ©2023, All Rights Reserved.
-          </span>
-        </p>
+      
       </footer>
       {isLoading && <LoadingSpinner />}
 

@@ -349,13 +349,15 @@ const TakeVitals = () => {
           marginTop: '100vh',
           width: '100%',
           backgroundImage: `url(Indian-Girls.jpg)`,
-
-
         }}
       >
+        {/* <div> */}
+        <div style={{ color: "orange",display:'flex',justifyContent:'center',fontWeight:'bold'}}>YourVitals, Inc. </div>
+          <div style={{ color: "#ffffff"}}>
+          © 2023, All Rights Reserved.
+          </div>
 
-
-        <div>
+        <div className='footercontent' style={{ alignItems: 'center'}}>
           <button
             style={{
               backgroundColor: "transparent",
@@ -402,15 +404,7 @@ const TakeVitals = () => {
             FAQ
           </button>
         </div>
-        <p>
-          <strong style={{ color: "orange" }}>YourVitals, Inc. </strong>
-          <span style={{ color: "white" }}>
-            ©2023, All Rights Reserved.
-          </span>
-        </p>
-
       </footer>
-
 
 
     </div >

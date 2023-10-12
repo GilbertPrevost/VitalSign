@@ -6,7 +6,9 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Switch from 'react-switch';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-
+import 'react-phone-input-2/lib/style.css';
+import PhoneInput from 'react-phone-input-2'; // Import the PhoneInput component
+import { getCountryCallingCode } from 'libphonenumber-js';
 
 
 
@@ -21,42 +23,97 @@ function Password() {
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
   const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Login`;
   const forgotUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/ForgetPWD`;
+
+  
+  const [countryCode, setCountryCode] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [dialCodes, setDialCode] = useState('');
+
+
   useEffect(() => {
-    setUserPhoneNumber(localStorage.getItem('userPhoneNumber'));
-    setUserName(localStorage.getItem("userName"));
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          axios
+            .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q`)
+            .then((response) => {
+              debugger;
+              const results = response.data.results;
+              if (results && results.length > 0) {
+                for (const component of results[0].address_components) {
+                  if (component.types.includes('country')) {
+                    const name = component.short_name.toLowerCase();
+                    const code = component.short_name;
+
+                    try {
+                      const dCode = getCountryCallingCode(code);
+                      setCountryCode(name);
+                      setDialCode(dCode)
+                    } catch (e) {
+                      console.error('Error determining dial code:', e);
+                    }
+                    break;
+                  }
+                }
+              }
+            })
+            .catch((error) => {
+              console.error('Error getting geolocation:', error);
+              // Set a default country code here if geolocation fails
+              setCountryCode('us');
+            });
+        },
+        (error) => {
+          console.error('Error getting geolocation:', error);
+          // Set a default country code here if geolocation fails
+          setCountryCode('us');
+        }
+      );
+    } else {
+      // Geolocation is not supported, set a default country code
+      setCountryCode('us');
+    }
+
+    // Check for phone number in local storage
+    const savedPhoneNumber = localStorage.getItem('phoneNumberInput');
+    if (savedPhoneNumber) {
+      setPhoneNumber(savedPhoneNumber);
+    }
   }, []);
 
 
 
+
+  useEffect(() => {
+    setUserPhoneNumber(localStorage.getItem('userPhoneNumber'));
+    setUserName(localStorage.getItem("userName"));
+  }, []);
 
   const handlePhoneNumberChange = (value, country) => {
     setUserPhoneNumber(value);
   };
 
 
-
+  const handleCountryCodeChange = (country) => {
+    const code = country.dialCode;
+    setCountryCode(code);
+    setPhoneNumber('');
+  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
     console.log("pass", password);
   };
 
-
-
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-
-
-
   const toggleRememberMe = () => {
     setRememberMe(!rememberMe);
   };
-
-
-
 
   const Navigate = useNavigate();
   const backButton = () => {
@@ -123,12 +180,6 @@ function Password() {
           localStorage.setItem('inches', response.data.inches);
           localStorage.setItem('feet', response.data.feet);
 
-
-
-
-
-
-
           Navigate('/Home-Page');
         }
         else {
@@ -145,9 +196,6 @@ function Password() {
         setIsLoading(false); // Turn off the loading spinner
       });
   };
-
-
-
 
   const forgotRequest = () => {
     setIsLoading(true);
@@ -190,27 +238,14 @@ function Password() {
       });
   };
 
-
-
-
   var requestBody = {
     username: userPhoneNumber,
     passwords: password
   };
 
-
-
-
-
-
-
-
   var requestBodyforgot = {
-    Username: userName
+    Username: userPhoneNumber
   };
-
-
-
 
   const LoadingSpinner = () => {
     return (
@@ -219,9 +254,6 @@ function Password() {
       </div>
     );
   };
-
-
-
 
   return (
     <div className="main-container">
@@ -245,7 +277,7 @@ function Password() {
             <img
               src="yourvitals_logo_panner.png"
               alt="yourVitals"
-              style={{ width: "300px", height: "100px",marginRight: '1.5em' }}
+              style={{ width: "300px", height: "100px", marginRight: '1.5em' }}
             />
           </header>
 
@@ -261,13 +293,44 @@ function Password() {
             <div style={{
               position: 'absolute',
               width: '15em',
-              // Adjust the top position as needed
-              // Adjust the left position as needed
-              // Center the inner div
             }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '50vh' }}>
-                <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '1.5em', marginBottom: '1em', marginTop: '3.2em' }}>Please Enter Your Password</label>
-                <div style={{ color: 'white', fontWeight: 'bold', alignItems: 'center', justifyContent: 'center', marginbottom: '1em' }}>{userPhoneNumber}</div>
+
+
+                <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '7.5em', marginBottom: '1em', marginTop: '11.2em' }}>Phone Number:</label>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1px', }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+
+                    <PhoneInput
+                      country={countryCode}
+                      onChange={handleCountryCodeChange}
+                      inputStyle={{
+                        width: '7em', pointerEvents: 'none',
+                        backgroundColor: '#D3D3D3',
+                      }}
+                      containerStyle={{ textAlign: 'left' }}
+                      countryCodeEditable={false}
+                      readOnly // Add a comment indicating that the country dropdown is read-only
+                    />
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'flex-start', pointerEvents: 'none' }}>
+                    <input
+                      type="tel"
+                      id="newField"
+                      name="newField"
+
+                      value={userName}
+
+                      style={{ width: '100%', height: '32px', marginLeft: '0.5em', border: 0, borderRadius: '4px' }}
+                    />
+                  </div>
+                </div>
+
+
+                <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '1.5em', marginBottom: '1em', marginTop: '1.5em' }}>Please Enter Your Password</label>
+
+
                 <div style={{ width: '250px', marginBottom: '20px' }}>
                   <div style={{ position: 'relative', marginRight: '12px' }}>
                     <input
@@ -276,20 +339,18 @@ function Password() {
                       name="password"
                       value={password}
                       onKeyPress={(e) => {
-                          if (e.key === 'Enter') {
-                            document.getElementById('signinButton').click();
-                            return; // Exit the function to prevent the following logic from executing
-                          }
-                        // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
-                        const isNumericInput = /^[0-9]+$/.test(e.key);
-
-                        // If the input is not numeric, prevent it from being entered
-                        if (!isNumericInput) {
-                            e.preventDefault();
+                        if (e.key === 'Enter') {
+                          document.getElementById('signinButton').click();
+                          return;
                         }
-                    }}
+
+                        if (e.key === ' ') {
+                          e.preventDefault();
+                        }
+
+                      }}
                       onChange={handlePasswordChange}
-                      style={{ width: '100%', padding: '6px', height: '25px', border: 'none', borderRadius: '4px' }}
+                      style={{ width: '94%', marginLeft: '0.5em', padding: '6px', height: '25px', border: 'none', borderRadius: '4px' }}
                     />
                     <button
                       onClick={togglePasswordVisibility}
@@ -333,7 +394,7 @@ function Password() {
                   </div>
                   <div>
                     <button
-                    id='signinButton'
+                      id='signinButton'
                       style={{ backgroundColor: '#f8b413', color: 'white', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '10px', fontWeight: 'bold' }}
                       onClick={handleButtonClick}
                     >
@@ -355,7 +416,7 @@ function Password() {
                   onClick={handleforgotClick}
                   disabled={isLoading}
                 >
-                  Forget Password
+                  Forgot Password
                 </button>
               </div>
             </div>
@@ -380,11 +441,16 @@ function Password() {
             width="100%"
             height="100%"
             frameBorder="0"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=staycuredmedicalclinic&zoom=18`}
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q=11.02517,  76.95835&zoom=18`}
             allowFullScreen
           ></iframe>
         </div>
-        <div className='footercontent' style={{ alignItems: 'center', marginTop: '1em' }}>
+        <div style={{ color: "orange",display:'flex',justifyContent:'center',fontWeight:'bold',marginTop:'0.2em'}}>YourVitals, Inc. </div>
+          <div style={{ color: "#454e6f",marginTop:'0.2em'}}>
+          © 2023, All Rights Reserved.
+          </div>
+
+        <div className='footercontent' style={{ alignItems: 'center',marginTop:'0.2em',marginBottom:'0.2em'}}>
           <button
             style={{
               backgroundColor: "transparent",
@@ -431,12 +497,6 @@ function Password() {
             FAQ
           </button>
         </div>
-        <p>
-          <strong style={{ color: "orange" }}>YourVitals, Inc. </strong>
-          <span style={{ color: "#454e6f" }}>
-            ©2023, All Rights Reserved.
-          </span>
-        </p>
       </footer>
       {isLoading && <LoadingSpinner />}
 
@@ -445,16 +505,4 @@ function Password() {
   );
 }
 
-
-
-
 export default Password;
-
-
-
-
-
-
-
-
-
