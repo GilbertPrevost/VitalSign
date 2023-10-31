@@ -5,6 +5,7 @@ import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getCountryCallingCode } from 'libphonenumber-js';
+import { BASE_API_URL } from './content';
 
 function App() {
   const Navigate = useNavigate();
@@ -15,7 +16,7 @@ function App() {
   const [alertMessage, setAlertMessage] = useState('');
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
   //https://staycured-clinic-staging.azurewebsites.net/
-  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/MinimalRegistration/SentOTP`;
+  const loginUrl = `${BASE_API_URL}MinimalRegistration/SentOTP`;
 
   // Determine the default country code based on the user's locale
   useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
           axios
             .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q`)
             .then((response) => {
-              debugger;
+
               const results = response.data.results;
               if (results && results.length > 0) {
                 for (const component of results[0].address_components) {
@@ -38,7 +39,11 @@ function App() {
                     try {
                       const dCode = getCountryCallingCode(code);
                       setCountryCode(name);
+                      localStorage.setItem('Ccode', name);
+
+                      
                       setDialCode(dCode)
+                      localStorage.setItem('Ccode', name);
                     } catch (e) {
                       console.error('Error determining dial code:', e);
                     }
@@ -70,11 +75,15 @@ function App() {
       setPhoneNumber(savedPhoneNumber);
     }
   }, []);
-  const handleCountryCodeChange = (country) => {
-    const code = country.dialCode;
-    setCountryCode(code);
-    setPhoneNumber('');
-  };
+  const handleCountryCodeChange = (code,country) => {
+   
+       // const code = country.dialCode;
+       setDialCode(code);
+       setCountryCode(country.countryCode)
+       localStorage.setItem('Ccode', country.countryCode)
+       console.log('countrycode++', countryCode)
+       setPhoneNumber("");
+     };
 
   const handlePhoneNumberChange = (value) => {
     if (value.length <= 15) {
@@ -126,6 +135,7 @@ function App() {
       });
   };
 
+
   const handleButtonClick = () => {
     if (!phoneNumber || phoneNumber.length < 7) {
       setAlertMessage('Please enter a valid Mobile number');
@@ -165,7 +175,7 @@ function App() {
             <img
               src="yourvitals_logo_panner.png"
               alt="yourVitals"
-              style={{ width: "300px", height: "100px",marginRight: '1.5em' }}
+              style={{ width: "300px", height: "100px", marginRight: '1.5em' }}
             />
           </header>
           {/* ------- */}
@@ -173,7 +183,7 @@ function App() {
             <img src='mobileScreen.png'
               style={{
                 maxHeight: '36em',
-                opacity: '0.25', backgroundSize: 'cover',
+                opacity: '0.50', backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
               }} />
 
@@ -206,10 +216,10 @@ function App() {
                     onChange={(e) => handlePhoneNumberChange(e.target.value)}
                     onKeyPress={(e) => {
                       // If Enter key is pressed, click the button
-    if (e.key === 'Enter') {
-      document.getElementById('registerButton').click();
-      return; // Exit the function to prevent the following logic from executing
-    }
+                      if (e.key === 'Enter') {
+                        document.getElementById('registerButton').click();
+                        return; // Exit the function to prevent the following logic from executing
+                      }
                       // Check if the pressed key is a number (0-9) or a control key (e.g., Backspace)
                       const isNumericInput = /^[0-9]+$/.test(e.key);
 
@@ -225,7 +235,7 @@ function App() {
               </div>
 
               <button
-              id='registerButton'
+                id='registerButton'
                 style={{
                   width: '152px',
                   backgroundColor: '#f8b413',
@@ -242,24 +252,24 @@ function App() {
               >
                 Register or Sign In
               </button>
-              {alertMessage && <div style={{ display: 'flex', marginTop: '1em', fontWeight: 500, color: 'red'}}>{alertMessage}</div>}
+              {alertMessage && <div style={{ display: 'flex', marginTop: '1em', fontWeight: 500, color: 'red' }}>{alertMessage}</div>}
             </div>
           </div>
 
         </div>
       </div>
 
+
       <footer
         style={{
+          // marginBottom: '10em',
           backgroundColor: "white",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           color: "navy",
-          
-          // marginTop: '100px',
-          // marginBottom: '5px',
-          // position: 'fixed',
+          marginTop: 'auto',
+          zIndex: '10',
 
         }}
       >
@@ -273,13 +283,12 @@ function App() {
             allowFullScreen
           ></iframe>
         </div>
-
-          <div style={{ color: "orange",display:'flex',justifyContent:'center',fontWeight:'bold',marginTop:'0.2em'}}>YourVitals, Inc. </div>
-          <div style={{ color: "#454e6f",marginTop:'0.2em'}}>
+        <div style={{ color: "orange", display: 'flex', justifyContent: 'center', fontWeight: 'bold', marginTop: '0.2em' }}>YourVitals, Inc. </div>
+        <div style={{ color: "#454e6f", marginTop: '0.2em' }}>
           © 2023, All Rights Reserved.
-          </div>
+        </div>
 
-        <div className='footercontent' style={{ alignItems: 'center',marginTop:'0.2em',marginBottom:'0.2em'}}>
+        <div style={{ alignItems: 'center', marginTop: '0.2em', marginBottom: '0.2em' }}>
           <button
             style={{
               backgroundColor: "transparent",
@@ -326,7 +335,6 @@ function App() {
             FAQ
           </button>
         </div>
-      
       </footer>
       {isLoading && <LoadingSpinner />}
 

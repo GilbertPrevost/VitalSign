@@ -1,4 +1,5 @@
-import "./App.css";
+// import "./App.css";
+import './homePage.css'
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
@@ -8,7 +9,10 @@ import axios from "axios";
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { getCountryCallingCode } from 'libphonenumber-js';
 import PhoneInput from 'react-phone-input-2';
-
+import { BASE_API_URL, BASE_API_URL1 } from "./content";
+// import * as signalR from '@microsoft/signalr';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Modal.setAppElement("#root");
 
@@ -17,8 +21,6 @@ Modal.setAppElement("#root");
 
 function HomePage() {
 
-
-  const [countryCode, setCountryCode] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
 
@@ -33,31 +35,31 @@ function HomePage() {
 
 
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
-  const updateUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Patient/PUT`;
-  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Login`;
-  const getHistoryUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2`;
-  const saveVitalsUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/Post_V1`;
+  const updateUrl = `${BASE_API_URL1}Patient/PUT`;
+  const loginUrl = `${BASE_API_URL1}Login`;
+  const getHistoryUrl = `${BASE_API_URL1}PatientVitalSigns/GetDetails_V2`;
+  const saveVitalsUrl = `${BASE_API_URL1}PatientVitalSigns/Post_V1`;
 
 
 
 
   const [userCameFromCameraVitals, setuserCameFromCameraVitals] = useState(localStorage.getItem('0'));
-  const [HR, setHR] = useState(localStorage.getItem('0'));
-  const [Blood1, setBloodp] = useState(localStorage.getItem('0'));
-  const [Temperature, setTemp] = useState(localStorage.getItem('0'));
-  const [oxygen, setOxyzen] = useState(localStorage.getItem('0'));
-  const [Respiration, setResp] = useState(localStorage.getItem('0'));
-  const [qt, setQt] = useState(localStorage.getItem('0'));
-  const [Qrs, setQrs] = useState(localStorage.getItem('0'));
-  const [ST, setSt] = useState(localStorage.getItem('0'));
-  const [Pr, setPr] = useState(localStorage.getItem('0'));
-  const [bmi, setBMI] = useState(localStorage.getItem('0'));
+  const [HR, setHR] = useState(localStorage.getItem('HR'));
+  const [Blood1, setBloodp] = useState(localStorage.getItem('bloodp'));
+  const [Temperature, setTemp] = useState(localStorage.getItem('temp'));
+  const [oxygen, setOxyzen] = useState(localStorage.getItem('oxyzen'));
+  const [Respiration, setResp] = useState(localStorage.getItem('resp'));
+  const [qt, setQt] = useState(localStorage.getItem('qt'));
+  const [Qrs, setQrs] = useState(localStorage.getItem('qrs'));
+  const [ST, setSt] = useState(localStorage.getItem('st'));
+  const [Pr, setPr] = useState(localStorage.getItem('pr'));
+  const [bmi, setBMI] = useState(localStorage.getItem('Bmi1'));
   const [scrollX, setScrollX] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpen1, setModalIsOpen1] = useState(false);
-
+  const [UpdateModalOpen, setUpdateModalOpen] = useState(false);
   const [AlertModel, setAlertModel] = useState(false);
 
   const [dialogueVisible, setDialogueVisible] = useState(false);
@@ -111,12 +113,15 @@ function HomePage() {
   const [isRotated, setIsRotated] = useState(false);
   const rotation = isRotated ? 90 : 0;
 
+
+  const [okButtonClicked, setOkButtonClicked] = useState(false);
+  const [shouldContinueInterval, setShouldContinueInterval] = useState(true);
   const [PhoneNumber, setPhoneNumber] = useState('');
   const [dialCodes, setDialCode] = useState('');
-
+  const [countryCode, setCountryCode] = useState(localStorage.getItem('Ccode'));
   // const [unit, setUnit] = useState("cms"); // 'cms', 'ftinches'
   // const [weightUnit, setWeightUnit] = useState("kg");
-  
+
   const toggleUnit = (e) => {
 
     if (heighttype === "CMS") {
@@ -125,8 +130,8 @@ function HomePage() {
       setinches(totalInches % 12);
       setheighttype("FT/IN");
     } else {
-      debugger;
-      const totalInches = (parseInt(feet) * 12 ) + parseInt(inches);
+
+      const totalInches = (parseInt(feet) * 12) + parseInt(inches);
       setHeight(Math.round(totalInches * 2.54)); // Convert inches to cms
       setheighttype("CMS");
     }
@@ -174,11 +179,12 @@ function HomePage() {
   const navigate = useNavigate();
 
   const takeVitalSigns = () => {
+    setValidationError(false);
     setModalIsOpen(true);
   };
 
   const profileButton = () => {
-
+    setValidationError(false);
     setModalIsOpen1(true);
   };
 
@@ -204,21 +210,35 @@ function HomePage() {
     setIsModalOpen1(false)
     setIsModalOpen(false)
     closeModal();
-
+    callVitalsHistoryOnLoad();
     login();
   };
 
 
+  const closeModal12 = () => {
+    setIsModalOpen1(false)
+    setIsModalOpen(false)
+    closeModal();
+  };
+
+
+
   const handleStartClick = () => {
-    const userAgent = navigator.userAgent;
-    setModalIsOpen(false);
-    // navigate('/takevitals');
-    if (userAgent.match(/Android/i) || userAgent.match(/iPhone/i)) {
-      navigate('/takevitals');
-      validateForm();
+    if (!gender || age <= 0 || height <= 0 || weight <= 0) {
+      setValidationError(true);
     } else {
-      openModal();
-      // updateProfileData();
+
+      const userAgent = navigator.userAgent;
+      setValidationError(false);
+      setModalIsOpen(false);
+      // navigate('/takevitals');
+      if (userAgent.match(/Android/i) || userAgent.match(/iPhone/i)) {
+        navigate('/takevitals');
+        validateForm();
+      } else {
+        openModal();
+        // updateProfileData();
+      }
     }
   };
 
@@ -229,7 +249,7 @@ function HomePage() {
       setValidationError(false);
       setModalIsOpen1(false);
       // navigate("/takevitals");
-
+      setUpdateModalOpen(true);
       calculateBMI();
       updateProfileData();
     }
@@ -251,21 +271,21 @@ function HomePage() {
 
 
   const calculateBMI = () => {
-    debugger;
+
     var weightinKG = weight;
 
-    if (heighttype=== 'FT/IN') {
-      setHeight((feet*30.48)+(inches*2.54));
+    if (heighttype === 'FT/IN') {
+      setHeight((feet * 30.48) + (inches * 2.54));
     }
-    if(weighttype === 'LBS'){
-      weightinKG = weight*0.453592;
+    if (weighttype === 'LBS') {
+      weightinKG = weight * 0.453592;
     }
-    
+
     if (weight > 0 && height > 0) {
       const heightInMeters = height / 100;
       const bmiValue1 = weightinKG / (heightInMeters * heightInMeters);
       const bmiValue = bmiValue1.toFixed(2);
-      localStorage.setItem('Bmi1',bmiValue)
+      localStorage.setItem('Bmi1', bmiValue)
       console.log("bMi..+++--", + bmiValue)
     }
   };
@@ -459,7 +479,7 @@ function HomePage() {
     Navigate('/');
   };
 
-// msd
+  // msd
   const okClick = () => {
     setIsSaveYes(false);
     setShowSaveButton(false);
@@ -482,10 +502,6 @@ function HomePage() {
   //   }
   // }, []);
 
-
-
-
-
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -503,11 +519,12 @@ function HomePage() {
 
     const userCameFromCameraVitals = localStorage.getItem('cameFromCameraVitals');
     setTime(getCurrentTime());
-    // callVitalsHistoryOnLoad();
+
 
 
     if (userCameFromCameraVitals) {
       // setuserCameFromCameraVitals(localStorage.getItem('cameFromCameraVitals'));
+      debugger;
       setShowSaveButton(true);
       setshowElectrodiagram(true);
       setGraph(true);
@@ -537,8 +554,6 @@ function HomePage() {
 
 
   useEffect(() => {
-
-
 
     login();
 
@@ -651,7 +666,7 @@ function HomePage() {
   };
 
   const closeModal = () => {
-    
+
     navigate('/Home-Page');
   };
 
@@ -659,13 +674,30 @@ function HomePage() {
   const modalStyle2 = {
     display: AlertModel ? 'block' : 'none',
     position: 'fixed',
-    top: '50%',
-    left: '50%',
+    top: '35%',
+    left: '55%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'navy',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     zIndex: 1000,
     width: '20em',
     height: '10em',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '10px',
+    textAlign: 'center',
+    background: `linear-gradient(to bottom, navy 3em, white 3em)`,
+  };
+
+  const openModalStyle = {
+    display: UpdateModalOpen ? 'block' : 'none',
+    position: 'fixed',
+    top: '40%',
+    left: '51%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    zIndex: 1000,
+    width: '20em',
+    height: '7em',
     padding: '20px',
     border: '1px solid #ccc',
     borderRadius: '10px',
@@ -677,9 +709,9 @@ function HomePage() {
     display: isModalOpen1 ? 'block' : 'none',
     position: 'fixed',
     top: '50%',
-    left: '50%',
+    left: '52.5%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'navy',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     zIndex: 1000,
     width: '20em',
     height: '10em',
@@ -689,13 +721,70 @@ function HomePage() {
     textAlign: 'center',
     background: `linear-gradient(to bottom, navy 3em, white 3em)`,
   };
+
+  const overlayStyle = {
+    display: isModalOpen ? 'block' : 'none',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '122.5%',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Semi-transparent black background
+    zIndex: 999, // Lower z-index to be below the modal
+  };
+
+  const saveoverlayStyle = {
+    display: isSaveYes ? 'block' : 'none',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '122.5%',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Semi-transparent black background
+    zIndex: 999, // Lower z-index to be below the modal
+  }
+
+  const logoutoverlayStyle = {
+    display: isLogout ? 'block' : 'none',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Semi-transparent black background
+    zIndex: 999, // Lower z-index to be below the modal
+  }
+
+  const grayOverlayStyle = {
+    display: AlertModel ? 'block' : 'none',
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.2)", // Gray background with 50% opacity
+    zIndex: 999, // Make it appear above other content
+  };
+
+  const grayUpdateOverlayStyle = {
+    display: UpdateModalOpen ? 'block' : 'none',
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.2)", // Gray background with 50% opacity
+    zIndex: 999, // Make it appear above other content
+  };
+
   const modalStyle = {
     display: isModalOpen ? 'block' : 'none',
     position: 'fixed',
     top: '50%',
-    left: '50%',
+    left: '52.5%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'navy',
+    // backgroundColor: 'navy',
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
     zIndex: 1000,
     width: '20em',
     height: '9.5em',
@@ -705,6 +794,7 @@ function HomePage() {
     textAlign: 'center',
     background: `linear-gradient(to bottom, navy 3em, white 3em)`,
   };
+
   const okButtonStyle = {
     backgroundColor: 'navy',
     color: 'white',
@@ -821,6 +911,54 @@ function HomePage() {
     PatientGUID: guid
   };
 
+  const callHistoryOnLoop = () => {
+    console.log('Function called when component');
+    console.log("requesting", requestBody);
+
+    axios
+      .post(getHistoryUrl, requestBody, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log("data", response.data);
+        var data = response.data.length;
+        console.log("datalenght", data)
+        const olddata = localStorage.getItem('olddatalength')
+        if (olddata != data) {
+          // alert("New Vital history is added")
+          toast("The New Vitals record is captured. Now you can refresh to see the latest vital records.");
+          setShouldContinueInterval(false); // Stop the interval if condition is met
+          // setInterval(() => {
+          closeModal1();
+          // callVitalsHistoryOnLoad();
+          // login();
+          // navigate("/Home-Page");
+          // }, 3000);
+
+        }
+      })
+      .catch((error) => {
+        console.error("Error:1111", error);
+      });
+  };
+
+  useEffect(() => {
+    if (okButtonClicked && shouldContinueInterval) {
+      callHistoryOnLoop();
+
+      // Set up the interval
+      const interval = setInterval(() => {
+        if (shouldContinueInterval) { // Check the condition before calling the function
+          callHistoryOnLoop();
+        }
+      }, 5000);
+
+      // Cleanup on unmount or when dependencies change
+      return () => clearInterval(interval);
+    }
+  }, [okButtonClicked, shouldContinueInterval]);
 
 
 
@@ -843,7 +981,8 @@ function HomePage() {
       })
       .then((response) => {
         console.log("data", response.data);
-        var data = response.data.errormessage;
+        var data = response.data.length;
+        localStorage.setItem('olddatalength', data)
         var dataArray = response.data;
         console.log("array lenth", dataArray.length);
 
@@ -922,18 +1061,11 @@ function HomePage() {
     setIsLogout(true);
   }
 
-
-
-
-
+  // const connection = new signalR.HubConnectionBuilder().withUrl(`https://staycured-clinic-staging.azurewebsites.net/API/notificationHub`).build();
 
   const saveVitals = () => {
     setIsLoading(true);
     console.log("Requesting....", requestBodySave);
-
-
-
-
     axios
       .post(saveVitalsUrl, requestBodySave, {
         headers: {
@@ -947,7 +1079,8 @@ function HomePage() {
         // var errorjson = JSON.parse();
         if (data == "1") {
           console.log("vitals saved");
-          setIsSaveYes(true)
+          setShowSaveButton(false);
+          setIsSaveYes(true);
         }
         else {
           console.log("vitals not saved");
@@ -955,6 +1088,10 @@ function HomePage() {
 
 
         }
+        // connection.start().then(() => {
+        //   console.log('Connected!');
+        // }).catch(err => console.error(err));
+        // connection.invoke("SendNotification", "Vitals saved!").catch(err => console.error(err));
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -971,13 +1108,6 @@ function HomePage() {
 
 
 
-  const LoadingSpinner = () => {
-    return (
-      <div className="loading-spinner">
-        <div className="spinner"></div>
-      </div>
-    );
-  };
 
 
 
@@ -1005,16 +1135,16 @@ function HomePage() {
 
 
 
-  const overlayStyle = {
-    display: isModalOpen ? 'block' : 'none',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '122%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 1000,
-  };
+  // const overlayStyle = {
+  //   display: isModalOpen ? 'block' : 'none',
+  //   position: 'fixed',
+  //   top: 0,
+  //   left: 0,
+  //   width: '100%',
+  //   height: '122%',
+  //   backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  //   zIndex: 1000,
+  // };
 
 
 
@@ -1024,8 +1154,8 @@ function HomePage() {
   const saveYes = {
     display: isSaveYes ? 'block' : 'none',
     position: 'fixed',
-    top: '80%',
-    left: '50%',
+    top: '50%',
+    left: '55%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'navy',
     zIndex: 1000,
@@ -1036,7 +1166,7 @@ function HomePage() {
     borderRadius: '10px',
     textAlign: 'center',
     background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
-  
+
   };
 
 
@@ -1044,7 +1174,7 @@ function HomePage() {
     display: isSaveNo ? 'block' : 'none',
     position: 'fixed',
     top: '50%',
-    left: '50%',
+    left: '55%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'navy',
     zIndex: 1000,
@@ -1061,8 +1191,8 @@ function HomePage() {
   const logout = {
     display: isLogout ? 'block' : 'none',
     position: 'fixed',
-    top: '50%',
-    left: '50%',
+    top: '33%',
+    left: '51.5%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'navy',
     zIndex: 1000,
@@ -1073,6 +1203,7 @@ function HomePage() {
     borderRadius: '10px',
     textAlign: 'center',
     background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
+
   };
 
 
@@ -1091,6 +1222,7 @@ function HomePage() {
 
 
   const okayButtonStyleSuccess = {
+
     backgroundColor: 'navy',
     color: 'white',
     fontWeight: 'bold',
@@ -1102,6 +1234,7 @@ function HomePage() {
     padding: '10px 20px',
     borderRadius: '5px',
   };
+
   const cancelButtonStyle = {
     backgroundColor: 'navy',
     color: 'white',
@@ -1138,6 +1271,7 @@ function HomePage() {
 
 
   const alertTextStyle = {
+    // marginTop: '1em',
     color: 'black',
   }
 
@@ -1176,17 +1310,17 @@ function HomePage() {
           setHeight(response.data.height);
           setWeight(response.data.weight);
           setAge(response.data.about);
-          setweighttype(response.data.weighttype);
-setheighttype(response.data.heighttype);
-setinches(response.data.inches);
-setfeet( response.data.feet);
-          
+          setweighttype(response.data.weighttype === '' ? 'KG' : response.data.weighttype);
+          setheighttype(response.data.heighttype === '' ? 'CMS' : response.data.heighttype);
+          setinches(response.data.inches);
+          setfeet(response.data.feet);
+
           localStorage.setItem('gender', response.data.gender);
           localStorage.setItem('height', response.data.height);
           localStorage.setItem('weight', response.data.weight);
           localStorage.setItem('about', response.data.about);
-           localStorage.setItem('weighttype', response.data.weighttype);
-          localStorage.setItem('heighttype', response.data.heighttype);
+          localStorage.setItem('weighttype', response.data.weighttype === '' ? 'KG' : response.data.weighttype);
+          localStorage.setItem('heighttype', response.data.heighttype === '' ? 'CMS' : response.data.heighttype);
           localStorage.setItem('inches', response.data.inches);
           localStorage.setItem('feet', response.data.feet);
 
@@ -1238,50 +1372,6 @@ setfeet( response.data.feet);
 
 
   useEffect(() => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          axios
-            .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q`)
-            .then((response) => {
-             
-              const results = response.data.results;
-              if (results && results.length > 0) {
-                for (const component of results[0].address_components) {
-                  if (component.types.includes('country')) {
-                    const name = component.short_name.toLowerCase();
-                    const code = component.short_name;
-
-                    try {
-                      const dCode = getCountryCallingCode(code);
-                      setCountryCode(name);
-                      setDialCode(dCode)
-                    } catch (e) {
-                      console.error('Error determining dial code:', e);
-                    }
-                    break;
-                  }
-                }
-              }
-            })
-            .catch((error) => {
-              console.error('Error getting geolocation:', error);
-              // Set a default country code here if geolocation fails
-              setCountryCode('us');
-            });
-        },
-        (error) => {
-          console.error('Error getting geolocation:', error);
-          // Set a default country code here if geolocation fails
-          setCountryCode('us');
-        }
-      );
-    } else {
-      // Geolocation is not supported, set a default country code
-      setCountryCode('us');
-    }
 
     // Check for phone number in local storage
     const savedPhoneNumber = localStorage.getItem('phoneNumberInput');
@@ -1303,6 +1393,13 @@ setfeet( response.data.feet);
   };
 
 
+  const LoadingSpinner = () => {
+    return (
+      <div className="homePage-loading-spinner">
+        <div className="homePage-spinner"></div>
+      </div>
+    );
+  };
 
 
   return (
@@ -1327,7 +1424,7 @@ setfeet( response.data.feet);
       </header>
 
 
-      <div className="container" >
+      <div className="homePageContainer" >
 
 
         <header style={{
@@ -1385,6 +1482,7 @@ setfeet( response.data.feet);
 
         </header>
 
+        <ToastContainer />
 
         <header1 style={{
           height: '2.8em',
@@ -1411,14 +1509,14 @@ setfeet( response.data.feet);
             VITAL SIGNS
           </div> */}
 
-          <div style={{ flex: 'auto', marginLeft: '4.8em' }}>
+          <div style={{ flex: 'auto', marginLeft: '3.7em' }}>
             <p><span style={historyBoldTextStyle}>Gender:</span> {gender}</p>
             <p><span style={historyBoldTextStyle}>Age:</span> {age}</p>
 
           </div>
           <div style={{ flex: '1' }}>
-          <p><span style={historyBoldTextStyle}>Height:</span> {heighttype === 'CMS'?height+' cm':feet+"\'"+inches+"\""}</p>
-            <p><span style={historyBoldTextStyle}>Weight:</span> { (weighttype == 'KG')?weight +' Kg':weight +' lbs'}</p>
+            <p><span style={historyBoldTextStyle}>Height:</span> {heighttype === 'CMS' ? height + ' cm' : feet + "\'" + inches + "\""}</p>
+            <p><span style={historyBoldTextStyle}>Weight:</span> {(weighttype == 'KG') ? weight + ' Kg' : weight + ' lbs'}</p>
           </div>
 
 
@@ -1427,10 +1525,8 @@ setfeet( response.data.feet);
 
         </header1>
 
-
-
-
-        <div style={logout}>
+        <div style={logoutoverlayStyle} onClick={() => setIsLogout(false)}></div>
+        <div style={logout} >
           <button style={okayButtonStyle} onClick={() => { backButton(); }}>
             Logout
           </button>
@@ -1442,18 +1538,18 @@ setfeet( response.data.feet);
         </div>
 
 
-        <div className="image-container">
+        <div className="homePage-image-container">
           <img src="hypertension.png" alt="Blood Pressure" className="image1" />
           <img src="oxygen.png" alt="Oxygen Saturation" className="image1" /></div>
 
 
-        <div className="header-container">
-          <h4 className="header-title">Blood Pressure</h4>
-          <h4 className="header-title">Oxygen Saturation</h4>
+        <div className="homePage-header-container">
+          <h4 className="homePageHeader-title">Blood Pressure</h4>
+          <h4 className="homePageHeader-title">Oxygen Saturation</h4>
         </div>
 
 
-        <div className="details-container">
+        <div className="homePage-details-container">
           {Blood1 !== 0 ? (
             <>
               <div className="value">{Blood1}</div>
@@ -1473,7 +1569,7 @@ setfeet( response.data.feet);
 
 
 
-        <div className="tilte-contaniner">
+        <div className="homePage-tilte-contaniner">
           <div className="tilte">Normal Range</div>
           <div className="tilte">Normal Range</div>
         </div>
@@ -1481,26 +1577,26 @@ setfeet( response.data.feet);
 
 
 
-        <div className="range-container">
+        <div className="homePage-range-container">
           <div className="range">120/80 - 140/90</div>
           <div className="range">95 - 100</div>
         </div>
 
 
-        <div className="image-container">
+        <div className="homePage-image-container">
           <img src="heart.png" alt="Heart Rate" className="image" />
           <img src="Thermometer.png" alt="Body Temperature" className="image" /></div>
 
 
-        <div className="header-container1 ">
-          <h4 className="header-title1">Heart Rate</h4>
-          <h4 className="header-title1">Body Temperature</h4>
+        <div className="homePage-header-container1 ">
+          <h4 className="homePageHeader-title1">Heart Rate</h4>
+          <h4 className="homePageHeader-title1">Body Temperature</h4>
         </div>
 
 
 
 
-        <div className="details-container">
+        <div className="homePage-details-container">
           {HR !== 0 ? (
             <>
               <div className="value">{HR}</div>
@@ -1520,30 +1616,30 @@ setfeet( response.data.feet);
 
 
 
-        <div className="tilte-contaniner">
+        <div className="homePage-tilte-contaniner">
           <div className="tilte">Normal Range</div>
           <div className="tilte">Normal Range</div>
         </div>
 
 
-        <div className="range-container1">
+        <div className="homePage-range-container1">
           <div className="range1">60 - 90</div>
           <div className="range1">96 F - 98.4 F</div>
         </div>
 
 
-        <div className="image-container">
+        <div className="homePage-image-container">
           <img src="lungs.png" alt="Respiration Rate" className="image" />
           <img src="bmi_icon.png" alt="Body Mass Index" className="image" /></div>
 
 
-        <div className="header-container">
-          <h4 className="header-title">Respiration Rate</h4>
-          <h4 className="header-title">Body Mass Index</h4>
+        <div className="homePage-header-container">
+          <h4 className="homePageHeader-title">Respiration Rate</h4>
+          <h4 className="homePageHeader-title">Body Mass Index</h4>
         </div>
 
 
-        <div className="details-container">
+        <div className="homePage-details-container">
           {Respiration !== 0 ? (
             <>
               <div className="value">{Respiration}</div>
@@ -1564,57 +1660,29 @@ setfeet( response.data.feet);
         </div>
 
 
-        <div className="tilte-contaniner">
+        <div className="homePage-tilte-contaniner">
           <div className="tilte">Normal Range</div>
           <div className="tilte">Normal Range</div>
         </div>
 
 
-        <div className="range-container2">
+        <div className="homePage-range-container2">
           <div className="range2">12 - 20</div>
           <div className="range2">18.5 - 25</div>
         </div>
 
 
-        <div className="footer" style={{ display: 'flex', flexDirection: 'column' }}>
-
-
-
-
-          <button
-            className="button-ecg-button"
-            onClick={profileButton}
-          >
-            Profile
-          </button>
-
-
-          <button
-            className="button-ecg-button"
-            onClick={takeVitalSigns}
-          >
-            Take Vital Signs
-          </button>
-
-
-          <button
-            className="button-ecg-button"
-            onClick={GoToHistory}
-          >
-            Vital Signs History
-          </button>
-
-
+        <div className="homePageFooter" style={{ display: 'flex', flexDirection: 'column' }}>
 
 
           {showElectrodiagram && (
             <button
-              className="elctrocardiogram-button"
+              className="homePageElctrocardiogram-button"
               onClick={toggleECGContainer}
 
 
             >
-              <span className="button-text">
+              <span className="homePageButton-text">
                 {showContainer ? "Electrocardiogram" : "Electrocardiogram"}
               </span>
               <img
@@ -1624,11 +1692,6 @@ setfeet( response.data.feet);
               />
             </button>
           )}
-
-
-
-
-
 
           {showContainer && (
             <div className="white-container" style={{ marginBottom: '10px', width: "96%", background: "#e5e5e6;", position: "relative" }}>
@@ -1761,25 +1824,25 @@ setfeet( response.data.feet);
 
 
               <div style={{ marginTop: '90px' }}>
-                <center><h3 className="ECGIntervelText">ECG Intervals</h3></center>
+                <center><h3 className="homePageECGIntervelText">ECG Intervals</h3></center>
 
 
 
 
-                <div className="container-image">
+                <div className="homePageContainer-image">
 
 
 
 
-                  <div className="header-container">
-                    <h3 className="header-title2">QT Interval</h3>
-                    <h3 className="header-title2">ST Segment</h3>
+                  <div className="homePage-header-container">
+                    <h3 className="homePageHeader-title2">QT Interval</h3>
+                    <h3 className="homePageHeader-title2">ST Segment</h3>
                   </div>
 
 
 
 
-                  <div className="details-container">
+                  <div className="homePage-details-container">
                     <div className="value"> {qt} </div>
                     <div className="value"> {ST} </div>
                   </div>
@@ -1787,7 +1850,7 @@ setfeet( response.data.feet);
 
 
 
-                  <div className="tilte-contaniner">
+                  <div className="homePage-tilte-contaniner">
                     <div className="tilteT">Normal Range</div>
                     <div className="tilteT">Normal Range</div>
                   </div>
@@ -1795,21 +1858,21 @@ setfeet( response.data.feet);
 
 
 
-                  <div className="range-container1">
+                  <div className="homePage-range-container1">
                     <div className="range5">0.06 - 01.2 Sec</div>
                     <div className="range5">0.08 Sec</div>
                   </div>
 
 
-                  <div className="header-container">
-                    <h3 className="header-title2">PR Interval</h3>
-                    <h3 className="header-title2">QRS Interval</h3>
+                  <div className="homePage-header-container">
+                    <h3 className="homePageHeader-title2">PR Interval</h3>
+                    <h3 className="homePageHeader-title2">QRS Interval</h3>
                   </div>
 
 
 
 
-                  <div className="details-container">
+                  <div className="homePage-details-container">
                     <div className="value"> {Pr} </div>
                     <div className="value"> {Qrs} </div>
                   </div>
@@ -1817,7 +1880,7 @@ setfeet( response.data.feet);
 
 
 
-                  <div className="tilte-contaniner">
+                  <div className="homePage-tilte-contaniner">
                     <div className="tilteT">Normal Range</div>
                     <div className="tilteT">Normal Range</div>
                   </div>
@@ -1825,7 +1888,7 @@ setfeet( response.data.feet);
 
 
 
-                  <div className="range-container1">
+                  <div className="homePage-range-container1">
                     <div className="range6">0.12 - 0.20 Sec</div>
                     <div className="range6">0.06 - 0.10 Sec</div>
                   </div>
@@ -1870,21 +1933,44 @@ setfeet( response.data.feet);
           )}
 
 
+          <button
+            className="homePage-ecg-button"
+            onClick={profileButton}
+          >
+            Profile
+          </button>
+
+
+          <button
+            className="homePage-ecg-button"
+            onClick={takeVitalSigns}
+          >
+            Take Vital Signs
+          </button>
+
+
+          <button
+            className="homePage-ecg-button"
+            onClick={GoToHistory}
+          >
+            Vital Signs History
+          </button>
+
 
           {showSaveButton && (
             <button
-              className="button-save-button"
+              className="homePage-ecg-button"
               onClick={saveVitals}
               disabled={isLoading}
             >
-              SAVE
+              Save
             </button>
           )}
 
 
-          <div style={overlayStyle}></div>
 
 
+          <div style={saveoverlayStyle} onClick={() => setIsSaveYes(false)}></div>
           <div style={saveYes}>
             <button style={okayButtonStyleSuccess} onClick={okClick}>
               Okay
@@ -1894,15 +1980,16 @@ setfeet( response.data.feet);
           </div>
 
 
-          <div style={saveNo}>
-            <button style={okayButtonStyleSuccess} onClick={okClick}>
-              Okay
-            </button>
-            <h2 style={headingStyle}>Alert</h2>
-            <h4 style={alertTextStyle}>Network issue please take vitlas once again.</h4>
+
+          <div overlayClassName="homePageOverlay">
+            <div style={saveNo}>
+              <button style={okayButtonStyleSuccess} onClick={okClick}>
+                Okay
+              </button>
+              <h2 style={headingStyle}>Alert</h2>
+              <h4 style={alertTextStyle}>Network issue please take vitlas once again.</h4>
+            </div>
           </div>
-
-
 
 
 
@@ -1914,10 +2001,10 @@ setfeet( response.data.feet);
           isOpen={modalIsOpen}
           onRequestClose={closeDialog}
           contentLabel="Take Vital Signs"
-          className="modal"
-          overlayClassName="overlay"
+          className="homePageTakeVitalsModal"
+          overlayClassName="homePageOverlay"
         >
-          <div className="modal-content">
+          <div >
             <div
               style={{
                 display: "flex",
@@ -1968,7 +2055,7 @@ setfeet( response.data.feet);
 
 
                   <button
-                    className="close-button"
+
                     onClick={() => {
                       setModalIsOpen(false);
                       login();
@@ -2008,6 +2095,7 @@ setfeet( response.data.feet);
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
 
                       <PhoneInput
+                        disabled={true}
                         country={countryCode}
                         onChange={handleCountryCodeChange}
                         inputStyle={{
@@ -2058,7 +2146,7 @@ setfeet( response.data.feet);
 
 
 
-                  <h3
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2066,7 +2154,7 @@ setfeet( response.data.feet);
                     }}
                   >
                     Gender
-                  </h3>
+                  </h4>
                   <select
                     id="edtgender"
                     value={gender}
@@ -2087,7 +2175,7 @@ setfeet( response.data.feet);
                   </select>
 
 
-                  <h3
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2095,12 +2183,12 @@ setfeet( response.data.feet);
                     }}
                   >
                     Age
-                  </h3>
+                  </h4>
                   <input
                     id="edtage"
                     type="number"
                     style={{
-                      width: "100%",
+                      width: "96%",
                       height: "34px",
                       marginBottom: "5px",
                       textAlign: "center",
@@ -2127,7 +2215,7 @@ setfeet( response.data.feet);
 
 
                   {/* <div style={{ display: "flex", alignItems: "center" }}> */}
-                  <h3
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2139,19 +2227,19 @@ setfeet( response.data.feet);
                     <label className="switch">
                       <input
                         type="checkbox"
-                        checked={heighttype === "ftinches"}
+                        checked={heighttype === "FT/IN"}
                         onChange={toggleUnit}
                       />
                       <span className="slider"></span>
                     </label>
-                  </h3>
+                  </h4>
 
                   {heighttype === "CMS" ? (
                     <input
                       id="edtheight"
                       type="number"
                       style={{
-                        width: "100%",
+                        width: "96%",
                         height: "34px",
                         marginBottom: "5px",
                         textAlign: "center",
@@ -2159,16 +2247,14 @@ setfeet( response.data.feet);
                       placeholder="Enter the Height in Centimeters"
                       value={height}
                       onChange={(e) => {
-                        const inputValue = parseInt(e.target.value);
-                        if (inputValue >= 0 && inputValue <= 243) {
+                        const inputValue = e.target.value;
+                        if (inputValue >= 0 && inputValue <= 272) {
                           setHeight(inputValue);
-                        } else {
-                          alert("Value out of range!");
                         }
                       }}
                     />
                   ) : (
-                    <div style={{display:'flex',flexDirection:'rows'}}>
+                    <div style={{ display: 'flex', flexDirection: 'rows' }}>
                       <input
                         type="number"
                         style={{
@@ -2178,7 +2264,7 @@ setfeet( response.data.feet);
                         }}
                         value={feet}
                         onChange={(e) =>
-                          setfeet(Math.max(0, parseInt(e.target.value)))
+                          setfeet(Math.max(0, Math.min(8, parseInt(e.target.value))))
                         }
                         placeholder="Feet"
                       />
@@ -2199,7 +2285,7 @@ setfeet( response.data.feet);
                       />
                     </div>
                   )}
-                  <h3
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2215,12 +2301,12 @@ setfeet( response.data.feet);
                       />
                       <span className="slider"></span>
                     </label>
-                  </h3>
+                  </h4>
                   <input
                     id="edtweight"
                     type="number"
                     style={{
-                      width: "100%",
+                      width: "96%",
                       height: "34px",
                       marginBottom: "5px",
                       textAlign: "center",
@@ -2262,7 +2348,7 @@ setfeet( response.data.feet);
                   </p>
                   <button
                     type="button"
-                    className="button"
+                    className="homePageButton"
                     style={{
                       backgroundColor: '#f8b413',
                       color: "white",
@@ -2277,7 +2363,7 @@ setfeet( response.data.feet);
                   </button>
                   {validationError && (
                     <p style={{ color: "red", fontWeight: "bold" }}>
-                      Please fill in all required fields correctly.
+                      Please fill all required fields.
                     </p>
                   )}
                 </div>
@@ -2295,10 +2381,10 @@ setfeet( response.data.feet);
           isOpen={modalIsOpen1}
           onRequestClose={closeDialog1}
           contentLabel="Take Vital Signs"
-          className="modal"
-          overlayClassName="overlay"
+          className="homePageTakeVitalsModal"
+          overlayClassName="homePageOverlay"
         >
-          <div className="modal-content">
+          <div>
             <div
               style={{
                 display: "flex",
@@ -2384,6 +2470,7 @@ setfeet( response.data.feet);
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
 
                       <PhoneInput
+                        disabled={true}
                         country={countryCode}
                         onChange={handleCountryCodeChange}
                         inputStyle={{
@@ -2433,7 +2520,7 @@ setfeet( response.data.feet);
 
 
 
-                  <h3
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2441,7 +2528,7 @@ setfeet( response.data.feet);
                     }}
                   >
                     Gender
-                  </h3>
+                  </h4>
                   <select
                     id="edtgender"
                     value={gender}
@@ -2462,7 +2549,7 @@ setfeet( response.data.feet);
                   </select>
 
 
-                  <h3
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2470,12 +2557,12 @@ setfeet( response.data.feet);
                     }}
                   >
                     Age
-                  </h3>
+                  </h4>
                   <input
                     id="edtage"
                     type="number"
                     style={{
-                      width: "100%",
+                      width: "96%",
                       height: "34px",
                       marginBottom: "5px",
                       textAlign: "center",
@@ -2502,8 +2589,8 @@ setfeet( response.data.feet);
 
 
 
-{/* <div style={{ display: "flex", alignItems: "center" }}> */}
-<h3
+                  {/* <div style={{ display: "flex", alignItems: "center" }}> */}
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2515,19 +2602,19 @@ setfeet( response.data.feet);
                     <label className="switch">
                       <input
                         type="checkbox"
-                        checked={heighttype === "ftinches"}
+                        checked={heighttype === "FT/IN"}
                         onChange={toggleUnit}
                       />
                       <span className="slider"></span>
                     </label>
-                  </h3>
+                  </h4>
 
                   {heighttype === "CMS" ? (
                     <input
                       id="edtheight"
                       type="number"
                       style={{
-                        width: "100%",
+                        width: "96%",
                         height: "34px",
                         marginBottom: "5px",
                         textAlign: "center",
@@ -2535,16 +2622,14 @@ setfeet( response.data.feet);
                       placeholder="Enter the Height in Centimeters"
                       value={height}
                       onChange={(e) => {
-                        const inputValue = parseInt(e.target.value);
-                        if (inputValue >= 0 && inputValue <= 243) {
+                        const inputValue = e.target.value;
+                        if (inputValue >= 0 && inputValue <= 272) {
                           setHeight(inputValue);
-                        } else {
-                          alert("Value out of range!");
                         }
                       }}
                     />
                   ) : (
-                    <div style={{display:'flex',flexDirection:'rows'}}>
+                    <div style={{ display: 'flex', flexDirection: 'rows' }}>
                       <input
                         type="number"
                         style={{
@@ -2554,7 +2639,7 @@ setfeet( response.data.feet);
                         }}
                         value={feet}
                         onChange={(e) =>
-                          setfeet(Math.max(0, parseInt(e.target.value)))
+                          setfeet(Math.max(0, Math.min(8, parseInt(e.target.value))))
                         }
                         placeholder="Feet"
                       />
@@ -2575,7 +2660,7 @@ setfeet( response.data.feet);
                       />
                     </div>
                   )}
-                  <h3
+                  <h4
                     style={{
                       color: "black",
                       fontSize: "14px",
@@ -2591,12 +2676,12 @@ setfeet( response.data.feet);
                       />
                       <span className="slider"></span>
                     </label>
-                  </h3>
+                  </h4>
                   <input
                     id="edtweight"
                     type="number"
                     style={{
-                      width: "100%",
+                      width: "96%",
                       height: "34px",
                       marginBottom: "5px",
                       textAlign: "center",
@@ -2638,7 +2723,7 @@ setfeet( response.data.feet);
                   </p>
                   <button
                     type="button"
-                    className="button"
+                    className="homePageButton"
                     style={{
                       backgroundColor: '#f8b413',
                       color: "white",
@@ -2653,7 +2738,7 @@ setfeet( response.data.feet);
                   </button>
                   {validationError && (
                     <p style={{ color: "red", fontWeight: "bold" }}>
-                      Please fill in all required fields correctly.
+                      Please fill all required fields.
                     </p>
                   )}
                 </div>
@@ -2661,23 +2746,39 @@ setfeet( response.data.feet);
             </form>
           </div>
         </Modal>
+        <div style={grayUpdateOverlayStyle}></div>
+        <div style={openModalStyle}>
+          <h2 style={headingStyle}>Alert</h2>
+          <h4 style={alertTextStyle}>
+            Profile Updated successfully.
+          </h4>
+          <button style={cancelButtonStyle1} onClick={() => setUpdateModalOpen(false)}>
+            OK
+          </button>
+        </div>
 
+        <div style={overlayStyle} onClick={() => setIsModalOpen(false)}></div>
         <div style={modalStyle}>
-          <button style={okButtonStyle} onClick={setIsModalOpen1}> {/*setIsModalOpen1*/}
+          <button style={okButtonStyle} onClick={() => {
+            setOkButtonClicked(true); // setting state to true when Ok button is clicked
+            setIsModalOpen1(true);
+          }}> {/*setIsModalOpen1*/}
             Ok
           </button>
           <button style={cancelButtonStyle} onClick={() => setIsModalOpen(false)}>
             Cancel
           </button>
           <h2 style={headingStyle}>Alert</h2>
-          <h4 style={alertTextStyle}>Your pulse can only be caputured using your mobile phone.<br></br>Please use mobile phone to caputure your pulse</h4>
+          <h4 style={alertTextStyle}>Your pulse can only be caputured using your mobile phone.<br></br>Please use mobile phone to caputure your pulse.</h4>
         </div>
 
+
+        <div style={overlayStyle} onClick={() => setIsModalOpen(false)}></div>
         <div style={modalStyle1}>
           <button style={RefreshButtonStyle} onClick={closeModal1}>
             Refresh
           </button>
-          <button style={cancelButtonStyle} onClick={() => setIsModalOpen1(false)}>
+          <button style={cancelButtonStyle} onClick={closeModal12}>
             Cancel
           </button>
           <h2 style={headingStyle}>Alert</h2>
@@ -2685,46 +2786,57 @@ setfeet( response.data.feet);
         </div>
 
 
+        {/* <div onClick={() => setAlertModel(true)} style={logoutoverlayStyle} ></div>
         {AlertModel && (
-          <div style={overlayStyle}>
           <div style={modalStyle2}>
-
+            <h2 style={headingStyle}>Alert</h2>
+            <h4 style={alertTextStyle}>Welcome to Your Vitals.<br></br>You are new user, so your history is empty. Please set a profile and take your Vital Signs. </h4>
             <button style={cancelButtonStyle1}
               onClick={() => setAlertModel(false)}
             >
               OK
             </button>
-            <h2 style={headingStyle}>Alert</h2>
-            <h4 style={alertTextStyle}>Welcome to Your Vitals.<br></br>You are new user So your history is empty. Please set a profile and take your vital signs. </h4>
           </div>
+        )} */}
+
+
+        <div onClick={() => setAlertModel(true)} style={grayOverlayStyle}></div>
+        {AlertModel && (
+          <div style={modalStyle2}>
+            <h2 style={headingStyle}>Alert</h2>
+            <h4 style={alertTextStyle}>
+              Welcome to Your Vitals.<br></br>You are a new user, so your history is empty. Please set a profile and take your Vital Signs.
+            </h4>
+            <button style={cancelButtonStyle1} onClick={() => setAlertModel(false)}>
+              OK
+            </button>
           </div>
         )}
-
 
 
 
       </div>
 
 
-      <footer className="footer1"
+      <footer className="homePagefooter"
         style={{
           backgroundColor: "white",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           color: "navy",
-          marginTop: '100vh',
+          // marginTop: '100vh',
           width: '100%',
           backgroundImage: `url(Indian-Girls.jpg)`,
         }}
       >
         {/* <div> */}
-        <div style={{ color: "orange",display:'flex',justifyContent:'center',fontWeight:'bold'}}>YourVitals, Inc. </div>
-          <div style={{ color: "#ffffff"}}>
+        <div style={{ color: "orange", display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>YourVitals, Inc. </div>
+        <div style={{ color: "#ffffff" }}>
           © 2023, All Rights Reserved.
-          </div>
+        </div>
 
-        <div className='footercontent' style={{ alignItems: 'center'}}>
+        <div style={{ alignItems: 'center' }}>
           <button
             style={{
               backgroundColor: "transparent",
@@ -2783,4 +2895,3 @@ setfeet( response.data.feet);
 
 
 export default HomePage;
-

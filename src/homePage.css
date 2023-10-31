@@ -1,0 +1,7101 @@
+.homePage-loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+}
+
+.homePage-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    /* Apply the spin animation */
+}
+
+.homePageContainer {
+    width: 500px;
+    height: 100vh;
+    margin-bottom: 3.5em;
+    background-color: #e5e5e6;
+    border-radius: 7px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8.6em;
+    bottom: 1em;
+    /* overflow-y: auto; */
+    /* Enable vertical scrolling */
+    /* max-height: 100vh; */
+    /* Set maximum height to fill the available space */
+    min-height: 11em;
+
+
+}
+
+.homePage-image-container,
+.homePage-header-container,
+.homePage-header-container1,
+.homePage-details-container,
+.homePage-range-container,
+.homePage-range-container1,
+.homePage-range-container2,
+.homePage-tilte-contaniner {
+    display: flex;
+}
+
+.image1 {
+    max-width: 10%;
+    height: 10%;
+    margin-right: 70px;
+    margin-left: 115px;
+    margin-top: 10px;
+}
+
+
+.image {
+    max-width: 10%;
+    height: 10%;
+    margin-right: 80px;
+    margin-left: 112px;
+    margin-top: 30px;
+}
+
+
+.homePageHeader-title {
+    /* display: flex; */
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 43px;
+    margin-left: 84px;
+    margin-top: 8px;
+}
+
+
+.homePageHeader-title1 {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 39px;
+    margin-left: 104px;
+    margin-top: 8px;
+}
+
+
+
+.homePage-details-container .value {
+    background-color: #ffb33a;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 70px;
+    margin-right: 35px;
+    margin-top: 5px;
+    width: 25%;
+}
+
+
+.homePage-tilte-contaniner .tilte {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 99px;
+    margin-right: 64px;
+}
+
+
+.homePage-tilte-contaniner .tilteT {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 95px;
+    margin-right: 50px;
+}
+
+
+
+.homePage-range-container .range {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 87px;
+    margin-right: 83px;
+    font-weight: bold;
+}
+
+
+.homePage-range-container1 .range1 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 115px;
+    margin-right: 65px;
+    font-weight: bold;
+}
+
+
+.homePage-range-container2 .range2 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 115px;
+    margin-right: 77px;
+    margin-bottom: 20px;
+    font-weight: bold;
+
+
+}
+
+
+.homePage-range-container1 .range3 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 82px;
+    margin-right: 77px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+
+.homePage-range-container1 .range4 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 82px;
+    margin-right: 55px;
+    margin-bottom: 25px;
+    font-weight: bold;
+
+
+}
+
+
+.homePage-range-container1 .range5 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 85px;
+    margin-right: 65px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+
+.homePage-range-container1 .range6 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 85px;
+    margin-right: 45px;
+    margin-bottom: 25px;
+    font-weight: bold;
+
+
+}
+
+
+.homePageFooter {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.homePageElctrocardiogram-button {
+
+
+    height: 40px;
+    font-size: 19px;
+    background-color: navy;
+    color: white;
+    position: relative;
+    margin-top: 0.5em;
+    margin-left: 3.5em;
+    margin-bottom: 0.5em;
+    margin-right: 2.5em;
+    border-radius: 10px;
+
+
+}
+
+.homePageButton-text {
+    /* font-weight: semi-bold; */
+
+    color: white;
+    font-size: 20px;
+}
+
+
+.homePage-ecg-button {
+    height: 40px;
+    font-size: 19px;
+    background-color: navy;
+    color: white;
+    margin-top: 0.8em;
+    margin-left: 3.5em;
+    margin-right: 2.5em;
+    border-radius: 10px;
+    /* margin-bottom: 3em; */
+}
+
+
+.ECGGraphContainer {
+    display: flex;
+    background-color: #efefef;
+    transform-origin: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.2s, height 0.2s;
+    overflow: auto;
+    width: 96%;
+    transform: scale(var(--zoomLevel));
+}
+
+
+.homePageECGIntervelText {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 90px;
+    margin-left: 5em;
+    /* margin-right: 3.4em; */
+}
+
+
+.homePageContainer-image {
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+
+.homePageHeader-title2 {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 55px;
+    margin-left: 95px;
+    margin-top: 8px;
+}
+
+
+.zoomText {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0.4em;
+    margin-left: 3em;
+    margin-right: 2.5em;
+}
+
+
+.zoomPlusButton {
+    width: 100px;
+    height: 40px;
+    background-color: navy;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-left: 6em;
+}
+
+
+.zoomMinusButton {
+    width: 100px;
+    height: 40px;
+    background-color: navy;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.homePageOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.homePageTakeVitalsModal {
+    position: absolute;
+    top: 10em;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    /* height: 535px; */
+    /* Adjust the width as needed */
+}
+
+.switch {
+    position: absolute;
+    margin-left: 2em;
+    width: 46px;
+    height: 25px;
+}
+
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #ccc;
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+.homePageButton {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+
+
+}
+
+.homePagefooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2.6em;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 10px;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a shadow to the footer */
+}
+
+/* .logoutModal {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 52.5%;
+    transform: translate(-50%, -50%);
+    background-color: navy;
+    z-index: 1000;
+    width: 20em;
+    height: 8.5em;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    background-color:rgba(0, 0, 0, 0.5) ;
+} */
+
+
+@media only screen
+  and (min-device-width: 360px)
+  and (max-device-width: 480px)
+    and (orientation: portrait) {
+
+        .homePageContainer {
+            width: 500px;
+            height: 70em;
+            margin-bottom: 5.5em;
+            background-color: #e5e5e6;
+            border-radius: 7px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 8.6em;
+            bottom: 1em;
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+            /* max-height: 100vh; */
+            /* Set maximum height to fill the available space */
+            min-height: 115vh;
+
+
+        }
+
+        .logoutModal {
+            display: block;
+            /* or 'none' based on your logic */
+            position: fixed;
+            top: 30%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            background-color: navy;
+            z-index: 1000;
+            width: 20em;
+            height: 8.5em;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+        }
+
+        .homePage-image-container,
+        .homePage-header-container,
+        .homePage-header-container1,
+        .homePage-details-container,
+        .homePage-range-container,
+        .homePage-range-container1,
+        .homePage-range-container2,
+        .homePage-tilte-contaniner {
+            display: flex;
+        }
+
+        .image1 {
+            max-width: 10%;
+            height: 10%;
+            margin-right: 70px;
+            margin-left: 120px;
+            margin-top: 10px;
+        }
+
+
+        .image {
+            max-width: 10%;
+            height: 10%;
+            margin-right: 70px;
+            margin-left: 120px;
+            margin-top: 30px;
+        }
+
+
+        .homePageHeader-title {
+            /* display: flex; */
+            margin: 0;
+            font-size: 14px;
+            text-align: center;
+            margin-right: 45px;
+            margin-left: 90px;
+            margin-top: 8px;
+        }
+
+
+        .homePageHeader-title1 {
+            margin: 0;
+            font-size: 14px;
+            text-align: center;
+            margin-right: 48px;
+            margin-left: 105px;
+            margin-top: 8px;
+        }
+
+
+
+        .homePage-details-container .value {
+            background-color: #ffb33a;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            margin-left: 75px;
+            margin-right: 42px;
+            margin-top: 5px;
+            /* width: 25%; */
+        }
+
+
+        .homePage-tilte-contaniner .tilte {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-left: 103px;
+            margin-right: 65px;
+        }
+
+
+        .homePage-tilte-contaniner .tilteT {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-left: 105px;
+            margin-right: 50px;
+        }
+
+
+
+        .homePage-range-container .range {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 95px;
+            margin-right: 73px;
+            font-weight: bold;
+        }
+
+
+        .homePage-range-container1 .range1 {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 120px;
+            margin-right: 63px;
+            font-weight: bold;
+        }
+
+
+        .homePage-range-container2 .range2 {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 120px;
+            margin-right: 76px;
+            margin-bottom: 20px;
+            font-weight: bold;
+
+
+        }
+
+
+        .homePage-range-container1 .range3 {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 82px;
+            margin-right: 77px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+
+        .homePage-range-container1 .range4 {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 82px;
+            margin-right: 55px;
+            margin-bottom: 25px;
+            font-weight: bold;
+
+
+        }
+
+
+        .homePage-range-container1 .range5 {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 95px;
+            margin-right: 63px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+
+        .homePage-range-container1 .range6 {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 95px;
+            margin-right: 45px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .homePageFooter {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .homePageElctrocardiogram-button {
+            height: 40px;
+            font-size: 19px;
+            background-color: navy;
+            color: white;
+            position: relative;
+            margin-top: 0.5em;
+            margin-left: 15%;
+            margin-bottom: 0.8%;
+            margin-right: 7.5%;
+            border-radius: 10px;
+
+
+        }
+
+        .homePageButton-text {
+            /* font-weight: semi-bold; */
+
+            color: white;
+            font-size: 20px;
+        }
+
+
+        .homePage-ecg-button {
+            height: 40px;
+            font-size: 19px;
+            background-color: navy;
+            color: white;
+            margin-top: 0.8em;
+            margin-left: 15%;
+            margin-right: 7%;
+            border-radius: 10px;
+            /* margin-bottom: 3em; */
+        }
+
+
+        .ECGGraphContainer {
+            display: flex;
+            background-color: #efefef;
+            transform-origin: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 0.2s, height 0.2s;
+            overflow: auto;
+            width: 96%;
+            transform: scale(var(--zoomLevel));
+        }
+
+
+        .homePageECGIntervelText {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 90px;
+            margin-left: 5em;
+            /* margin-right: 3.4em; */
+        }
+
+
+        .homePageContainer-image {
+            margin-top: 10px;
+            padding-top: 5px;
+        }
+
+
+        .homePageHeader-title2 {
+            margin: 0;
+            font-size: 14px;
+            text-align: center;
+            margin-right: 55px;
+            margin-left: 105px;
+            margin-top: 8px;
+        }
+
+
+        .zoomText {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 0.4em;
+            margin-left: 3em;
+            margin-right: 2.5em;
+        }
+
+
+        .zoomPlusButton {
+            width: 100px;
+            height: 40px;
+            background-color: navy;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-left: 6em;
+        }
+
+
+        .zoomMinusButton {
+            width: 100px;
+            height: 40px;
+            background-color: navy;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+
+        .homePageOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .homePageTakeVitalsModal {
+            position: absolute;
+            height: 39em;
+            top: 55%;
+            /* left: 50%; */
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            /* height: 535px; */
+            /* Adjust the width as needed */
+        }
+
+        .switch {
+            position: absolute;
+            margin-left: 2em;
+            width: 46px;
+            height: 25px;
+        }
+
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 17px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #ccc;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        .homePageButton {
+            background-color: #1976D2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+
+
+        }
+
+        .homePagefooter {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2.6em;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 10px;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+            /* Optional: Add a shadow to the footer */
+        }
+
+}
+
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+}
+
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 2) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+/* ----------- HTC One ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+/* ----------- Google Pixel ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+}
+
+/* ----------- Google Pixel XL ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+}
+
+/* ----------- Nexus 4 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 384px)
+  and (device-height: 592px)
+  and (-webkit-device-pixel-ratio: 2) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+/* ----------- Nexus 5 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 592px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+/* ----------- Nexus 6 and 6P ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 592px)
+  and (-webkit-device-pixel-ratio: 4) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+
+}
+
+/* ----------- Windows Phone ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 480px)
+  and (device-height: 800px) {
+    .homePageContainer {
+        width: 500px;
+        height: 70em;
+        margin-bottom: 5.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        /* max-height: 100vh; */
+        /* Set maximum height to fill the available space */
+        min-height: 115vh;
+
+
+    }
+
+    .logoutModal {
+        display: block;
+        /* or 'none' based on your logic */
+        position: fixed;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        background-color: navy;
+        z-index: 1000;
+        width: 20em;
+        height: 8.5em;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, navy 3.3em, white 3.3em);
+    }
+
+    .homePage-image-container,
+    .homePage-header-container,
+    .homePage-header-container1,
+    .homePage-details-container,
+    .homePage-range-container,
+    .homePage-range-container1,
+    .homePage-range-container2,
+    .homePage-tilte-contaniner {
+        display: flex;
+    }
+
+    .image1 {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 10px;
+    }
+
+
+    .image {
+        max-width: 10%;
+        height: 10%;
+        margin-right: 70px;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+
+
+    .homePageHeader-title {
+        /* display: flex; */
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 45px;
+        margin-left: 90px;
+        margin-top: 8px;
+    }
+
+
+    .homePageHeader-title1 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 48px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+
+    .homePage-details-container .value {
+        background-color: #ffb33a;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 75px;
+        margin-right: 42px;
+        margin-top: 5px;
+        /* width: 25%; */
+    }
+
+
+    .homePage-tilte-contaniner .tilte {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 103px;
+        margin-right: 65px;
+    }
+
+
+    .homePage-tilte-contaniner .tilteT {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 105px;
+        margin-right: 50px;
+    }
+
+
+
+    .homePage-range-container .range {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 73px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range1 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 63px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container2 .range2 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 120px;
+        margin-right: 76px;
+        margin-bottom: 20px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range3 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 77px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range4 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 82px;
+        margin-right: 55px;
+        margin-bottom: 25px;
+        font-weight: bold;
+
+
+    }
+
+
+    .homePage-range-container1 .range5 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 63px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+
+    .homePage-range-container1 .range6 {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-left: 95px;
+        margin-right: 45px;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+
+    .homePageFooter {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .homePageElctrocardiogram-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        position: relative;
+        margin-top: 0.5em;
+        margin-left: 15%;
+        margin-bottom: 0.8%;
+        margin-right: 7.5%;
+        border-radius: 10px;
+
+
+    }
+
+    .homePageButton-text {
+        /* font-weight: semi-bold; */
+
+        color: white;
+        font-size: 20px;
+    }
+
+
+    .homePage-ecg-button {
+        height: 40px;
+        font-size: 19px;
+        background-color: navy;
+        color: white;
+        margin-top: 0.8em;
+        margin-left: 15%;
+        margin-right: 7%;
+        border-radius: 10px;
+        /* margin-bottom: 3em; */
+    }
+
+
+    .ECGGraphContainer {
+        display: flex;
+        background-color: #efefef;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.2s, height 0.2s;
+        overflow: auto;
+        width: 96%;
+        transform: scale(var(--zoomLevel));
+    }
+
+
+    .homePageECGIntervelText {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 90px;
+        margin-left: 5em;
+        /* margin-right: 3.4em; */
+    }
+
+
+    .homePageContainer-image {
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+
+
+    .homePageHeader-title2 {
+        margin: 0;
+        font-size: 14px;
+        text-align: center;
+        margin-right: 55px;
+        margin-left: 105px;
+        margin-top: 8px;
+    }
+
+
+    .zoomText {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 0.4em;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+
+
+    .zoomPlusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-left: 6em;
+    }
+
+
+    .zoomMinusButton {
+        width: 100px;
+        height: 40px;
+        background-color: navy;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .homePageOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .homePageTakeVitalsModal {
+        position: absolute;
+        height: 39em;
+        top: 55%;
+        /* left: 50%; */
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        /* height: 535px; */
+        /* Adjust the width as needed */
+    }
+
+    .switch {
+        position: absolute;
+        margin-left: 2em;
+        width: 46px;
+        height: 25px;
+    }
+
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #ccc;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .homePageButton {
+        background-color: #1976D2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        cursor: pointer;
+
+
+    }
+
+    .homePagefooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a shadow to the footer */
+    }
+}

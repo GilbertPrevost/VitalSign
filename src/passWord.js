@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+// import './App.css';
+import './passWord.css';
 import 'react-phone-input-2/lib/style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +10,7 @@ import axios from "axios";
 import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2'; // Import the PhoneInput component
 import { getCountryCallingCode } from 'libphonenumber-js';
+import { BASE_API_URL } from './content';
 
 
 
@@ -21,60 +23,17 @@ function Password() {
   const [rememberMe, setRememberMe] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
-  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/Login`;
-  const forgotUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/ForgetPWD`;
+  const loginUrl = `${BASE_API_URL}Login`;
+  const forgotUrl =  `${BASE_API_URL}ForgetPWD`;
 
-  
-  const [countryCode, setCountryCode] = useState('');
+
+  const [countryCode, setCountryCode] = useState(localStorage.getItem('Ccode'));
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dialCodes, setDialCode] = useState('');
 
 
   useEffect(() => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          axios
-            .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyDOFIGDZDm87A0C9b3JZn2wPIqEVCyEbTM&q`)
-            .then((response) => {
-              debugger;
-              const results = response.data.results;
-              if (results && results.length > 0) {
-                for (const component of results[0].address_components) {
-                  if (component.types.includes('country')) {
-                    const name = component.short_name.toLowerCase();
-                    const code = component.short_name;
 
-                    try {
-                      const dCode = getCountryCallingCode(code);
-                      setCountryCode(name);
-                      setDialCode(dCode)
-                    } catch (e) {
-                      console.error('Error determining dial code:', e);
-                    }
-                    break;
-                  }
-                }
-              }
-            })
-            .catch((error) => {
-              console.error('Error getting geolocation:', error);
-              // Set a default country code here if geolocation fails
-              setCountryCode('us');
-            });
-        },
-        (error) => {
-          console.error('Error getting geolocation:', error);
-          // Set a default country code here if geolocation fails
-          setCountryCode('us');
-        }
-      );
-    } else {
-      // Geolocation is not supported, set a default country code
-      setCountryCode('us');
-    }
 
     // Check for phone number in local storage
     const savedPhoneNumber = localStorage.getItem('phoneNumberInput');
@@ -83,12 +42,27 @@ function Password() {
     }
   }, []);
 
+  window.onload = () => {
+    // setShowPopup(true);
+    Navigate('/verification');
+  };
 
 
 
   useEffect(() => {
     setUserPhoneNumber(localStorage.getItem('userPhoneNumber'));
     setUserName(localStorage.getItem("userName"));
+
+    const rememberMe = localStorage.getItem('remembermeStatus');
+    const pass = localStorage.getItem('password');
+    if(rememberMe === 'true'){
+      setRememberMe(true);
+      setPassword(pass);
+
+    }
+    else{
+      setRememberMe(false);
+    }
   }, []);
 
   const handlePhoneNumberChange = (value, country) => {
@@ -123,6 +97,15 @@ function Password() {
 
   const handleButtonClick = () => {
     // Navigate('/Home-Page');
+
+    if(rememberMe){
+      localStorage.setItem('remembermeStatus','true');
+    }
+    else{
+      localStorage.setItem('remembermeStatus','false');
+    }
+
+
     if (password.length == 0) {
       setAlertMessage("Enter password");
       console.error("Enter password");
@@ -158,7 +141,7 @@ function Password() {
           localStorage.setItem('gender', response.data.gender);
           localStorage.setItem('height', response.data.height);
           localStorage.setItem('weight', response.data.weight);
-          localStorage.setItem('userName', response.data.userName);
+          // localStorage.setItem('userName', response.data.userName);
           localStorage.setItem('phoneNumber', response.data.phoneNumber);
           localStorage.setItem('firstName', response.data.firstName);
           localStorage.setItem('lastName', response.data.lastName);
@@ -175,8 +158,8 @@ function Password() {
           localStorage.setItem('specialistFees', response.data.specialistFees);
           localStorage.setItem('specializationName', response.data.specializationName);
           localStorage.setItem('profileIMG', response.data.profileIMG);
-          localStorage.setItem('weighttype', response.data.weighttype);
-          localStorage.setItem('heighttype', response.data.heighttype);
+          localStorage.setItem('weighttype', response.data.weighttype===''?"KG":response.data.weighttype);
+          localStorage.setItem('heighttype', response.data.heighttype===''?"CMS":response.data.heighttype);
           localStorage.setItem('inches', response.data.inches);
           localStorage.setItem('feet', response.data.feet);
 
@@ -214,12 +197,12 @@ function Password() {
         if (data == "Success") {
           console.log("success=", response.data.response);
           console.log("result", response.data.result);
-          const jsonString = response.data.result;
-          const phIndex = jsonString.indexOf("Ph");
-          const jsonStringWithoutPh = jsonString.substring(0, phIndex);
-          const jsonObject = JSON.parse(jsonStringWithoutPh);
-          console.log("session id", jsonObject.Details);
-          localStorage.setItem('forgotSessionId', jsonObject.Details);
+          // const jsonString = response.data.result;
+          // const phIndex = jsonString.indexOf("Ph");
+          // const jsonStringWithoutPh = jsonString.substring(0, phIndex);
+          // const jsonObject = JSON.parse(jsonStringWithoutPh);
+          console.log("session id", " ");
+          localStorage.setItem('forgotSessionId', " ");
           Navigate('/otp');
           // Navigate('/verification');
         }
@@ -249,19 +232,19 @@ function Password() {
 
   const LoadingSpinner = () => {
     return (
-      <div className="loading-spinner">
-        <div className="spinner"></div>
+      <div className="verification-loading-spinner">
+        <div className="verification-spinner"></div>
       </div>
     );
   };
 
   return (
-    <div className="main-container">
-      <div className="content" style={{
+    <div className="verification-main-container">
+      <div className="verification-content" style={{
         backgroundImage: `url(Indian-Girls.jpg)`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        height: '80vh'
+        height: '100vh'
       }}>
 
 
@@ -287,7 +270,7 @@ function Password() {
               style={{
                 maxHeight: '36em',
                 // filter: 'blur(5px)', // Adjust the blur amount as needed
-                opacity: '0.25', backgroundSize: 'cover',
+                opacity: '0.50', backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',     // Adjust the opacity value (0.0 to 1.0) as needed
               }} />
             <div style={{
@@ -297,20 +280,22 @@ function Password() {
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '50vh' }}>
 
 
-                <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '7.5em', marginBottom: '1em', marginTop: '11.2em' }}>Phone Number:</label>
+                <label style={{ display: 'flex', fontWeight: 'bold', color: 'white', marginRight: '7.5em', marginBottom: '1em', marginTop: '7.2em' }}>Phone Number:</label>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1px', }}>
+
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
 
                     <PhoneInput
                       country={countryCode}
                       onChange={handleCountryCodeChange}
+                      disabled = {true}
                       inputStyle={{
                         width: '7em', pointerEvents: 'none',
                         backgroundColor: '#D3D3D3',
                       }}
                       containerStyle={{ textAlign: 'left' }}
                       countryCodeEditable={false}
-                      readOnly // Add a comment indicating that the country dropdown is read-only
+                      readOnly 
                     />
                   </div>
 
@@ -360,7 +345,7 @@ function Password() {
                       <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} style={{ fontSize: '20px' }} />
                     </button>
                   </div>
-                  {alertMessage && <div style={{ color: 'red' }}>{alertMessage}</div>}
+                  {alertMessage && <div style={{ color: 'red',marginLeft:'0.5em',marginTop:'0.2em' }}>{alertMessage}</div>}
                 </div>
 
 
@@ -433,6 +418,7 @@ function Password() {
           alignItems: "center",
           color: "navy",
           marginTop: 'auto',
+          zIndex: '10',
         }}
       >
         <div style={{ width: "100%", height: "9em", }}>
@@ -450,7 +436,7 @@ function Password() {
           © 2023, All Rights Reserved.
           </div>
 
-        <div className='footercontent' style={{ alignItems: 'center',marginTop:'0.2em',marginBottom:'0.2em'}}>
+        <div style={{ alignItems: 'center',marginTop:'0.2em',marginBottom:'0.2em'}}>
           <button
             style={{
               backgroundColor: "transparent",

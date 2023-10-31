@@ -1,14 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { useHistory } from "react-router-dom";
-import './App.css';
+// import './App.css';
+import './cameraVitals.css';
 import './App.js';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
-
 
 
 const CameraVitals = () => {
@@ -177,11 +173,7 @@ const CameraVitals = () => {
   }, [timerCompleted, showMessage, navigate]);
 
 
-  const imageStyles = {
-    border: '2px solid black',
-    width: '300px',
-    height: '150px',
-  };
+
 
 
   const progressBarStyles = {
@@ -192,25 +184,6 @@ const CameraVitals = () => {
     background: `radial-gradient(closest-side, white 79%, transparent 80% 100%),conic-gradient(navy ${(30 - countdown) / 30 * 100}%, transparent 0)`,
   };
 
-
-  const progressBarTextStyles = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    fontSize: '12px',
-    color: 'navy',
-    fontWeight: 'bold',
-  };
-
-
-  const progressBarContainerStyles = {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '150px',
-  };
 
 
   const Navigate = useNavigate();
@@ -413,12 +386,12 @@ const CameraVitals = () => {
             <p><b>Please keep your finger stationary.</b></p>
 
 
-            <img src="ecgGIF.gif" alt="ECG GIF" style={imageStyles} />
+            <img src="ecgGIF.gif" alt="ECG GIF" className='GIFStyle' />
             {blackScreenDetected && countdown > 0 ?
               (
-                <div className="progress-bar-container" style={progressBarContainerStyles}>
+                <div className="progressBarContainerStyles">
                   <div className="progress-bar" style={progressBarStyles}>
-                    <div className="progressBarText" style={progressBarTextStyles}>
+                    <div className="progressBarTextStyles" >
                       {`${countdown}s Remaining...`}
                     </div>
                   </div>
@@ -444,7 +417,7 @@ const CameraVitals = () => {
       </div>
 
 
-      <footer className="footer1"
+      <footer className="cameraVitalsfooter"
         style={{
           backgroundColor: "white",
           display: "flex",

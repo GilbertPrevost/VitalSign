@@ -1,83 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
-import './App.css'
+
+import './takeVitals.css'
 
 
 const TakeVitals = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalOpen1, setIsModalOpen1] = useState(false);
-
-
-
-
-  const headerStyle = {
-    backgroundColor: 'navy',
-    color: 'white',
-    // padding: '5px',
-    textAlign: 'center',
-    // fontWeight: 'bold',
-    fontSize: '25px',
-    width: '100%',
-  };
-
-
-  const overlayStyle = {
-    display: isModalOpen ? 'block' : 'none',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 1000,
-  };
-
-
-  // const instructionsStyle = {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'flex-start',
-  //   marginLeft: '15px',
-  // };
-
-
-  // const stepStyle = {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   marginBottom: '1.5em',
-  // };
-
-
-  // const stepNumberStyle = {
-  //   marginLeft: '1em',
-  //   minWidth: '1.5em',
-  //   fontSize: '0.8em'
-  // };
-
-
-  const startButtonStyle = {
-    width: '180px',
-    height: '40px',
-    fontsize: '19px',
-    backgroundColor: 'navy',
-    color: 'white',
-    fontWeight: 'bold',
-    borderRadius: '10px',
-  };
-
 
   const navigate = useNavigate();
-
 
   const handleStartClick = () => {
     const userAgent = navigator.userAgent;
 
-
     navigate('/Camera');
-
-
-
 
     // if (userAgent.match(/Android/i) || userAgent.match(/iPhone/i)) {
     //   navigate('/Camera');
@@ -87,91 +21,10 @@ const TakeVitals = () => {
   };
 
 
-
-
-  const modalStyle1 = {
-    display: isModalOpen1 ? 'block' : 'none',
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: 'navy',
-    zIndex: 1000,
-    width: '20em',
-    height: '8.5em',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '10px',
-    textAlign: 'center',
-    background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
+  window.onload = () => {
+    // setShowPopup(true);
+    Navigate('/takeVitals');
   };
-
-  const modalStyle = {
-    display: isModalOpen ? 'block' : 'none',
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: 'navy',
-    zIndex: 1000,
-    width: '20em',
-    height: '8.5em',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '10px',
-    textAlign: 'center',
-    background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
-  };
-
-
-  const okButtonStyle = {
-    backgroundColor: 'navy',
-    color: 'white',
-    fontWeight: 'bold',
-    position: 'absolute',
-    bottom: '10px',
-    left: '35%',
-    transform: 'translateX(-50%)',
-    cursor: 'pointer',
-    padding: '10px 30px',
-    borderRadius: '5px',
-  };
-  const cancelButtonStyle = {
-    backgroundColor: 'navy',
-    color: 'white',
-    fontWeight: 'bold',
-    position: 'absolute',
-    bottom: '10px',
-    left: '65%',
-    transform: 'translateX(-50%)',
-    cursor: 'pointer',
-    padding: '10px 20px',
-    borderRadius: '5px',
-  };
-
-
-  const headingStyle = {
-    color: 'white',
-    marginTop: '0px',
-  };
-
-
-  const alertTextStyle = {
-    color: 'black',
-  }
-
-
-
-
-  const closeModal = () => {
-    navigate('/Home-Page');
-  };
-
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
 
   const Navigate = useNavigate();
   const backButton = () => {
@@ -179,21 +32,12 @@ const TakeVitals = () => {
   };
 
 
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '450px',
-    // height: '1000px',
-    backgroundColor: '#e5e5e6',
-    margin: '0 auto',
-  }
 
   return (
     <div>
 
       <header style={{
+        // width: '96%',
         position: 'fixed',
         top: '0',
         left: '0',
@@ -203,9 +47,9 @@ const TakeVitals = () => {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundImage: `url(Indian-Girls.jpg)`,
-        zIndex: '999',
+        zIndex: '10',
       }}>
-        <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: "300px", height: "100px",marginRight: '1.5em' }} />
+        <img src="yourvitals_logo_panner.png" alt="yourVitals" style={{ width: "300px", height: "100px", marginRight: '1.5em' }} />
         <div style={{}}></div>
       </header>
 
@@ -218,7 +62,7 @@ const TakeVitals = () => {
           <header className='takeVitalsHeader'>
 
 
-            <button className='cameraBackBtn'
+            <button className='instructionsBackBtn'
 
               onClick={() => {
                 backButton();
@@ -232,20 +76,13 @@ const TakeVitals = () => {
               {/* Logout */}
             </button>
 
-
-
-
             <div className='takeVitalsHeaderTxt'>
               VITAL SIGNS INSTRUCTIONS
             </div>
 
-
           </header>
 
-
-
-
-          <div className = 'imageStyle'>
+          <div className='takeVitalsImageStyle'>
             <img src="cameraIcon.png" alt="Heart" width="250" height="250" />
           </div>
 
@@ -299,39 +136,10 @@ const TakeVitals = () => {
           <button
             className="startBtn"
             onClick={handleStartClick}
-            style={{ width: '180px', height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', marginTop: '1.6em', marginBottom: '0.5em' }}
+            style={{ width: '180px', height: '40px', fontSize: '19px', backgroundColor: 'navy', color: 'white', marginTop: '0em', marginBottom: '0.5em' }}
           >
             Start
           </button>
-
-
-          <div style={overlayStyle}></div>
-
-
-          <div style={modalStyle}>
-            <button style={okButtonStyle} onClick={setIsModalOpen1}> {/*setIsModalOpen1*/}
-              Ok
-            </button>
-            <button style={cancelButtonStyle} onClick={() => setIsModalOpen(false)}>
-              Cancel
-            </button>
-            <h2 style={headingStyle}>Alert</h2>
-            <h4 style={alertTextStyle}>Your pulse can only be caputured using your mobile phone.<br></br>Please use mobile phone to caputure your pulse</h4>
-          </div>
-
-
-          <div style={modalStyle1}>
-            <button style={okButtonStyle} onClick={closeModal}>
-              refresh
-            </button>
-            <button style={cancelButtonStyle} onClick={() => setIsModalOpen(false)}>
-              Cancel
-            </button>
-            <h2 style={headingStyle}>Alert</h2>
-            <h4 style={alertTextStyle}>We are waiting you to capture your pulse using your mobile phone.<br></br>After yor have caputured your pulse using your mobile phone please click refresh. </h4>
-          </div>
-
-
         </div>
 
 
@@ -339,7 +147,7 @@ const TakeVitals = () => {
 
       </div>
 
-      <footer className="footer1"
+      <footer className="takeVitalsfooter"
         style={{
           backgroundColor: "white",
           display: "flex",
@@ -352,12 +160,12 @@ const TakeVitals = () => {
         }}
       >
         {/* <div> */}
-        <div style={{ color: "orange",display:'flex',justifyContent:'center',fontWeight:'bold'}}>YourVitals, Inc. </div>
-          <div style={{ color: "#ffffff"}}>
+        <div style={{ color: "orange", display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}>YourVitals, Inc. </div>
+        <div style={{ color: "#ffffff" }}>
           © 2023, All Rights Reserved.
-          </div>
+        </div>
 
-        <div className='footercontent' style={{ alignItems: 'center'}}>
+        <div style={{ alignItems: 'center' }}>
           <button
             style={{
               backgroundColor: "transparent",

@@ -1,22 +1,20 @@
 .App {
   text-align: center;
-  }
-  
-  
-  .App-logo {
+}
+
+.App-logo {
   height: 40vmin;
   pointer-events: none;
-  }
-  
-  
-  @media (prefers-reduced-motion: no-preference) {
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
   .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 20s linear;
   }
-  }
-  
-  
-  .App-header {
+}
+
+.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -26,2044 +24,48 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  }
-  
-  
-  .App-link {
+}
+
+.App-link {
   color: #61dafb;
-  }
-  
-  
-  @keyframes App-logo-spin {
+}
+
+@keyframes App-logo-spin {
   from {
-  transform: rotate(0deg);
+    transform: rotate(0deg);
   }
-  
-  
+
   to {
-  transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-  }
-  
-  
-  body {
+}
+
+body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f2f2f2;
-  }
-  
-  
-  .react-tel-input .flag-dropdown {
+}
+
+
+.react-tel-input .flag-dropdown {
   bottom: 55px !important;
   height: 35px !important;
   /* top: 213px !important; */
-  }
-  
-  
-  .main-container {
+}
+
+.main-container {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
-  
-  
-  }
-  
-  
-  
-  
-  .takeVitalsContainer {
-  width: 500px;
-  /* height: 46.5em; */
-  margin-bottom: 3.5em;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.6em;
-  bottom: 1em;
-  overflow-y: auto;
-  max-height: 83vh;
-  overflow-x: hidden;
-  
-  
-  }
-  
-  
-  .takeVitals-Container {
-  text-align: center;
-  }
-  
-  
-  .takeVitalsHeader {
-  height: 1.4em;
-  padding: 9px;
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-bottom: 3px;
-  }
-  
-  
-  .takeVitalsHeaderTxt {
-  margin-right: 5.3em;
-  text-align: center;
-  font-size: 20px;
-  }
-  
-  
-  .instructionStyle {
-  display: flex;
-  align-items: center;
-  
-  
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 15px;
-  }
-  
-  
-  /* Define the .stepStyle class */
-  .stepStyle {
-  margin-left: 2.6em;
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5em;
-  }
-  
-  
-  /* Define the .stepNumberStyle class */
-  .stepNumberStyle {
-  margin-left: 1em;
-  min-width: 1.5em;
-  font-size: 0.8em;
-  }
-  
-  
-  .imageStyle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  }
-  
-  
-  .startBtn {
-  border-radius: 10px;
-  }
-  
-  
-  
-  
-  
-  
-  .historyHeader {
-  padding: 5px;
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-top: 5px;
-  font-size: 25px;
-  /* width: 100%; */
-  height: 50px;
-  }
-  
-  
-  .profileDetailHeader {
-  height: 2.8em;
-  /* width: 80%; */
-  padding: 9px;
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-bottom: 3px;
-  margin-top: 2px;
-  }
-  
-  
-  .profileDetailText {
-  font-weight: bold;
-  }
-  
-  
-  .history-rectangle {
-  width: 460px;
-  height: 270px;
-  background-color: white;
-  margin-left: 0.85em;
-  margin-top: 0.5em;
-  display: flex;
-  flex-direction: column;
-  }
-  
-  
-  
-  
-  .popUpModal {
-  position: absolute;
-  top: 31em;
-  left: 50%;
-  height: 40em;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-  width: 25em;
-  }
-  
-  
-  
-  
-  .FilterDropdown {
-  text-align: center;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
-  }
-  
-  
-  
-  
-  .FilterDropdown .select {
-  width: 90%;
-  text-align: center;
-  padding: 10px;
-  font-size: 16px;
-  }
-  
-  
-  
-  
-  .FilterDropdown .select .paragraphText {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #333;
-  }
-  
-  
-  
-  
-  .FilterDropdown-header {
-  display: flex;
-  }
-  
-  
-  
-  
-  .FilterDropdown-headerTitle {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  justify-content: center;
-  margin-right: 2.3em;
-  margin-left: 3.8em;
-  }
-  
-  
-  
-  
-  .FilterDropdown-headerTitle1 {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  margin-right: 3em;
-  margin-left: 1em;
-  padding-left: 4.7em;
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  .profileDetailHeader {
-  height: 2.6em;
-  /* width: 100%; */
-  padding: 9px;
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-bottom: 3px;
-  margin-top: 2px;
-  }
-  
-  
-  .historyHeader {
-  padding: 5px;
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-top: 5px;
-  font-size: 25px;
-  /* width: 20.3em; */
-  height: 50px;
-  }
-  
-  
-  .profileDetailText {
-  font-weight: bold;
-  margin-left: 1.5em;
-  }
-  
-  
-  .history-rectangle {
-  width: 400px;
-  height: 270px;
-  background-color: white;
-  margin-left: 5.3em;
-  /* margin-bottom: 2em; */
-  margin-top: 0.5em;
-  display: flex;
-  flex-direction: column;
-  }
-  
-  
-  
-  
-  .FilterDropdown {
-  text-align: center;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
-  margin-left: 4.5em;
-  }
-  
-  
-  
-  
-  .FilterDropdown .select {
-  width: 90%;
-  text-align: center;
-  padding: 10px;
-  font-size: 16px;
-  }
-  
-  
-  
-  
-  .FilterDropdown .select .paragraphText {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #333;
-  }
-  
-  
-  
-  
-  .FilterDropdown-header {
-  display: flex;
-  }
-  
-  
-  
-  
-  
-  
-  .FilterDropdown-headerTitle {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  justify-content: center;
-  margin-right: -2.5em;
-  margin-left: 7.7em;
-  }
-  .FilterDropdown-headerTitle1 {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  margin-right: 1em;
-  margin-left: 5em;
-  }
-  
-  
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  .takeVitalsContainer {
-  width: 500px;
-  height: 100%;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.6em;
-  bottom: 1em;
-  overflow-y: auto;
-  overflow-x: hidden;
-  
-  
-  }
-  
-  
-  .takeVitals-Container {
-  text-align: center;
-  }
-  
-  
-  .takeVitalsHeader {
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-bottom: 3px;
-  font-size: 25px;
-  width: 100%;
-  height: 50px;
-  }
-  
-  
-  .takeVitalsHeaderTxt {
-  margin-right: 4.3em;
-  text-align: center;
-  font-size: 20px;
-  }
-  
-  
-  
-  
-  .instructionStyle {
-  display: flex;
-  align-items: center;
-  
-  
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 15px;
-  }
-  
-  
-  .stepStyle {
-  margin-left: 4.8em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5em;
-  }
-  
-  
-  .stepNumberStyle {
-  margin-left: 1em;
-  min-width: 1.5em;
-  font-size: 0.8em;
-  }
-  
-  
-  .imageStyle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 4.5em;
-  }
-  
-  
-  .startBtn {
-  border-radius: 10px;
-  margin-left: 3.8em;
-  
-  
-  }
-  
-  
-  }
-  
-  
-  
-  
-  .HistoryContainer {
-  width: 500px;
-  /* height: 46.5em; */
-  margin-bottom: 3.5em;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.6em;
-  bottom: 1em;
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  max-height: calc(100vh - 10em);
-  /* Set maximum height to fill the available space */
-  min-height: 11em;
-  
-  
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  
-  
-  .HistoryContainer {
-  width: 500px;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.3em;
-  overflow-y: auto;
-  max-height: calc(100vh - 3.7em);
-  height: 84vh;
-  align-items: center;
-  justify-content: center;
-  }
-  
-  
-  
-  
-  
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .container {
-  width: 500px;
-  /* height: 46.5em; */
-  margin-bottom: 3.5em;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.6em;
-  bottom: 1em;
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  max-height: calc(100vh - 10em);
-  /* Set maximum height to fill the available space */
-  min-height: 11em;
-  
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .history-top-content {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  }
-  
-  
-  
-  
-  .history-filter-rectangle {
-  width: 460px;
-  height: 45px;
-  padding: 2px;
-  background-color: white;
-  margin-left: 0.85em;
-  margin-bottom: 0.5em;
-  display: flex;
-  flex-direction: column;
-  }
-  
-  
-  
-  
-  .history-filter-top-content {
-  display: flex;
-  margin-right: -4em;
-  margin-left: 1.7em;
-  }
-  
-  
-  .history-filter-top-content1 {
-  display: flex;
-  margin-right: -3em;
-  margin-left: -1.5em;
-  
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  .history-top-content {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  }
-  .history-filter-rectangle {
-  width: 420px;
-  height: 45px;
-  padding: 2px;
-  background-color: white;
-  margin-left: 4.6em;
-  margin-bottom: 0.5em;
-  display: flex;
-  flex-direction: column;
-  }
-  .history-filter-top-content {
-  display: flex;
-  margin-right: -4em;
-  margin-left: 1.7em;
-  }
-  .history-filter-top-content1 {
-  display: flex;
-  margin-right: -3em;
-  margin-left: -1.5em;
-  }
-  
-  
-  .container {
-  
-  
-  width: 500px;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  /* top: 9em; */
-  /* bottom: 0.5em; */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  /* max-height: calc(100vh - 10em); */
-  /* Set maximum height to fill the available space */
-  /* min-height: 10em; */
-  /* bottom: 1em; */
-  height: 100vh;
-  }
-  
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: navy;
-  padding: 20px;
-  color: white;
-  font-weight: bold;
-  }
-  
-  
-  
-  
-  .header1 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: navy;
-  padding: 20px;
-  color: white;
-  font-weight: bold;
-  }
-  
-  
-  
-  
-  .header img {
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
-  }
-  
-  
-  .header h2 {
-  margin: 0;
-  }
-  
-  
-  
-  
-  .content {
-  /* margin-top: 10px; */
+}
+
+
+.content {
   border-top: 1px solid black;
-  
-  
-  /* padding-top: 5px; */
-  /* margin-bottom: 1em; */
-  }
-  
-  
-  .container-image {
-  margin-top: 10px;
-  padding-top: 5px;
-  }
-  
-  
-  .image-container,
-  .header-container,
-  .header-container1,
-  .details-container,
-  .range-container,
-  .range-container1,
-  .range-container2,
-  .tilte-contaniner {
-  display: flex;
-  }
-  
-  
-  @media (max-width: 576px) {
-  
-  
-  .image-container,
-  .header-container,
-  .header-container1,
-  .details-container,
-  .range-container,
-  .range-container1,
-  .range-container2,
-  .tilte-contaniner {
-  /* Adjust your styles for small screens here */
-  /* For example, change display to block for stacked elements */
-  display: flex;
-  }
-  }
-  
-  
-  @media (min-width: 577px) and (max-width: 768px) {
-  
-  
-  .image-container,
-  .header-container,
-  .header-container1,
-  .details-container,
-  .range-container,
-  .range-container1,
-  .range-container2,
-  .tilte-contaniner {
-  /* Adjust your styles for medium screens here */
-  /* For example, change display to grid for a different layout */
-  display: flex;
-  }
-  }
-  
-  
-  
-  
-  /* .cameraBackBtn {
-  background-color: #000080;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 10px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  }
-  */
-  
-  
-  
-  
-  
-  
-  
-  
-  .HistoryImage-container,
-  .HistoryHeader-container,
-  .HistoryHeader-container1,
-  .HistoryDetails-container,
-  .HistoryRange-container,
-  .HistoryRange-container1,
-  .HistoryRange-container2,
-  .HistoryTilte-contaniner {
-  display: flex;
-  }
-  
-  
-  .HistoryImage1 {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 63px;
-  margin-left: 93px;
-  margin-top: 10px;
-  }
-  
-  
-  .HistoryImage {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 70px;
-  margin-left: 90px;
-  margin-top: 30px;
-  }
-  
-  
-  
-  
-  .HistoryHeader-title {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 25px;
-  margin-left: 62px;
-  margin-top: 8px;
-  }
-  
-  
-  .HistoryHeader-title1 {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 35px;
-  margin-left: 75px;
-  margin-top: 8px;
-  }
-  
-  
-  
-  
-  .HistoryDetails-container .HistoryValue {
-  background-color: #ffb33a;
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  margin-left: 63px;
-  margin-right: 45px;
-  margin-top: 5px;
-  width: 25%;
-  }
-  
-  
-  .HistoryTilte-contaniner .HistoryTilte {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-left: 75px;
-  margin-right: 53px;
-  }
-  
-  
-  .HistoryTilte-contaniner .HistoryTilteT {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-left: 70px;
-  margin-right: 48px;
-  }
-  
-  
-  .HistoryContainer-image {
-  padding: 15px 10px;
-  margin-top: 10px;
-  padding-top: 5px;
-  }
-  
-  
-  .HistoryRange-container .HistoryRange {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 65px;
-  margin-right: 65px;
-  font-weight: bold;
-  }
-  
-  
-  .HistoryRange-container1 .HistoryRange1 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 93px;
-  margin-right: 51px;
-  font-weight: bold;
-  }
-  
-  
-  .HistoryRange-container2 .HistoryRange2 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 93px;
-  margin-right: 60px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  
-  
-  .HistoryRange-container1 .HistoryRange3 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 82px;
-  margin-right: 77px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  }
-  
-  
-  .HistoryRange-container1 .HistoryRange4 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 82px;
-  margin-right: 55px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  .HistoryRange-container1 .HistoryRange5 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 63px;
-  margin-right: 55px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  }
-  
-  
-  .HistoryRange-container1 .HistoryRange6 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 63px;
-  margin-right: 35px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  
-  
-  .HistoryHeader-title2 {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 47px;
-  margin-left: 70px;
-  margin-top: 8px;
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .cameraContainer {
-  width: 500px;
-  /* height: 46.5em; */
-  margin-bottom: 3.5em;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.6em;
-  bottom: 1em;
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  max-height: calc(100vh - 10em);
-  /* Set maximum height to fill the available space */
-  min-height: 11em;
-  overflow-x: hidden;
-  }
-  
-  
-  .cameraHeader {
-  height: 1.4em;
-  padding: 9px;
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-bottom: 3px;
-  }
-  
-  
-  
-  
-  
-  
-  .cameraBackBtn {
-  background-color: #000080;
-  color: white;
-  border: none;
-  padding: 3px;
-  cursor: pointer;
-  border-radius: 10px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  }
-  
-  
-  .ImgCameraBackBtn {
-  height: 30px;
-  width: 30px;
-  /* margin-left: 5px; */
-  }
-  
-  
-  .circle-mask {
-  top: 0.5em;
-  width: 150px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto;
-  border: 2px solid black;
-  position: relative;
-  }
-  
-  
-  .cameraHeaderTxt {
-  margin-right: 7em;
-  text-align: center;
-  font-size: 20px;
-  }
-  
-  
-  .camera-text {
-  /* display: flex ; */
-  align-items: center;
-  justify-content: center;
-  }
-  
-  
-  .cameraAlertText {
-  font-size: 24px;
-  margin-top: 10px;
-  color: black;
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  .cameraContainer {
-  width: 500px;
-  /* height: 46.5em; */
-  margin-bottom: 3.5em;
-  background-color: #e5e5e6;
-  border-radius: 7px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8.4em;
-  /* bottom: 100000em; */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  max-height: calc(100vh - 3.7em);
-  /* Set maximum height to fill the available space */
-  /* min-height: 1em; */
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-  }
-  
-  
-  
-  
-  .cameraHeader {
-  padding: 5px;
-  display: flex;
-  background-color: navy;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-top: 5px;
-  font-size: 25px;
-  width: 100%;
-  height: 50px;
-  }
-  
-  
-  .cameraHeaderTxt {
-  margin-right: 6.4em;
-  text-align: center;
-  font-size: 20px;
-  }
-  
-  
-  
-  
-  .cameraBackBtn {
-  
-  
-  background-color: #000080;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 10px;
-  font-weight: bold;
-  display: flex;
-  /* align-items: center; */
-  margin-left: 4.9em;
-  
-  
-  }
-  
-  
-  .ImgCameraBackBtn {
-  height: 30px;
-  width: 30px;
-  }
-  
-  
-  
-  
-  .circle-mask {
-  top: 0.5em;
-  left: 2em;
-  width: 130px;
-  height: 180px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto;
-  border: 2px solid black;
-  position: relative;
-  }
-  
-  
-  .camera-text {
-  /* display: flex ; */
-  margin-left: 4.4em;
-  align-items: center;
-  justify-content: center;
-  }
-  
-  
-  .cameraAlertText {
-  font-size: 20px;
-  margin-top: 10px;
-  color: black;
-  }
-  
-  
-  
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  /* Default styles for larger screens */
-  
-  
-  .image1 {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 70px;
-  margin-left: 110px;
-  margin-top: 10px;
-  }
-  
-  
-  .image {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 70px;
-  margin-left: 110px;
-  margin-top: 30px;
-  }
-  
-  
-  /* Default styles for larger screens */
-  
-  
-  .image1 {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 70px;
-  margin-left: 110px;
-  margin-top: 10px;
-  }
-  
-  
-  .image {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 70px;
-  margin-left: 110px;
-  margin-top: 30px;
-  }
-  
-  
-  /* Media query for mobile phones */
-  @media screen and (max-width: 768px) {
-  .image1 {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 65px;
-  margin-left: 135px;
-  margin-top: 10px;
-  }
-  
-  
-  .image {
-  max-width: 10%;
-  height: 10%;
-  margin-right: 65px;
-  margin-left: 135px;
-  margin-top: 30px;
-  }
-  }
-  
-  
-  
-  
-  .header-title {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 45px;
-  margin-left: 80px;
-  margin-top: 8px;
-  }
-  
-  
-  .header-title1 {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 45px;
-  margin-left: 95px;
-  margin-top: 8px;
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  .header-title {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 33px;
-  margin-left: 110px;
-  margin-top: 8px;
-  }
-  
-  
-  .header-title1 {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 25px;
-  margin-left: 130px;
-  margin-top: 8px;
-  }
-  }
-  
-  
-  .details-container .value {
-  background-color: #ffb33a;
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  margin-left: 70px;
-  margin-right: 35px;
-  margin-top: 5px;
-  width: 25%;
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  .details-container .value {
-  background-color: #ffb33a;
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  margin-left: 95px;
-  margin-right: 16px;
-  margin-top: 5px;
-  width: 25%;
-  }
-  }
-  
-  
-  .tilte-contaniner .tilte {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-left: 93px;
-  margin-right: 65px;
-  }
-  
-  
-  .tilte-contaniner .tilteT {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-left: 95px;
-  margin-right: 50px;
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  
-  
-  .tilte-contaniner .tilte {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-left: 125px;
-  margin-right: 45px;
-  }
-  
-  
-  .tilte-contaniner .tilteT {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-left: 125px;
-  margin-right: 37px;
-  }
-  }
-  
-  
-  .range-container .range {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 81px;
-  margin-right: 80px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container1 .range1 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 108px;
-  margin-right: 68px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container2 .range2 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 108px;
-  margin-right: 80px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  .range-container1 .range3 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 82px;
-  margin-right: 77px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container1 .range4 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 82px;
-  margin-right: 55px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  .range-container1 .range5 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 85px;
-  margin-right: 65px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container1 .range6 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 85px;
-  margin-right: 45px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-  .range-container .range {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 112px;
-  margin-right: 55px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container1 .range1 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 140px;
-  margin-right: 45px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container2 .range2 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 140px;
-  margin-right: 57px;
-  margin-bottom: 20px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container1 .range3 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 120px;
-  margin-right: 10px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container1 .range4 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 82px;
-  margin-right: 55px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  .range-container1 .range5 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 115px;
-  margin-right: 48px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  }
-  
-  
-  .range-container1 .range6 {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-left: 115px;
-  margin-right: 26px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  
-  
-  }
-  
-  
-  }
-  
-  
-  
-  
-  .header-title2 {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 55px;
-  margin-left: 95px;
-  margin-top: 8px;
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  .header-title2 {
-  margin: 0;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 41px;
-  margin-left: 125px;
-  margin-top: 8px;
-  }
-  
-  
-  }
-  
-  
-  .elctrocardiogram-button {
-  
-  
-  height: 40px;
-  font-size: 19px;
-  background-color: navy;
-  color: white;
-  position: relative;
-  margin-top: 0.5em;
-  margin-left: 3.5em;
-  margin-right: 3.5em;
-  border-radius: 10px;
-  
-  
-  }
-  
-  
-  
-  
-  .button-ecg-button {
-  height: 40px;
-  font-size: 19px;
-  background-color: navy;
-  color: white;
-  margin-top: 0.8em;
-  margin-left: 3.5em;
-  margin-right: 2.5em;
-  border-radius: 10px;
-  
-  
-  /* margin-bottom: 3em; */
-  }
-  
-  
-  .button-save-button {
-  height: 40px;
-  font-size: 19px;
-  background-color: navy;
-  color: white;
-  margin-top: 0.8em;
-  margin-left: 3.5em;
-  margin-right: 3.5em;
-  border-radius: 10px;
-  margin-bottom: 3em;
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  .elctrocardiogram-button {
-  height: 40px;
-  font-size: 19px;
-  background-color: navy;
-  color: white;
-  position: relative;
-  margin-top: 0.1em;
-  margin-left: 5em;
-  margin-right: 1.5em;
-  border-radius: 10px;
-  }
-  
-  
-  .button-ecg-button {
-  height: 40px;
-  font-size: 19px;
-  background-color: navy;
-  color: white;
-  margin-top: 0.8em;
-  margin-left: 5em;
-  margin-right: 1.5em;
-  border-radius: 10px;
-  }
-  
-  
-  .button-save-button {
-  height: 40px;
-  font-size: 19px;
-  background-color: navy;
-  color: white;
-  margin-top: 0.8em;
-  margin-left: 5em;
-  margin-right: 1.5em;
-  border-radius: 10px;
-  margin-bottom: 1em;
-  }
-  
-  
-  }
-  
-  
-  .zoomText {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 0.4em;
-  margin-left: 2.5em;
-  margin-right: 2.5em;
-  }
-  
-  
-  .zoomPlusButton {
-  width: 100px;
-  height: 40px;
-  background-color: navy;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 10px;
-  margin-left: 4.82em;
-  }
-  
-  
-  .zoomMinusButton {
-  width: 100px;
-  height: 40px;
-  background-color: navy;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  }
-  
-  
-  .ECGIntervelText1 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 3em;
-  margin-bottom: -1em;
-  margin-left: 1em;
-  }
-  
-  
-  .ECGIntervelText2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: -2em;
-  margin-left: 1em;
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  .zoomText {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 0.4em;
-  margin-left: 2.5em;
-  margin-right: 2.5em;
-  }
-  
-  
-  .zoomPlusButton {
-  width: 100px;
-  height: 40px;
-  background-color: navy;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 10px;
-  margin-left: 8.3em;
-  }
-  
-  
-  .zoomMinusButton {
-  width: 100px;
-  height: 40px;
-  background-color: navy;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  }
-  
-  
-  .ECGIntervelText {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 90px;
-  margin-left: 7.5em;
-  /* margin-right: 3.4em; */
-  }
-  
-  
-  }
-  
-  
-  
-  
-  .ECGGraphContainer {
-  display: flex;
-  background-color: #efefef;
-  transform-origin: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: width 0.2s, height 0.2s;
-  overflow: auto;
-  width: 96%;
-  transform: scale(var(--zoomLevel));
-  }
-  
-  
-  
-  
-  @media screen and (max-width: 768px) {
-  
-  
-  .ECGGraphContainer {
-  display: flex;
-  background-color: #efefef;
-  transform-origin: center;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 2.5em;
-  transition: width 0.2s, height 0.2s;
-  overflow: auto;
-  width: 96%;
-  transform: scale(var(--zoomLevel));
-  }
-  }
-  
-  
-  .section {
-  display: flex;
-  margin: 10px 0;
-  }
-  
-  
-  .section img {
-  width: 50px;
-  height: 50px;
-  }
-  
-  
-  .section .details {
-  flex: 1;
-  padding: 5px;
-  }
-  
-  
-  .section h3 {
-  margin: 5px 0;
-  font-size: 14px;
-  font-weight: bold;
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  .section .value {
-  background-color: #ffb33a;
-  color: black;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-  .section .value {
-  background-color: #ffb33a;
-  color: black;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  }
-  }
-  
-  
-  .range {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 50px;
-  font-weight: bold;
-  }
-  
-  
-  .footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  }
-  
-  
-  .footer1 {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2.6em;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 10px;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
-  /* Optional: Add a shadow to the footer */
-  }
-  
-  
-  .button {
-  background-color: #1976D2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 15px;
-  margin: 0 5px;
-  cursor: pointer;
-  
-  
-  }
-  
-  
-  .modal {
-  position: absolute;
-  top: 10em;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-  width: 300px;
-  /* height: 535px; */
-  /* Adjust the width as needed */
-  }
-  
-  
-  
-  
-  
-  
-  .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  }
-  
-  
-  .camera-container {
-  text-align: center;
-  }
-  
-  
-  
-  
-  
-  
-  .fingerprint-overlay {
-  position: absolute;
-  width: 150px;
-  height: 200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  }
-  
-  
-  video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  }
-  
-  
-  body {
-  background-color: white;
-  margin: 0;
-  padding: 0;
-  }
-  
-  
-  /* Style the ECG button */
-  .ecg-button {
-  height: 40px;
-  width: 370px;
-  margin: 20px auto 0;
-  background-color: navy;
-  border: none;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 19px;
-  font-weight: semi-bold;
-  }
-  
-  
-  .button-text {
-  /* font-weight: semi-bold; */
-  
-  
-  color: white;
-  font-size: 20px;
-  }
-  
-  
-  
-  
-  
-  
-  /* Define the loading spinner styles */
-  .loading-spinner {
+}
+
+.loading-spinner {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2074,24 +76,11 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.7);
   z-index: 9999;
-  }
-  
-  
-  /* Define the keyframes animation for the spinner */
-  @keyframes spin {
-  0% {
-  transform: rotate(0deg);
-  }
-  
-  
-  100% {
-  transform: rotate(360deg);
-  }
-  }
-  
-  
-  /* Style for the spinner element */
-  .spinner {
+}
+
+
+
+.spinner {
   border: 4px solid rgba(0, 0, 0, 0.3);
   border-top: 4px solid #3498db;
   border-radius: 50%;
@@ -2099,299 +88,1341 @@
   height: 40px;
   animation: spin 2s linear infinite;
   /* Apply the spin animation */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  .foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* background-color: navy; */
-  /* padding: 20px; */
-  color: white;
-  font-weight: bold;
-  top: 20em;
-  width: 100%;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  
-  .containerStyle {
-  display: 'flex';
-  flex-direction: 'column';
-  align-items: 'center';
-  
-  
-  
-  
-  width: 500px;
-  background-color: rgba(0, 0, 0, 0.1);
-  /* padding: 10px; */
-  /* margin: 0px auto 0; */
-  border-radius: 7px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  
-  
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 9em;
-  }
-  
-  
-  ;
-  
-  
-  
-  
-  @media (max-width: 768px) {
-  
-  
-  /* App */
-  .App {
-  text-align: left;
-  }
-  
-  
-  /* App-logo */
-  .App-logo {
-  height: 20vmin;
-  }
-  
-  
-  /* App-header */
+}
+
+
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+    and (orientation: portrait) {
   .App-header {
-  font-size: calc(8px + 2vmin);
-  padding: 20px;
-  /* Added some padding for mobile comfort */
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    margin-top: 0%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
-  
-  
-  /* body */
+
+  .App-link {
+    color: #61dafb;
+  }
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   body {
-  font-size: 14px;
-  /* Adjust font size for mobile */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
   }
-  
-  
-  /* main-container */
+
+
+  .react-tel-input .flag-dropdown {
+    bottom: 55px !important;
+    height: 35px !important;
+    /* top: 213px !important; */
+  }
+
   .main-container {
-  padding: 10px;
-  /* Added some padding for mobile comfort */
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
   }
-  
-  
-  /* container and containerStyle */
-  .containerStyle {
-  width: 90%;
-  left: 5%;
-  transform: none;
-  top: 3em;
-  bottom: 3em;
-  }
-  
-  
-  /* Headers */
-  .header,
-  .header1 {
-  flex-direction: column;
-  padding: 10px;
-  }
-  
-  
-  /* Header Images */
-  .header img {
-  margin: 10px auto;
-  /* Centered the image */
-  }
-  
-  
-  /* content */
+
+
   .content {
-  padding: 10px;
-  /* Added some padding for mobile comfort */
+    border-top: 1px solid black;
   }
-  
-  
-  /* container-image */
-  
-  
-  .container-image {
-  padding: 15px 10px;
-  /* Added some padding for mobile comfort */
+
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
   }
-  
-  
-  /* image styles */
-  .image,
-  .image1 {
-  max-width: 50%;
-  height: auto;
-  margin: 10px auto;
-  }
-  
-  
-  /* Titles */
-  .header-title,
-  .header-title1,
-  .header-title2 {
-  margin: 5px;
-  font-size: 12px;
-  }
-  
-  
-  /* details-container */
-  .details-container .value {
-  margin-left: 10px;
-  margin-right: 10px;
-  width: auto;
-  }
-  
-  
-  
-  
-  /* Various flex containers */
-  .image-container,
-  .header-container,
-  .header-container1,
-  .details-container,
-  .range-container,
-  .range-container1,
-  .range-container2,
-  .tilte-contaniner {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  }
-  
-  
-  /* range styles */
-  .range,
-  .range-container1 .range1,
-  .range-container2 .range2,
-  .range-container1 .range3,
-  .range-container1 .range4 {
-  margin-left: 0;
-  margin-right: 0;
-  }
-  
-  
-  /* section */
-  .section {
-  flex-direction: column;
-  align-items: center;
-  }
-  
-  
-  /* section img */
-  .section img {
-  margin: 5px auto;
-  /* Centering the image */
-  }
-  
-  
-  /* footer */
-  .footer,
-  .footer1 {
-  flex-direction: column;
-  padding: 10px;
-  }
-  
-  
-  /* Buttons */
-  .button {
-  margin: 5px 0;
-  width: 100%;
-  }
-  
-  
-  /* modal */
-  .modal {
-  width: 90%;
-  }
-  
-  
-  /* ecg-button */
-  .ecg-button {
-  width: 100%;
-  margin: 10px 0;
-  }
-  
-  
-  /* footer style .foot */
-  .foot {
-  flex-direction: column;
-  top: auto;
-  }
-  
-  
-  /* Adjust spinner if necessary */
+
   .spinner {
-  width: 30px;
-  height: 30px;
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    /* Apply the spin animation */
   }
-  
-  }
-  
 
-/*Toogle button*/
-
- .switch {
-  position: absolute;
-  margin-left:2em ;
-  width: 46px;
-  height: 25px;
 }
 
-.switch input {
-  display: none;
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
 }
 
-.slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 17px;
-  width: 20px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
 }
 
-input:checked + .slider {
-  background-color: #ccc;
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
 }
 
-input:checked + .slider:before {
-  transform: translateX(20px);
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
 }
 
+/* ----------- Galaxy S3 ----------- */
 
-.HistoryRecord-title{
-  display: flex;
-  font-size: 14px;
-  text-align: center;
-  margin-right: 25px;
-  margin-left: 62px;
-  margin-top: 8px;
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 2) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
 }
 
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
 
 
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- HTC One ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- Google Pixel ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- Google Pixel XL ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 4) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- Nexus 4 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 384px)
+  and (device-height: 592px)
+  and (-webkit-device-pixel-ratio: 2) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- Nexus 5 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 592px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- Nexus 6 and 6P ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 592px)
+  and (-webkit-device-pixel-ratio: 4) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}
+
+/* ----------- Windows Phone ----------- */
+
+/* Portrait and Landscape */
+@media screen
+  and (device-width: 480px)
+  and (device-height: 800px) {
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      margin-top: 0%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .App-link {
+      color: #61dafb;
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+
+    .react-tel-input .flag-dropdown {
+      bottom: 55px !important;
+      height: 35px !important;
+      /* top: 213px !important; */
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+
+
+    .content {
+      border-top: 1px solid black;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      /* Apply the spin animation */
+    }
+
+}

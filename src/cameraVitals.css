@@ -1,0 +1,2523 @@
+  .cameraContainer {
+      width: 500px;
+      /* height: 46.5em; */
+      margin-bottom: 3.5em;
+      background-color: #e5e5e6;
+      border-radius: 7px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 8.6em;
+      bottom: 1em;
+      overflow-y: auto;
+      /* Enable vertical scrolling */
+      max-height: calc(100vh - 10em);
+      /* Set maximum height to fill the available space */
+      min-height: 11em;
+      overflow-x: hidden;
+  }
+
+  .camera-container {
+      text-align: center;
+  }
+
+  .cameraHeader {
+      height: 1.4em;
+      padding: 9px;
+      display: flex;
+      background-color: navy;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      margin-bottom: 3px;
+  }
+
+  .cameraBackBtn {
+      background-color: #000080;
+      color: white;
+      border: none;
+      padding: 3px;
+      cursor: pointer;
+      border-radius: 10px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+  }
+
+  .ImgCameraBackBtn {
+      height: 30px;
+      width: 30px;
+  }
+
+
+  .cameraHeaderTxt {
+      margin-right: 7em;
+      text-align: center;
+      font-size: 20px;
+  }
+
+
+  .circle-mask {
+      top: 0.5em;
+      width: 150px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+      border: 2px solid black;
+      position: relative;
+  }
+
+  .fingerprint-overlay {
+      position: absolute;
+      width: 150px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+  }
+
+  .camera-text {
+      /* display: flex ; */
+      align-items: center;
+      justify-content: center;
+  }
+
+  .GIFStyle {
+      border: 2px solid black;
+      width: 300px;
+      height: 150px;
+  }
+
+  .progressBarContainerStyles {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+  }
+
+  .progressBarStyles {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+  }
+
+  .progressBarTextStyles {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      color: navy;
+      font-weight: bold;
+  }
+
+  .cameraAlertText {
+      font-size: 24px;
+      margin-top: 10px;
+      color: red;
+  }
+
+  .cameraVitalsfooter {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2.6em;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 10px;
+      box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (orientation: portrait) {
+
+      .cameraContainer {
+          width: 100%;
+          /* height: 46.5em; */
+          margin-bottom: 3.5em;
+          background-color: #e5e5e6;
+          border-radius: 7px;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 8.6em;
+          bottom: 1em;
+          overflow-y: auto;
+          /* Enable vertical scrolling */
+          max-height: calc(100vh - 10em);
+          /* Set maximum height to fill the available space */
+          min-height: 11em;
+          overflow-x: hidden;
+      }
+
+      .camera-container {
+          text-align: center;
+      }
+
+      .cameraHeader {
+          height: 1.4em;
+          padding: 9px;
+          display: flex;
+          background-color: navy;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          justify-content: space-between;
+          align-items: center;
+          color: white;
+          margin-bottom: 3px;
+      }
+
+      .cameraBackBtn {
+          background-color: #000080;
+          color: white;
+          border: none;
+          padding: 3px;
+          cursor: pointer;
+          border-radius: 10px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+      }
+
+      .ImgCameraBackBtn {
+          height: 30px;
+          width: 30px;
+      }
+
+
+      .cameraHeaderTxt {
+          margin-right: 4.3em;
+          text-align: center;
+          font-size: 20px;
+      }
+
+
+      .circle-mask {
+          top: 0.5em;
+          width: 150px;
+          height: 200px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin: 0 auto;
+          border: 2px solid black;
+          position: relative;
+      }
+
+      .fingerprint-overlay {
+          position: absolute;
+          width: 150px;
+          height: 200px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+      }
+
+      .camera-text {
+          /* display: flex ; */
+          align-items: center;
+          justify-content: center;
+      }
+
+      .GIFStyle {
+          border: 2px solid black;
+          width: 300px;
+          height: 150px;
+      }
+
+      .progressBarContainerStyles {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 150px;
+      }
+
+      .progressBarStyles {
+          position: relative;
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+      }
+
+      .progressBarTextStyles {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 12px;
+          color: navy;
+          font-weight: bold;
+      }
+
+      .cameraAlertText {
+          font-size: 24px;
+          margin-top: 10px;
+          color: red;
+      }
+
+      .cameraVitalsfooter {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2.6em;
+          background-color: white;
+          display: flex;
+          justify-content: space-between;
+          padding: 14px 10px;
+          box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+
+  }
+
+  /* For mobile devices (portrait and landscape) */
+  @media only screen and (max-width: 767px) {
+      /* Your CSS styles for mobile devices */
+  }
+
+  /* For tablets and larger mobile devices (landscape) */
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      /* Your CSS styles for tablets and larger mobile devices */
+  }
+
+  /* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2) {
+
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 667px)
+and (-webkit-min-device-pixel-ratio: 2) {
+
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 414px)
+and (max-device-width: 736px)
+and (-webkit-min-device-pixel-ratio: 3) {
+
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 812px)
+and (-webkit-min-device-pixel-ratio: 3) {
+
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 640px)
+and (-webkit-device-pixel-ratio: 2) {
+
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 320px)
+and (device-height: 640px)
+and (-webkit-device-pixel-ratio: 3) {
+
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 640px)
+and (-webkit-device-pixel-ratio: 4) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- HTC One ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 640px)
+and (-webkit-device-pixel-ratio: 3) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Google Pixel ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 640px)
+and (-webkit-device-pixel-ratio: 3) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Google Pixel XL ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 640px)
+and (-webkit-device-pixel-ratio: 4) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Nexus 4 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 384px)
+and (device-height: 592px)
+and (-webkit-device-pixel-ratio: 2) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Nexus 5 ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 592px)
+and (-webkit-device-pixel-ratio: 3) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Nexus 6 and 6P ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 360px)
+and (device-height: 592px)
+and (-webkit-device-pixel-ratio: 4) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+/* ----------- Windows Phone ----------- */
+
+/* Portrait and Landscape */
+@media screen
+and (device-width: 480px)
+and (device-height: 800px) {
+    .cameraContainer {
+        width: 100%;
+        /* height: 46.5em; */
+        margin-bottom: 3.5em;
+        background-color: #e5e5e6;
+        border-radius: 7px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 8.6em;
+        bottom: 1em;
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        max-height: calc(100vh - 10em);
+        /* Set maximum height to fill the available space */
+        min-height: 11em;
+        overflow-x: hidden;
+    }
+
+    .camera-container {
+        text-align: center;
+    }
+
+    .cameraHeader {
+        height: 1.4em;
+        padding: 9px;
+        display: flex;
+        background-color: navy;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        margin-bottom: 3px;
+    }
+
+    .cameraBackBtn {
+        background-color: #000080;
+        color: white;
+        border: none;
+        padding: 3px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .ImgCameraBackBtn {
+        height: 30px;
+        width: 30px;
+    }
+
+
+    .cameraHeaderTxt {
+        margin-right: 4.3em;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .circle-mask {
+        top: 0.5em;
+        width: 150px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+        border: 2px solid black;
+        position: relative;
+    }
+
+    .fingerprint-overlay {
+        position: absolute;
+        width: 150px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .camera-text {
+        /* display: flex ; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .GIFStyle {
+        border: 2px solid black;
+        width: 300px;
+        height: 150px;
+    }
+
+    .progressBarContainerStyles {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+    }
+
+    .progressBarStyles {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(navy 0%, transparent 0);
+    }
+
+    .progressBarTextStyles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        color: navy;
+        font-weight: bold;
+    }
+
+    .cameraAlertText {
+        font-size: 24px;
+        margin-top: 10px;
+        color: red;
+    }
+
+    .cameraVitalsfooter {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.6em;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 10px;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+}

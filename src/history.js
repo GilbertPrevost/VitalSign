@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+// import './App.css';
+import './history.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Modal from "react-modal";
-
-
-
-
-
-
+import { BASE_API_URL ,BASE_API_URL1} from './content';
 
 
 const History = () => {
@@ -23,10 +19,15 @@ const History = () => {
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+
   const [weighttype, setweighttype] = useState(localStorage.getItem('weighttype'));
   const [heighttype, setheighttype] = useState(localStorage.getItem('heighttype'));
   const [feet, setfeet] = useState(localStorage.getItem('feet'));
   const [inches, setinches] = useState(localStorage.getItem('inches'));
+
+
+
+
 
 
 
@@ -42,49 +43,56 @@ const History = () => {
   const [ST, setSt] = useState(localStorage.getItem('0'));
   const [Pr, setPr] = useState(localStorage.getItem('0'));
   const [date, setDate] = useState(localStorage.getItem('0'));
-const [time, setTime] = useState(localStorage.getItem('0'));
-
-
-
+  const [time, setTime] = useState(localStorage.getItem('0'));
 
   const [scrollX, setScrollX] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
 
-
-
   // const filterListTitle = ['HR', 'BP', 'QT', 'PR', 'O2 Level',
   // 'Body Temp', 'Respiration', 'BMI', 'ST', 'QRS'];
-
-
-
 
   const selecteKey = ['heartRate', 'bodyTemprature', 'respirationRate', 'bloodPressure', 'oxygenLevel', 'bodyMassIndex', 'qtinterval', 'stinterval', 'printerval',
     'qrsinterval'];
 
-
-
-
-
-
-
-
   const filterListTitle = ['Heart Rate', 'Body Temprature', 'Respiration Rate', 'Blood Pressure', 'Oxygen Level', 'Body Mass Index', 'ECG QT', 'ECG ST', 'ECG PR',
     'ECG QRS']
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = useState('All');
+    const options = ['All','Heart Rate', 'Body Temprature', 'Respiration Rate', 'Blood Pressure', 'Oxygen Level', 'Body Mass Index', 'ECG QT', 'ECG ST', 'ECG PR',
+      'ECG QRS'];
 
+    const toggleModal = () => {
+      setIsOpen(!isOpen);
+      setIsRotated(!isRotated);
+    };
 
+    const handleCheckboxChange = (e) => {
+      const value = e.target.value;
+      setIsRotated(!isRotated);
 
+      if (selectedValue === value || value === 'All') {
+        // setSelectedOptions(selectedOptions.filter(option => option !== value));
+        setSelectedValue('All');
+        setIsFilterON(false);
 
+      } else {
+        // setSelectedOptions([...selectedOptions, value]);
+        setSelectedValue(value);
+        setIsFilterON(true);
+        setSelectedKey(selecteKey[options.indexOf(value)-1]);
+
+      }
+      setIsOpen(false);
+
+    };
 
 
 
   const [isFilterON, setIsFilterON] = useState(false);
-  const [selectedValue, setSelectedValue] = useState('');
+  // const [selectedValue, setSelectedValue] = useState('');
   const [selectedKey, setSelectedKey] = useState('');
-
-
-
 
   const handleInputChange = (event) => {
     const newValue = event.target.value;
@@ -98,22 +106,13 @@ const [time, setTime] = useState(localStorage.getItem('0'));
     setSelectedValue(newValue);
   };
 
-
-
-
   const proxyURL = 'https://cors-anywhere.herokuapp.com/'; //${proxyURL}
-  const loginUrl = `${proxyURL}https://staycured-clinic.azurewebsites.net/API/PatientVitalSigns/GetDetails_V2`;
+  const loginUrl = `${BASE_API_URL1}PatientVitalSigns/GetDetails_V2`;
   // const rectangles = Array(length).fill(null);
 
-
-
-
-  const historyFilterBoldTextStyle = {
-    fontSize: '16px',
-  };
-
-
-
+  // const historyFilterBoldTextStyle = {
+  //   fontSize: '16px',
+  // };
 
   const historyHeaderStyle = {
     backgroundColor: 'navy',
@@ -123,8 +122,6 @@ const [time, setTime] = useState(localStorage.getItem('0'));
     fontWeight: 'bold',
     fontSize: '35px',
   };
-
-
 
 
   const historyRectangleStyle = {
@@ -139,18 +136,15 @@ const [time, setTime] = useState(localStorage.getItem('0'));
 
 
 
+
+
+
+
   const historyTopContentStyle = {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '10px',
   };
-
-
-
-
-
-
-
 
   const historyBottomContentStyle = {
     marginTop: '1px',
@@ -160,16 +154,10 @@ const [time, setTime] = useState(localStorage.getItem('0'));
     justifyContent: 'space-between',
   };
 
-
-
-
   const historyBoldTextStyle = {
     fontWeight: 'bold'
   };
-
-
-
-
+-9
   const modalStyle = {
     // display: isModalOpen ? 'block' : 'none',
     position: 'fixed',
@@ -188,16 +176,6 @@ const [time, setTime] = useState(localStorage.getItem('0'));
   };
 
 
-
-
-
-
-
-
-
-
-
-
   const handleScrollX = (scroll) => {
     const container = document.getElementById("ecg-container");
     if (container) {
@@ -205,13 +183,6 @@ const [time, setTime] = useState(localStorage.getItem('0'));
       setScrollX(Math.min(maxScrollX, Math.max(0, scroll)));
     }
   };
-
-
-
-
-
-
-
 
   const handleScrollY = (scroll) => {
     const container = document.getElementById("ecg-container");
@@ -222,16 +193,18 @@ const [time, setTime] = useState(localStorage.getItem('0'));
   };
 
 
-
-
-
-
-
-
   useEffect(() => {
     handleScrollX(scrollX);
     handleScrollY(scrollY);
   }, [scrollX, scrollY]);
+
+
+
+
+
+
+
+
 
 
 
@@ -337,6 +310,31 @@ const [time, setTime] = useState(localStorage.getItem('0'));
     age: 25
   }];
 
+  const overlayStyle = {
+    display: isOpen ? 'block' : 'none',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '122.5%',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Semi-transparent black background
+    zIndex: 999, // Lower z-index to be below the modal
+  };
+
+  const [isRotated, setIsRotated] = useState(false);
+  const rotation = isRotated ? 180 : 0 ;
+
+  const imgStyle = {
+    position: 'absolute',
+    // marginTop: '0.2em',
+    right: '2em',
+    // height: '0.7em',
+    width: '0.7em',
+    transform: `rotate(${rotation}deg)`,
+  };
+
+
+
 
 
 
@@ -348,6 +346,7 @@ const [time, setTime] = useState(localStorage.getItem('0'));
     setHeight(localStorage.getItem('height'));
     setWeight(localStorage.getItem('weight'));
 
+
     setfeet(localStorage.getItem('feet'));
     setinches(localStorage.getItem('inches'));
     setweighttype(localStorage.getItem('weighttype'));
@@ -355,7 +354,12 @@ const [time, setTime] = useState(localStorage.getItem('0'));
 
 
 
+
+
+
     // setVitalSigns(patientData);
+
+
 
 
     callVitalsHistoryOnLoad();
@@ -364,10 +368,18 @@ const [time, setTime] = useState(localStorage.getItem('0'));
 
 
 
+
+
+
+
   var requestBody = {
     PatientGUID: guid
     // PatientGUID: "f44ea07e-8af0-4485-b26c-b5f10cd677dc"
   };
+
+
+
+
 
 
 
@@ -386,10 +398,15 @@ const [time, setTime] = useState(localStorage.getItem('0'));
     setQt(data.qtinterval);
     setSt(data.stinterval);
 
+
     setDate(data.onlyDate);
-setTime(data.onlyTime);
+    setTime(data.onlyTime);
     setIsModalOpen(true);
   };
+
+
+
+
 
 
 
@@ -397,6 +414,10 @@ setTime(data.onlyTime);
   const callVitalsHistoryOnLoad = () => {
     console.log('Function called when component is loaded');
     console.log("requesting", requestBody);
+
+
+
+
 
 
 
@@ -419,7 +440,15 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
   };
+
+
+
+
 
 
 
@@ -432,14 +461,16 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
   const ECGContainer = {
     display: isModalOpen ? 'block' : 'none',
     backgroundColor: "#efefef",
-    height: "37.3em",
-    // width: "105%",
+    height: "34.7em",
     margin: "auto",
     marginRight: "-15px",
-    // marginTop: "-15px",
     // marginTop: "4em",
     // marginBottom: 'em',
     marginLeft: "-15px",
@@ -447,6 +478,10 @@ setTime(data.onlyTime);
     scrollLeft: scrollX,
     scrollTop: scrollY, // Set scrollTop to scrollY
   };
+
+
+
+
 
 
 
@@ -459,9 +494,17 @@ setTime(data.onlyTime);
 
 
 
-  const numVerticalLines = 10;
-  const HorizontalLineSpacing = (465 - 50) / (numVerticalLines - 1) * 1.8;
-  const verticalLineSpacing = (223 - 50) / (numVerticalLines - 1) * 1.8;
+
+
+
+
+  const numVerticalLines = 8;
+  const HorizontalLineSpacing = (373 - 50) / (numVerticalLines - 1) * 1.8;
+  const verticalLineSpacing = (189 - 50) / (numVerticalLines - 1) * 1.8;
+
+
+
+
 
 
 
@@ -478,14 +521,23 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
   const verticalLines = [];
   for (let i = 0; i < numVerticalLines; i++) {
     const x = 50 + i * verticalLineSpacing;
-    const color = i === 9 ? "black" : "gray"; // Change color to black for the 10th line
+    const color = i === 7 ? "black" : "gray"; // Change color to black for the 8th line
     verticalLines.push(
-      <line key={i} x1={x} y1={50} x2={x} y2={300} stroke={color} strokeWidth="1" />
+      <line key={i} x1={x} y1={50} x2={x} y2={250} stroke={color} strokeWidth="1" />
     );
   }
+
+
+
+
+
 
 
 
@@ -541,41 +593,51 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
   // Calculate the scaling factors based on chart dimensions and data range
-  const xScale = (362 - 50) / (ecgData.length - 1);
-  const yScale = (148 - 50) / (Math.max(...ecgData.map(point => point.y)) - Math.min(...ecgData.map(point => point.y)));
+  const xScale = (300 - 50) / (ecgData.length - 1);
+  const yScale = (138 - 50) / (Math.max(...ecgData.map(point => point.y)) - Math.min(...ecgData.map(point => point.y)));
+
+
+
+
 
 
 
 
   // Convert ECG data to SVG path
-  const ecgPath = `M${ecgData.map((point, index) => `${50 + index * xScale},${230 - (point.y - Math.min(...ecgData.map(point => point.y))) * yScale}`).join(' L')}`;
+  const ecgPath = `M${ecgData.map((point, index) => `${50 + index * xScale},${200 - (point.y - Math.min(...ecgData.map(point => point.y))) * yScale}`).join(' L')}`;
 
 
 
 
-  const historyModel = {
-    display: modalIsOpen ? 'block' : 'none',
-    // position: 'fixed',
-    // top: '50%',
-    // left: '50%',
-    // transform: 'translate(-50%, -50%)',
-    // backgroundColor: 'navy',
-    // zIndex: 1000,
-    width: '100%',
-    // height: '100%',
-    // padding: '20px',
-    // border: '1px solid #ccc',
-    // borderRadius: '10px',
-    // textAlign: 'center',
-    // background: `linear-gradient(to bottom, navy 3.3em, white 3.3em)`,
-  };
+
+
+
+
+
+
+
+
+
+
 
 
 
 
   return (
+
+
+
+
     <div>
+
+
+
+
 
 
 
@@ -599,11 +661,11 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
       <div className="HistoryContainer" >
-
-
-
-
 
 
 
@@ -617,7 +679,19 @@ setTime(data.onlyTime);
 
 
 
-          <button className='cameraBackBtn'
+
+
+
+
+
+
+
+
+          <button className='historyBackBtn'
+
+
+
+
 
 
 
@@ -629,7 +703,7 @@ setTime(data.onlyTime);
             <img
               src="back.png"
               alt="Back"
-              className='ImgCameraBackBtn'
+              className='ImgHistoryBackBtn'
             />
             {/* Logout */}
           </button>
@@ -641,9 +715,21 @@ setTime(data.onlyTime);
 
 
 
-          <div className='cameraHeaderTxt'>
+
+
+
+
+
+
+
+
+          <div className='HistoryHeaderTxt'>
             VITAL SIGNS HISTORY
           </div>
+
+
+
+
 
 
 
@@ -665,25 +751,49 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div className='profileDetailHeader'>
-          <div style={{ flex: 'auto', marginLeft: '3.8em' }}>
+          <div className='profileDetailHeaderText'>
             <p><span className='profileDetailText'>Gender:</span> {gender}</p>
             <p><span className='profileDetailText'>Age:</span> {age}</p>
 
 
 
 
+
+
+
+
           </div>
           <div style={{ flex: '1' }}>
-            <p><span style={historyBoldTextStyle}>Height:</span> {heighttype === 'CMS' ? height + ' cm' : feet + "\'" + inches + "\""}</p>
-            <p><span style={historyBoldTextStyle}>Weight:</span> {(weighttype == 'KG') ? weight + ' Kg' : weight + ' lbs'}</p>
+            <p><span className='profileDetailText'>Height:</span> {heighttype === 'CMS' ? height + ' cm' : feet + "\'" + inches + "\""}</p>
+            <p><span className='profileDetailText'>Weight:</span> {(weighttype == 'KG') ? weight + ' Kg' : weight + ' lbs'}</p>
           </div>
         </div>
 
 
 
 
-        <div className='FilterDropdown'>
+
+
+
+
+        {/* <div className='FilterDropdown'>
           <select className='select' value={selectedValue}
             onChange={handleInputChange}>
             <option value="">All</option>
@@ -693,10 +803,56 @@ setTime(data.onlyTime);
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
 
 
+
+        <button onClick={toggleModal} className='FilterHeaderTitle'>{selectedValue}
+        <img
+                src="icons8-triangle-16.png"
+                alt="Arrow"
+                style={imgStyle}
+              /></button >
+        {isOpen && (
+          <div style={overlayStyle}>
+
+            <div className='filterModalBox'>
+
+              {/* <div className="modal-content"> */}
+
+                <div style={{ background: 'navy', color: 'white', padding: '10px', textAlign: 'center', fontSize: '16px' }} >Filter History
+                <button
+                // className="close-button"
+                onClick={() => {
+                  toggleModal(false);
+                  setIsRotated(!isRotated);
+                }}
+                className='filterModelx'
+              >
+                x
+              </button></div>
+
+                <ul style={{ listStyleType: 'none', padding: 0 }} >
+                  {options.map(option => (
+                    <li key={option} style={{ background: '#efefef', marginBottom: '5px', padding: '5px' }} >
+                      <label style={{ textAlign: 'left' }} >
+                        <input
+                          type="checkbox"
+                          value={option}
+                          checked={selectedValue === option}
+
+                          onChange={handleCheckboxChange}
+                        />
+                        <span style={{ marginLeft: '10px' }}>{option}</span>
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              {/* </div> */}
+            </div>
+          </div>
+        )}
 
         {!isFilterON && vitalSigns.map((vitalSign, index) => (
           <div key={index} className='history-rectangle'
@@ -705,72 +861,89 @@ setTime(data.onlyTime);
               <div style={{ flex: 'auto' }}>
 
 
-
-
-
-
-
-
-                {!false && <p><span style={historyBoldTextStyle}>Date:</span> {vitalSign.onlyDate}</p>}
-                <p><span style={historyBoldTextStyle}>Time:</span> {vitalSign.onlyTime}</p>
-                <p><span style={historyBoldTextStyle}>HR:</span> {vitalSign.heartRate}</p>
-                <p><span style={historyBoldTextStyle}>BP:</span> {vitalSign.bloodPressure}</p>
-                <p><span style={historyBoldTextStyle}>ECG</span></p>
-                <p><span style={historyBoldTextStyle}>QT:</span> {vitalSign.qtinterval}</p>
-                <p><span style={historyBoldTextStyle}>PR:</span> {vitalSign.printerval}</p>
+                {!false && <p><span className='profileDetailText'>Date:</span> {vitalSign.onlyDate}</p>}
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>Time:</span> {vitalSign.onlyTime}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>HR:</span> {vitalSign.heartRate}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>BP:</span> {vitalSign.bloodPressure}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>ECG</span></p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>QT:</span> {vitalSign.qtinterval}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>PR:</span> {vitalSign.printerval}</p>
+                </div>
               </div>
-              <div style={{ flex: '1' }}>
-                <p><span style={historyBoldTextStyle}>O2 Level:</span> {vitalSign.oxygenLevel}</p>
-                <p><span style={historyBoldTextStyle}>BodyTemp:</span> {vitalSign.bodyTemprature}</p>
-                <p><span style={historyBoldTextStyle}>Respiration:</span> {vitalSign.respirationRate}</p>
-                <p><span style={historyBoldTextStyle}>BMI:</span> {vitalSign.bodyMassIndex}</p>
-                <p style={{ color: '#ffffff' }}><span style={historyBoldTextStyle}>ECG</span></p>
-                <p><span style={historyBoldTextStyle}>ST:</span> {vitalSign.stinterval}</p>
-                <p><span style={historyBoldTextStyle}>QRS:</span> {vitalSign.qrsinterval}</p>
+              <div style={{ flex: '1.5' }}>
+              <img src='detail-icon.png' className='detail-icon'></img>
+                <p><span className='profileDetailText'>O2 Level:</span> {vitalSign.oxygenLevel}</p>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>BodyTemp:</span> {vitalSign.bodyTemprature}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>Respiration:</span> {vitalSign.respirationRate}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>BMI:</span> {vitalSign.bodyMassIndex}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p style={{ color: '#ffffff' }}><span className='profileDetailText'>ECG</span></p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>ST:</span> {vitalSign.stinterval}</p>
+                </div>
+                <div style={{ marginTop: "-0.5em" }} >
+                  <p><span className='profileDetailText'>QRS:</span> {vitalSign.qrsinterval}</p>
+                </div>
               </div>
             </div>
           </div>
         ))}
 
-
-
-
         {isFilterON &&
           <div className='FilterDropdown-header'>
             <p className='FilterDropdown-headerTitle'>Date</p>
             <p className='FilterDropdown-headerTitle'>Time</p>
-
-
             {(selectedValue === 'ECG QRS' || selectedValue === 'ECG PR' || selectedValue === 'ECG QT' || selectedValue === 'ECG ST') ?
               <p className='FilterDropdown-headerTitle1'>{selectedValue}</p> : <p className='FilterDropdown-headerTitle'>{selectedValue}</p>
             }
           </div>
         }
         {isFilterON && vitalSigns.map((vitalSign, index) => (
-
-
           <div key={index} className='history-filter-rectangle'>
             <div className='history-filter-top-content'>
               <div style={{ flex: '1' }}>
-                <p style={historyFilterBoldTextStyle}>{vitalSign.onlyDate}</p>
+                <p className='historyFilterTextStyle'>{vitalSign.onlyDate}</p>
               </div>
-
-
-
-
               <div style={{ flex: 'auto' }} className='history-filter-top-content1'>
-                <p style={historyFilterBoldTextStyle}>{vitalSign.onlyTime}</p>
+                <p className='historyFilterTextStyle'>{vitalSign.onlyTime}</p>
               </div>
+
+
+
+
 
 
 
 
               <div style={{ flex: '1' }} >
-                <p style={historyFilterBoldTextStyle}>{vitalSign[selectedKey]}</p>
+                <p className='historyFilterTextStyle'>{vitalSign[selectedKey]}</p>
               </div>
             </div>
           </div>
         ))}
+
+
+
+
+        {vitalSigns.length === 0 && <div style={{ textAlign: 'center', marginTop: '50%' }}><h3>No record found</h3> </div>}
 
 
 
@@ -780,76 +953,44 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
         <Modal
           isOpen={modalIsOpen}
           // onRequestClose={closeDialog}
           contentLabel="Take Vital Signs"
-          className="popUpModal"
-          overlayClassName="overlay"
+          className="historyPopUpModal"
+          overlayClassName="historyOverlay"
         >
-          <div style={historyModel}>
-
-
-
-
-
-
+          <div className='historyModel'>
 
 
             <div
               id="header"
-              style={{
-                width: "100%",
-                height: "40px",
-                background: "navy",
-                textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: '0.5px',
-                marginBottom: '1em'
-              }}
+              className='vitalDetailsBorder'
             >
               <div>
                 <h2
-                  style={{
-                    // margin: "0",
-                    color: "white",
-                    fontSize: "13px",
-                    fontWeight: "bold",
-                    display: 'flex',
-                    marginLeft: '11em',
-                    // alignItems: "center",
-                    // justifyContent: "center",
-                  }}
+                  className='vitalDetailsModal'
                 >
                   Vital Details
                 </h2>
               </div>
               <button
-                className="close-button"
+                // className="close-button"
                 onClick={() => {
                   setModalIsOpen(false);
                 }}
-                style={{
-                  // height: '20px',
-                  // width: '20px',
-                  // right:'2px',
-                  background: "navy",
-                  color: "white",
-                  borderColor: "white",
-                  fontWeight: "bold",
-                  padding: "3px 7px",
-                  borderRadius: "14px",
-                  fontSize: "14px",
-                  display: 'flex',
-                  marginLeft: '9em'
-                  // right: '2px',
-                  // marginTop: '1em'
-                }}
+                className='historyModelX'
               >
                 x
               </button>
+
+
+
+
 
 
 
@@ -865,65 +1006,39 @@ setTime(data.onlyTime);
 
 
 
-            <header1 style={{
-              height: '1.5em',
-              padding: '7px',
-              display: 'flex',
-              backgroundColor: 'navy',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              color: 'white',
-              marginBottom: '3px',
-              marginTop: '1px'
 
 
-            }}>
+
+
+
+
+
+
+
+
+            <header1 className='historyDateTime'>
+
 
               <div className="HistoryRecord-title">
-                <div style={{marginLeft:"-1em"}}><span style={historyBoldTextStyle}>Date:</span> {date}</div>
-                <div style={{marginLeft:"7em"}}><span style={historyBoldTextStyle}>Time:</span> {time}</div>
+                <div style={{ marginLeft: "-4.5em" }}><span className='profileDetailText'>Date:</span> {date}</div>
+                <div style={{ marginLeft: "5.3em" }}><span className='profileDetailText'>Time:</span> {time}</div>
+
 
               </div>
 
 
+
+
             </header1>
-
-
-
-
-
-
-
-
-
-
-            <div style={ECGContainer}>
-
-
-
-
+            <div className='ECGContainer'>
               <div>
                 <div className="HistoryImage-container">
-
-
-
-
                   <img src="hypertension.png" alt="Blood Pressure" className="HistoryImage1" />
                   <img src="oxygen.png" alt="Oxygen Saturation" className="HistoryImage1" /></div>
-
-
-
-
                 <div className="HistoryHeader-container">
                   <h4 className="HistoryHeader-title">Blood Pressure</h4>
                   <h4 className="HistoryHeader-title">Oxygen Saturation</h4>
                 </div>
-
-
-
-
                 <div className="HistoryDetails-container">
                   {Blood1 !== 0 ? (
                     <>
@@ -940,41 +1055,21 @@ setTime(data.onlyTime);
                     <div className="HistoryValue"> 0 </div>
                   )}
                 </div>
-
-
-
-
                 <div className="HistoryTilte-contaniner">
                   <div className="HistoryTilte">Normal Range</div>
                   <div className="HistoryTilte">Normal Range</div>
                 </div>
-
-
-
-
                 <div className="HistoryRange-container">
                   <div className="HistoryRange">120/80 - 140/90</div>
                   <div className="HistoryRange">95 - 100</div>
                 </div>
-
-
-
-
-                <div className="HistoryImage-container">
+               <div className="HistoryImage-container">
                   <img src="heart.png" alt="Heart Rate" className="HistoryImage" />
                   <img src="Thermometer.png" alt="Body Temperature" className="HistoryImage" /></div>
-
-
-
-
                 <div className="HistoryHeader-container1 ">
                   <h4 className="HistoryHeader-title1">Heart Rate</h4>
                   <h4 className="HistoryHeader-title1">Body Temperature</h4>
                 </div>
-
-
-
-
                 <div className="HistoryDetails-container">
                   {HR !== 0 ? (
                     <>
@@ -991,41 +1086,21 @@ setTime(data.onlyTime);
                     <div className="HistoryValue">0</div>
                   )}
                 </div>
-
-
-
-
                 <div className="HistoryTilte-contaniner">
                   <div className="HistoryTilte">Normal Range</div>
                   <div className="HistoryTilte">Normal Range</div>
                 </div>
-
-
-
-
                 <div className="HistoryRange-container1">
                   <div className="HistoryRange1">60 - 90</div>
                   <div className="HistoryRange1">96 F - 98.4 F</div>
                 </div>
-
-
-
-
                 <div className="HistoryImage-container">
                   <img src="lungs.png" alt="Respiration Rate" className="HistoryImage" />
                   <img src="bmi_icon.png" alt="Body Mass Index" className="HistoryImage" /></div>
-
-
-
-
                 <div className="HistoryHeader-container">
                   <h4 className="HistoryHeader-title">Respiration Rate</h4>
                   <h4 className="HistoryHeader-title">Body Mass Index</h4>
                 </div>
-
-
-
-
                 <div className="HistoryDetails-container">
                   {Respiration !== 0 ? (
                     <>
@@ -1045,14 +1120,14 @@ setTime(data.onlyTime);
                     <div className="HistorValue"> 0 </div>
                   )}
                 </div>
-
-
-
-
                 <div className="HistoryTilte-contaniner">
                   <div className="HistoryTilte">Normal Range</div>
                   <div className="HistoryTilte">Normal Range</div>
                 </div>
+
+
+
+
 
 
 
@@ -1066,7 +1141,15 @@ setTime(data.onlyTime);
 
 
 
-              <center><h3 className="ECGIntervelText1">Electrocardiogram</h3></center>
+
+
+
+
+              <center><h3 className="HistoryECGIntervelText">Electrocardiogram</h3></center>
+
+
+
+
 
 
 
@@ -1074,70 +1157,90 @@ setTime(data.onlyTime);
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
                 <svg width={500} height={350} style={svgStyle}>
                   {/* X-Axis */}
-                  <line x1={50} y1={300} x2={362} y2={300} stroke="black" strokeWidth="2" />
+                  <line x1={49} y1={250} x2={300} y2={250} stroke="black" strokeWidth="2" />
                   {/* X-Axis Label (centered) */}
 
 
 
 
-                  <text x={235} y={343} textAnchor="middle" fontWeight="bold">
+
+
+
+
+                  <text x={165} y={300} textAnchor="middle" fontSize="14px" fontWeight="bold">
                     (Seconds)
                   </text>
-                  <text x={55} y={320} textAnchor="end" fontSize="14px">
+                  <text x={53} y={270} textAnchor="end" fontSize="14px">
                     0
                   </text>
-                  <text x={95} y={320} textAnchor="end" fontSize="14px">
+                  <text x={94.5} y={270} textAnchor="end" fontSize="14px">
                     0.2
                   </text>
-                  <text x={128} y={320} textAnchor="end" fontSize="14px">
+                  <text x={131} y={270} textAnchor="end" fontSize="14px">
                     0.4
                   </text>
-                  <text x={162} y={320} textAnchor="end" fontSize="14px">
+                  <text x={167} y={270} textAnchor="end" fontSize="14px">
                     0.6
                   </text>
-                  <text x={197} y={320} textAnchor="end" fontSize="14px">
+                  <text x={203} y={270} textAnchor="end" fontSize="14px">
                     0.8
                   </text>
-                  <text x={232} y={320} textAnchor="end" fontSize="14px">
+                  <text x={237} y={270} textAnchor="end" fontSize="14px">
                     1.0
                   </text>
-                  <text x={267} y={320} textAnchor="end" fontSize="14px">
+                  <text x={274} y={270} textAnchor="end" fontSize="14px">
                     1.2
                   </text>
-                  <text x={304} y={320} textAnchor="end" fontSize="14px">
+                  <text x={308} y={270} textAnchor="end" fontSize="14px">
                     1.4
                   </text>
-                  <text x={335} y={320} textAnchor="end" fontSize="14px">
+                  {/* <text x={335} y={270} textAnchor="end" fontSize="14px">
                     1.6
                   </text>
-                  <text x={370} y={320} textAnchor="end" fontSize="14px">
+                  <text x={370} y={270} textAnchor="end" fontSize="14px">
                     1.8
-                  </text>
+                  </text> */}
+
+
+
+
 
 
 
 
                   {/* Y-Axis */}
-                  <line x1={50} y1={300} x2={50} y2={50} stroke="black" strokeWidth="2" />
+                  <line x1={50} y1={250} x2={50} y2={50} stroke="black" strokeWidth="2" />
                   {/* Y-Axis Label (centered) */}
-                  <text x={7} y={188} textAnchor="middle" fontWeight="bold" transform="rotate(-90, 10, 175)">(Milli-Volts)</text>
+                  <text x={35} y={188} textAnchor="middle" fontSize="14px" fontWeight="bold" transform="rotate(-90, 10, 175)">(Milli-Volts)</text>
+
+
+
+
 
 
 
 
                   {/* Optional labels for Y-axis */}
-                  <text x={40} y={300} textAnchor="end">0</text>
-                  <text x={40} y={225} textAnchor="end">1</text>
-                  <text x={40} y={150} textAnchor="end">2</text>
-                  <text x={40} y={75} textAnchor="end">3</text>
+                  <text x={40} y={250} textAnchor="end">0</text>
+                  <text x={40} y={193} textAnchor="end">1</text>
+                  <text x={40} y={125} textAnchor="end">2</text>
+                  <text x={40} y={60} textAnchor="end">3</text>
+
+
+
+
 
 
 
 
                   {/* Horizontal lines with increased spacing */}
-                  <line x1={50} y1={300 - HorizontalLineSpacing} x2={362} y2={300 - HorizontalLineSpacing} stroke="gray" strokeWidth="1" />
-                  <line x1={50} y1={300 - 2 * HorizontalLineSpacing} x2={362} y2={300 - 2 * HorizontalLineSpacing} stroke="gray" strokeWidth="1" />
-                  <line x1={50} y1={300 - 3 * HorizontalLineSpacing} x2={362} y2={300 - 3 * HorizontalLineSpacing} stroke="black" strokeWidth="2" />
+                  <line x1={50} y1={270 - HorizontalLineSpacing} x2={300} y2={270 - HorizontalLineSpacing} stroke="gray" strokeWidth="1" />
+                  <line x1={50} y1={285 - 2 * HorizontalLineSpacing} x2={300} y2={285 - 2 * HorizontalLineSpacing} stroke="gray" strokeWidth="1" />
+                  <line x1={50} y1={300 - 3 * HorizontalLineSpacing} x2={300} y2={300 - 3 * HorizontalLineSpacing} stroke="black" strokeWidth="2" />
+
+
+
+
 
 
 
@@ -1152,13 +1255,25 @@ setTime(data.onlyTime);
 
 
 
-              <div style={{ marginTop: '90px' }}>
-                <center><h3 className="ECGIntervelText2">ECG Intervals</h3></center>
+
+
+
+
+              <div style={{ marginTop: '5px' }}>
+                <center><h3 className="HistoryECGIntervelText1">ECG Intervals</h3></center>
+
+
+
+
 
 
 
 
                 <div className="HistoryContainer-image">
+
+
+
+
 
 
 
@@ -1171,6 +1286,10 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
                   <div className="HistoryDetails-container">
                     <div className="HistoryValue"> {qt} </div>
                     <div className="HistoryValue"> {ST} </div>
@@ -1179,10 +1298,18 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
                   <div className="HistoryTilte-contaniner">
                     <div className="HistoryTilteT">Normal Range</div>
                     <div className="HistoryTilteT">Normal Range</div>
                   </div>
+
+
+
+
 
 
 
@@ -1195,10 +1322,18 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
                   <div className="HistoryHeader-container">
                     <h3 className="HistoryHeader-title2">PR Interval</h3>
                     <h3 className="HistoryHeader-title2">QRS Interval</h3>
                   </div>
+
+
+
+
 
 
 
@@ -1211,10 +1346,18 @@ setTime(data.onlyTime);
 
 
 
+
+
+
+
                   <div className="HistoryTilte-contaniner">
                     <div className="HistoryTilteT">Normal Range</div>
                     <div className="HistoryTilteT">Normal Range</div>
                   </div>
+
+
+
+
 
 
 
@@ -1225,6 +1368,10 @@ setTime(data.onlyTime);
                   </div>
                 </div>
               </div>
+
+
+
+
 
 
 
@@ -1244,14 +1391,10 @@ setTime(data.onlyTime);
         </Modal>
 
 
-
-
       </div>
 
 
-
-
-      <footer className="footer1"
+      <footer className="historyFooter"
         style={{
           backgroundColor: "white",
           display: "flex",
@@ -1269,7 +1412,8 @@ setTime(data.onlyTime);
           © 2023, All Rights Reserved.
         </div>
 
-        <div className='footercontent' style={{ alignItems: 'center' }}>
+
+        <div style={{ alignItems: 'center' }}>
           <button
             style={{
               backgroundColor: "transparent",
@@ -1317,11 +1461,12 @@ setTime(data.onlyTime);
           </button>
         </div>
       </footer>
-    </div>
-  );
+    </div>  );
 };
 
 
-
-
 export default History;
+
+
+
+
